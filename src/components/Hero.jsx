@@ -7,42 +7,40 @@ const Hero = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
-      className="bg-blue-50 min-h-screen flex flex-col-reverse md:flex-row items-center justify-between px-6 md:px-16 lg:px-28 pt-16" // Added pt-16 to account for navbar height
+      className="bg-gradient-to-br from-blue-100 via-white to-blue-100 min-h-screen flex flex-col-reverse md:flex-row items-center justify-between px-6 md:px-16 lg:px-28 pt-20"
     >
       {/* Left Text Section */}
       <motion.div
         initial={{ x: -100, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 1 }}
-        className="flex-1 text-left space-y-4"
+        className="flex-1 text-left space-y-8"
       >
-        <p className="text-5xl md:text-6xl font-bold text-gray-900 mt-4">Hi, I am</p>
-        <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mt-4">
-          Vishnu Nair
-        </h1>
+        <div className="space-y-6">
+          {/* <p className="text-blue-600 font-semibold text-xl tracking-wide">Welcome to my portfolio</p> */}
+          <h1 className="text-5xl md:text-7xl font-bold text-gray-900 leading-tight">
+            Hi, I am <span className="text-blue-600 relative">
+              Vishnu Nair
+              <div className="absolute bottom-0 left-0 w-full h-2 bg-blue-200 -z-10 transform -rotate-2"></div>
+            </span>
+          </h1>
+        </div>
 
-        {/* Add your introduction here */}
-        <p className="text-xl text-gray-600 font-semibold mt-4">
-          I'm an MCA student at Christ University Bengaluru and a JavaScript developer based in Bengaluru, Karnataka, India.
-        </p>
-        <p className="text-xl text-gray-600 font-semibold mt-4">
-          I'm passionate about programming and web development
-        </p>
-        <p className="text-xl text-gray-600 font-semibold mt-4">
-          I'm fluent in React.js, Spring Boot, and Node.js, and I love creating dynamic web applications with these technologies.
+        <p className="text-xl text-gray-600 leading-relaxed max-w-2xl">
+          MCA student at Christ University Bengaluru and <span className="text-blue-600 font-medium">JavaScript developer</span> passionate about creating dynamic web applications with React.js, Spring Boot, and Node.js.
         </p>
 
-        {/* Social Icons */}
+        {/* Social Icons with enhanced styling */}
         <motion.div
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 1, delay: 0.5 }}
-          className="flex space-x-4 mt-6"
+          className="flex space-x-8 mt-12"
         >
           {/* Email */}
           <a
-            href="vishnunair2323@gmail.com"
-            className="p-2 bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors"
+            href="mailto:vishnunair2323@gmail.com"
+            className="p-3 bg-white shadow-md rounded-xl hover:bg-blue-50 hover:scale-110 transition-all duration-300"
           >
             <svg
               className="w-6 h-6"
@@ -62,7 +60,7 @@ const Hero = () => {
           {/* GitHub */}
           <a
             href="https://github.com/Vishnu-comp"
-            className="p-2 bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors"
+            className="p-3 bg-white shadow-md rounded-xl hover:bg-blue-50 hover:scale-110 transition-all duration-300"
           >
             <svg
               className="w-6 h-6"
@@ -80,7 +78,7 @@ const Hero = () => {
           {/* LinkedIn */}
           <a
             href="https://www.linkedin.com/in/vishnu-nair-aa462b245/"
-            className="p-2 bg-gray-200 rounded-lg hover:bg-gray-300 transition-colors"
+            className="p-3 bg-white shadow-md rounded-xl hover:bg-blue-50 hover:scale-110 transition-all duration-300"
           >
             <svg
               className="w-6 h-6"
@@ -93,20 +91,22 @@ const Hero = () => {
         </motion.div>
       </motion.div>
 
-      {/* Right Image Section */}
+      {/* Image section with enhanced effects */}
       <motion.div
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 1 }}
-        className="flex-1 flex justify-center items-center mb-8 md:mb-0"
+        className="flex-1 flex justify-center items-center mb-16 md:mb-0"
       >
-        <div className="relative w-64 md:w-96">
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-black rounded-lg transform -rotate-6"></div>
+        <div className="relative w-72 md:w-[28rem] aspect-square">
+          <div className="absolute inset-0 bg-blue-500/20 rounded-full animate-pulse"></div>
+          <div className="absolute inset-0 bg-blue-300/10 rounded-full animate-pulse delay-75"></div>
           <img
             src="https://github.com/user-attachments/assets/6816c3af-b64a-4ee2-9532-37c49af50d94"
             alt="Professional headshot"
-            className="relative z-10 w-full h-auto rounded-lg shadow-xl"
+            className="relative z-10 w-full h-full object-cover rounded-full border-8 border-white shadow-2xl"
           />
+          
         </div>
       </motion.div>
     </motion.div>

@@ -33,101 +33,108 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-blue-500 text-white py-4 shadow-md fixed w-full z-50">
+    <nav className="bg-white/80 backdrop-blur-md text-gray-800 py-4 shadow-lg fixed w-full z-50 transition-all duration-300">
       <div className="container mx-auto px-4 flex justify-between items-center">
         {/* Logo */}
-        <Link to="/" onClick={closeMobileMenu} className="hover:text-black-500">
+        <Link 
+          to="/" 
+          onClick={closeMobileMenu} 
+          className="transition-transform duration-300 hover:scale-105"
+        >
           <img
             src="https://github.com/user-attachments/assets/7323e2bc-209b-4ddf-9983-62b6e31b2672"
             alt="Logo"
-            className="h-10 w-auto"
+            className="h-12 w-auto"
           />
         </Link>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex space-x-6">
+        <ul className="hidden md:flex items-center space-x-8">
+          {[
+            { href: "#hero", label: "Home" },
+            { href: "#education", label: "Education" },
+            { href: "#internship", label: "Internship" },
+            { href: "#portfolio", label: "Projects" },
+            { href: "#achievements", label: "Achievements" },
+            { href: "#whyhireme", label: "Contact Me" },
+          ].map((item) => (
+            <li key={item.href}>
+              <button
+                onClick={() => handleNavigation(item.href)}
+                className="relative px-2 py-1 text-gray-700 hover:text-blue-600 transition-colors duration-300
+                  after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 
+                  after:bg-blue-600 after:left-0 after:bottom-0 after:origin-right
+                  after:transition-transform after:duration-300
+                  hover:after:scale-x-100 hover:after:origin-left"
+              >
+                {item.label}
+              </button>
+            </li>
+          ))}
           <li>
-            <button onClick={() => handleNavigation("#hero")} className="hover:text-black">
-              Home
-            </button>
-          </li>
-          <li>
-            <button onClick={() => handleNavigation("#education")} className="hover:text-black">
-              Education
-            </button>
-          </li>
-          <li>
-            <button onClick={() => handleNavigation("#internship")} className="hover:text-black">
-              Internship
-            </button>
-          </li>
-          <li>
-            <button onClick={() => handleNavigation("#portfolio")} className="hover:text-black">
-              Projects
-            </button>
-          </li>
-          <li>
-            <button onClick={() => handleNavigation("#achievements")} className="hover:text-black">
-              Achievements
-            </button>
-          </li>
-          <li>
-            <button onClick={() => handleNavigation("#whyhireme")} className="hover:text-black">
-              Contact Me
-            </button>
-          </li>
-          <li>
-            <Link to="/resume" className="hover:text-blue-500">
+            <Link
+              to="/resume"
+              className="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 
+                transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5"
+            >
               Resume
             </Link>
           </li>
         </ul>
 
         {/* Mobile Menu Toggle */}
-        <button className="md:hidden text-2xl" onClick={toggleMobileMenu}>
-          {isMobileMenuOpen ? "×" : "☰"}
+        <button 
+          className="md:hidden w-10 h-10 flex items-center justify-center rounded-full
+            hover:bg-gray-100 transition-colors duration-300" 
+          onClick={toggleMobileMenu}
+        >
+          {isMobileMenuOpen ? (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          ) : (
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          )}
         </button>
       </div>
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <ul className="md:hidden bg-blue-500 text-white py-4 px-4 space-y-4 text-center absolute top-16 left-0 w-full z-40">
-          <li>
-            <button onClick={() => handleNavigation("#hero")} className="block hover:text-black-300">
-              Home
-            </button>
-          </li>
-          <li>
-            <button onClick={() => handleNavigation("#education")} className="block hover:text-black-300">
-              Education
-            </button>
-          </li>
-          <li>
-            <button onClick={() => handleNavigation("#internship")} className="block hover:text-black-300">
-              Internship
-            </button>
-          </li>
-          <li>
-            <button onClick={() => handleNavigation("#portfolio")} className="block hover:text-black-300">
-              Projects
-            </button>
-          </li>
-          <li>
-            <button onClick={() => handleNavigation("#achievements")} className="block hover:text-black-300">
-              Achievements
-            </button>
-          </li>
-          <li>
-            <button onClick={() => handleNavigation("#whyhireme")} className="block hover:text-black-300">
-              Contact Me
-            </button>
-          </li>
-          <li>
-            <Link to="/resume" onClick={closeMobileMenu} className="block hover:text-black-300">
-              Resume
-            </Link>
-          </li>
-        </ul>
+        <div className="md:hidden absolute top-full left-0 w-full">
+          <ul className="bg-white/95 backdrop-blur-md shadow-lg py-4 px-4 space-y-4 text-center
+            animate-slideDown border-t border-gray-100">
+            {[
+              { href: "#hero", label: "Home" },
+              { href: "#education", label: "Education" },
+              { href: "#internship", label: "Internship" },
+              { href: "#portfolio", label: "Projects" },
+              { href: "#achievements", label: "Achievements" },
+              { href: "#whyhireme", label: "Contact Me" },
+            ].map((item) => (
+              <li key={item.href}>
+                <button
+                  onClick={() => handleNavigation(item.href)}
+                  className="w-full px-4 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50
+                    rounded-lg transition-colors duration-300"
+                >
+                  {item.label}
+                </button>
+              </li>
+            ))}
+            <li>
+              <Link
+                to="/resume"
+                onClick={closeMobileMenu}
+                className="block w-full bg-blue-600 text-white px-6 py-2 rounded-lg
+                  hover:bg-blue-700 transition-all duration-300"
+              >
+                Resume
+              </Link>
+            </li>
+          </ul>
+        </div>
       )}
     </nav>
   );
