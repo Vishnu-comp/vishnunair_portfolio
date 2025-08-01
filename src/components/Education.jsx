@@ -11,7 +11,7 @@ const Education = () => {
       duration: "July 2023 - May 2025",
       college: "Christ (Deemed to be University)",
       location: "Bengaluru",
-      percentage: "73%*",
+      percentage: "73%",
     },
     {
       degree: "Bachelor of Computer Applications (BCA)",

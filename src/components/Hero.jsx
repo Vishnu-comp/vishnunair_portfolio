@@ -27,15 +27,16 @@ const Hero = () => {
         </div>
 
         <p className="text-xl text-gray-600 leading-relaxed max-w-2xl">
-          MCA student at Christ University Bengaluru and <span className="text-blue-600 font-medium">JavaScript developer</span> passionate about creating dynamic web applications with React.js, Spring Boot, and Node.js.
-        </p>
+  <span className="text-blue-600 font-medium">Full-stack developer</span> skilled in building dynamic and scalable web applications using React.js, Next.js, Node.js, and Spring Boot. Passionate about crafting real-time features, clean APIs, and responsive user experiences.
+</p>
+
 
         {/* Social Icons with enhanced styling */}
         <motion.div
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 1, delay: 0.5 }}
-          className="flex space-x-8 mt-12"
+          className="flex space-x-8 mt-12 "
         >
           {/* Email */}
           <a
