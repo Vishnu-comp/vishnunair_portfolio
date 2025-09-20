@@ -103,7 +103,7 @@ const Hero = () => {
           <div className="absolute inset-0 bg-blue-500/20 rounded-full animate-pulse"></div>
           <div className="absolute inset-0 bg-blue-300/10 rounded-full animate-pulse delay-75"></div>
           <img
-            src="https://github.com/user-attachments/assets/6816c3af-b64a-4ee2-9532-37c49af50d94"
+            src="https://image2url.com/images/1758396995163-658d63fc-b4c6-4667-b54c-7a2f456cb3fe.jpg"
             alt="Professional headshot"
             className="relative z-10 w-full h-full object-cover rounded-full border-8 border-white shadow-2xl"
           />
