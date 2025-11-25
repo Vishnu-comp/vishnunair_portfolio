@@ -44,11 +44,11 @@ const InternshipExperience = () => {
           transition={{ duration: 0.5 }}
           className="text-4xl md:text-5xl font-bold text-gray-800 text-center"
         >
-          My Internship Experience
+          My Work Experience
           <span className="block mt-4 w-32 mx-auto h-1.5 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full"></span>
         </motion.h2>
         <p className="text-gray-600 text-center mt-6 text-lg max-w-2xl mx-auto">
-          Hands-on experience and valuable insights gained during my internship journey
+          Hands-on experience and valuable insights gained during my journey
         </p>
 
         {/* Experience Cards */}
