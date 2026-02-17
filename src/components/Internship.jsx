@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Calendar, MapPin, Briefcase, Check } from "lucide-react";
+import { Calendar, MapPin, Briefcase, Check, ExternalLink } from "lucide-react";
 
 const InternshipExperience = () => {
   const experience = [
@@ -17,9 +17,10 @@ const InternshipExperience = () => {
         "Built server-side APIs using Express.js and Node.js.",
       ],
       technologies: ["MongoDB", "Express.js", "React.js", "Node.js"],
+      // workLink: "https://your-project-link.com", // Add your link here
     },
     {
-      position: "Software Engineer Intern",
+      position: "Software Engineer",
       duration: "Feb 2025 - Present",
       company: "SHOFFR - THE GOLD STANDARD OF RIDES",
       location: "Onsite",
@@ -31,6 +32,7 @@ const InternshipExperience = () => {
         "Engineered a Dashcam view module with tab-based navigation to switch between front, rear, and cabin feeds."
       ],
       technologies: ["NextJS", "Tailwind CSS", "Java Springboot", "MySql"],
+      workLink: "https://www.notion.so/Shoffr-Work-3078cf31ef1b80dfadfdf0daebb9fdd2?source=copy_link", 
     },
   ];
 
@@ -136,6 +138,21 @@ const InternshipExperience = () => {
                 ))}
               </div>
             </div>
+
+            {/* View Work Link */}
+            {exp.workLink && (
+              <div className="mt-8">
+                <a
+                  href={exp.workLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-md hover:shadow-lg group"
+                >
+                  <span>View Work</span>
+                  <ExternalLink className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                </a>
+              </div>
+            )}
           </motion.div>
         ))}
       </div>

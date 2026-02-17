@@ -27,7 +27,7 @@ const Hero = () => {
         </div>
 
         <p className="text-xl text-gray-600 leading-relaxed max-w-2xl">
-  <span className="text-blue-600 font-medium">Full-stack developer</span> skilled in building dynamic and scalable web applications using React.js, Next.js, Node.js, and Spring Boot. Passionate about crafting real-time features, clean APIs, and responsive user experiences.
+  Skilled <span className="text-blue-600 font-medium"> Software Development Engineer / Full Stack Developer </span> with expertise in building scalable, high-performance web applications. Strong experience with React.js and Next.js for creating responsive, user-focused interfaces, and backend development using Java, Python, and Node.js. Proven ability to optimize performance, reduce latency, build real-time solutions, and solve complex edge cases while delivering clean, maintainable code.
 </p>
 
 
