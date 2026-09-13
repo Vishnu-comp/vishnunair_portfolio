@@ -54,21 +54,35 @@ const Navbar = () => {
             { href: "#hero", label: "Home" },
             { href: "#education", label: "Education" },
             { href: "#internship", label: "Internship" },
+            { href: "/work", label: "Work", isRoute: true },
             { href: "#portfolio", label: "Projects" },
             { href: "#achievements", label: "Achievements" },
             { href: "#whyhireme", label: "Contact Me" },
           ].map((item) => (
             <li key={item.href}>
-              <button
-                onClick={() => handleNavigation(item.href)}
-                className="relative px-2 py-1 text-gray-700 hover:text-blue-600 transition-colors duration-300
-                  after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 
-                  after:bg-blue-600 after:left-0 after:bottom-0 after:origin-right
-                  after:transition-transform after:duration-300
-                  hover:after:scale-x-100 hover:after:origin-left"
-              >
-                {item.label}
-              </button>
+              {item.isRoute ? (
+                <Link
+                  to={item.href}
+                  className="relative px-2 py-1 text-gray-700 hover:text-blue-600 transition-colors duration-300
+                    after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5
+                    after:bg-blue-600 after:left-0 after:bottom-0 after:origin-right
+                    after:transition-transform after:duration-300
+                    hover:after:scale-x-100 hover:after:origin-left"
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <button
+                  onClick={() => handleNavigation(item.href)}
+                  className="relative px-2 py-1 text-gray-700 hover:text-blue-600 transition-colors duration-300
+                    after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5
+                    after:bg-blue-600 after:left-0 after:bottom-0 after:origin-right
+                    after:transition-transform after:duration-300
+                    hover:after:scale-x-100 hover:after:origin-left"
+                >
+                  {item.label}
+                </button>
+              )}
             </li>
           ))}
           <li>
@@ -109,18 +123,28 @@ const Navbar = () => {
               { href: "#hero", label: "Home" },
               { href: "#education", label: "Education" },
               { href: "#internship", label: "Internship" },
+              { href: "/work", label: "Work", isRoute: true },
               { href: "#portfolio", label: "Projects" },
               { href: "#achievements", label: "Achievements" },
               { href: "#whyhireme", label: "Contact Me" },
             ].map((item) => (
               <li key={item.href}>
-                <button
-                  onClick={() => handleNavigation(item.href)}
-                  className="w-full px-4 py-2 text-gray-700 hover:text-blue-600 hover:bg-blue-50
-                    rounded-lg transition-colors duration-300"
-                >
-                  {item.label}
-                </button>
+                {item.isRoute ? (
+                  <Link
+                    to={item.href}
+                    onClick={closeMobileMenu}
+                    className="block w-full rounded-lg px-4 py-2 text-gray-700 transition-colors duration-300 hover:bg-blue-50 hover:text-blue-600"
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <button
+                    onClick={() => handleNavigation(item.href)}
+                    className="w-full rounded-lg px-4 py-2 text-gray-700 transition-colors duration-300 hover:bg-blue-50 hover:text-blue-600"
+                  >
+                    {item.label}
+                  </button>
+                )}
               </li>
             ))}
             <li>

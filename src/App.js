@@ -9,6 +9,7 @@ import Navbar from "./components/Navbar";
 import Resume from "./components/Resume";
 import { Achievement } from "./components/Achiement";
 import InternshipExperience from "./components/Internship";
+import Work from "./components/Work";
 import { Analytics } from "@vercel/analytics/react"
 
 function App() {
@@ -47,6 +48,8 @@ function App() {
               </>
             }
           />
+          {/* Work Page */}
+          <Route path="/work" element={<Work />} />
           {/* Resume Page */}
           <Route path="/resume" element={<Resume />} />
         </Routes>
