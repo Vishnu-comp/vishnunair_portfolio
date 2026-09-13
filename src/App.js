@@ -2,13 +2,12 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Hero from "./components/Hero";
 import Services from "./components/TopSkills";
-import Education from "./components/Education";
+import CareerTimeline from "./components/CareerTimeline";
 import WhyHireMe from "./components/ContactForm";
 import Portfolio from "./components/Portfolio";
 import Navbar from "./components/Navbar";
 import Resume from "./components/Resume";
 import { Achievement } from "./components/Achiement";
-import InternshipExperience from "./components/Internship";
 import Work from "./components/Work";
 import GithubActivity from "./components/GithubActivity";
 import ContactCard from "./components/ContactCard";
@@ -18,6 +17,7 @@ import NotFound from "./components/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 import FloatingActions from "./components/FloatingActions";
 import MobileBottomNav from "./components/MobileBottomNav";
+import SystemOverlay from "./components/SystemOverlay";
 import { Analytics } from "@vercel/analytics/react";
 
 function App() {
@@ -37,11 +37,8 @@ function App() {
                   <div id="hero">
                     <Hero />
                   </div>
-                  <div id="education">
-                    <Education />
-                  </div>
-                  <div id="internship">
-                    <InternshipExperience />
+                  <div id="journey">
+                    <CareerTimeline />
                   </div>
                   <div id="portfolio">
                     <Portfolio />
@@ -95,6 +92,7 @@ function App() {
       {/* Persistent overlays — rendered outside <main> so they survive route changes */}
       <FloatingActions />
       <MobileBottomNav />
+      <SystemOverlay />
       <Analytics />
     </Router>
   );

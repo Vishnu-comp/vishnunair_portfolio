@@ -188,9 +188,25 @@ const Footer = () => {
           <p>
             © {year} {site.name}. All rights reserved.
           </p>
-          <p className="flex items-center gap-1.5">
+          <p className="flex flex-wrap items-center justify-center gap-x-1.5 gap-y-1">
             Built with React, Tailwind CSS & Framer Motion
             <Heart className="h-4 w-4 text-rose-500" aria-hidden="true" />
+            <span className="mx-1 text-gray-300 dark:text-slate-700" aria-hidden="true">·</span>
+            <span className="text-gray-400 dark:text-slate-500">
+              press{" "}
+              <kbd className="rounded border border-gray-200 bg-gray-50 px-1.5 py-0.5 font-sans text-[10px] font-semibold text-gray-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-400">
+                Ctrl
+              </kbd>
+              +
+              <kbd className="rounded border border-gray-200 bg-gray-50 px-1.5 py-0.5 font-sans text-[10px] font-semibold text-gray-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-400">
+                K
+              </kbd>{" "}
+              or{" "}
+              <kbd className="rounded border border-gray-200 bg-gray-50 px-1.5 py-0.5 font-sans text-[10px] font-semibold text-gray-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-400">
+                ~
+              </kbd>{" "}
+              for secrets
+            </span>
           </p>
         </div>
       </div>
