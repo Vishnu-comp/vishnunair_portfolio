@@ -1,7 +1,15 @@
 import React from "react";
 import resumePDF from "../assets/VishnuResume.pdf";
+import useSeo from "../hooks/useSeo";
 
 const Resume = () => {
+  useSeo({
+    title: "Resume — Vishnu Nair | MCA, Software Development Engineer",
+    description:
+      "View and download the resume of Vishnu Nair: Software Development Engineer with React, Next.js, Java Spring Boot and Node.js experience at Shoffr and ICIER.",
+    path: "/resume",
+  });
+
   return (
     <div id="resume" className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-[#0b1120] dark:to-slate-900 py-16 px-4">
       <div className="w-full max-w-screen-lg">

@@ -9,6 +9,7 @@ import {
   Layers3,
   MapPin,
 } from "lucide-react";
+import useSeo from "../hooks/useSeo";
 
 const workHighlights = [
   {
@@ -69,6 +70,13 @@ const currentResponsibilities = [
 ];
 
 const Work = () => {
+  useSeo({
+    title: "Work at Shoffr — Vishnu Nair | Software Engineer",
+    description:
+      "Product problems and systems Vishnu Nair has shaped as a Software Engineer at Shoffr: trip prioritization, co-passenger modules, payment links, ops ticketing and more.",
+    path: "/work",
+  });
+
   return (
     <main className="min-h-screen overflow-hidden bg-gradient-to-br from-blue-50 via-white to-blue-50/60 dark:from-slate-950 dark:via-[#0b1120] dark:to-slate-900 pt-24 text-gray-800 dark:text-slate-200">
       <section className="relative px-6 pb-16 pt-12 md:px-12 md:pb-24 lg:px-20 lg:pt-20">

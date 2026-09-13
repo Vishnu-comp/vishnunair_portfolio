@@ -2,12 +2,21 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Home, Compass } from "lucide-react";
+import useSeo from "../hooks/useSeo";
 
 /**
  * Catch-all route. Previously any typo'd URL rendered the navbar above a
  * completely blank white page with no way back.
  */
-const NotFound = () => (
+const NotFound = () => {
+  useSeo({
+    title: "Page not found — Vishnu Nair",
+    description: "The page you followed does not exist. Return to the portfolio home.",
+    path: "/404",
+    robots: "noindex, follow",
+  });
+
+  return (
   <main className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-blue-50 via-white to-blue-50/40 px-6 pt-24 pb-32 text-center dark:from-slate-950 dark:via-slate-900 dark:to-slate-950">
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -44,6 +53,7 @@ const NotFound = () => (
       </div>
     </motion.div>
   </main>
-);
+  );
+};
 
 export default NotFound;
