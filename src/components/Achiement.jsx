@@ -31,7 +31,7 @@ export const Achievement = () => {
   return (
     <section className="py-24 relative overflow-hidden">
       {/* Background with subtle patterns */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-blue-50/30 -z-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-blue-50/30 dark:from-slate-900/60 dark:via-transparent dark:to-slate-900/40 -z-10"></div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -42,12 +42,12 @@ export const Achievement = () => {
         >
           <div className="flex items-center justify-center gap-3 mb-4">
             <FaTrophy className="text-4xl text-blue-500" />
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
               My Achievements
             </h2>
           </div>
           <div className="w-24 h-1.5 bg-gradient-to-r from-blue-500 to-blue-600 mx-auto rounded-full"></div>
-          <p className="mt-6 text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="mt-6 text-lg text-gray-600 dark:text-slate-400 max-w-2xl mx-auto">
             Certifications and recognition that showcase my expertise and continuous learning journey.
           </p>
         </motion.div>
@@ -59,7 +59,7 @@ export const Achievement = () => {
           transition={{ duration: 0.6 }}
           className="relative group"
         >
-          <div className="relative bg-white rounded-3xl shadow-lg border border-gray-100 overflow-hidden
+          <div className="relative bg-white dark:bg-slate-900/80 rounded-3xl shadow-lg border border-gray-100 dark:border-slate-700/60 overflow-hidden
             min-h-[300px] md:min-h-[400px] lg:min-h-[600px]">
             {/* Main Image Container */}
             <AnimatePresence mode="wait">
@@ -73,7 +73,12 @@ export const Achievement = () => {
               >
                 <img
                   src={certificateImages[currentSlide]}
-                  onError={(e) => (e.target.src = "https://via.placeholder.com/800x600?text=Certificate+Not+Found")}
+                  onError={(e) => {
+                    // via.placeholder.com is dead; hide the broken image instead of showing a 404 icon.
+                    e.currentTarget.style.opacity = "0.15";
+                  }}
+                  loading="lazy"
+                  decoding="async"
                   alt={`Certificate ${currentSlide + 1}`}
                   className="max-w-full max-h-full object-contain rounded-lg"
                 />
@@ -84,20 +89,20 @@ export const Achievement = () => {
             <button
               onClick={goToPrevious}
               aria-label="Previous Certificate"
-              className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 p-4 rounded-full
+              className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 dark:bg-slate-800/90 p-4 rounded-full
                 shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300
                 hover:bg-blue-50 hover:scale-110 transform"
             >
-              <ChevronLeft className="w-6 h-6 text-gray-700" />
+              <ChevronLeft className="w-6 h-6 text-gray-700 dark:text-slate-200" />
             </button>
             <button
               onClick={goToNext}
               aria-label="Next Certificate"
-              className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 p-4 rounded-full
+              className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 dark:bg-slate-800/90 p-4 rounded-full
                 shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300
                 hover:bg-blue-50 hover:scale-110 transform"
             >
-              <ChevronRight className="w-6 h-6 text-gray-700" />
+              <ChevronRight className="w-6 h-6 text-gray-700 dark:text-slate-200" />
             </button>
 
             {/* Progress Indicators */}
@@ -109,7 +114,7 @@ export const Achievement = () => {
                   aria-label={`Go to certificate ${index + 1}`}
                   className={`transition-all duration-300 rounded-full 
                     ${currentSlide === index 
-                      ? "w-8 h-2 bg-blue-500" 
+                      ? "w-8 h-2 bg-blue-500 dark:bg-blue-400" 
                       : "w-2 h-2 bg-gray-300 hover:bg-gray-400"
                     }`}
                 />
@@ -117,8 +122,8 @@ export const Achievement = () => {
             </div>
 
             {/* Certificate Counter */}
-            <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-4 py-2 
-              rounded-full text-sm font-medium text-gray-600 shadow-sm">
+            <div className="absolute top-4 right-4 bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm px-4 py-2 
+              rounded-full text-sm font-medium text-gray-600 dark:text-slate-300 shadow-sm">
               {currentSlide + 1} / {certificateImages.length}
             </div>
           </div>

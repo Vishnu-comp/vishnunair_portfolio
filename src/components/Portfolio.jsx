@@ -99,9 +99,9 @@ const imagesSecond = [
     deployedLink,
   }) => (
     <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 mt-16 px-4 group">
-      <div className="bg-white rounded-2xl shadow-lg p-8 flex flex-col justify-between w-full lg:w-1/3 border border-gray-100 hover:border-blue-200 transition-all duration-300">
+      <div className="bg-white dark:bg-slate-900/80 rounded-2xl shadow-lg p-8 flex flex-col justify-between w-full lg:w-1/3 border border-gray-100 dark:border-slate-700/60 hover:border-blue-200 dark:hover:border-blue-500/40 transition-all duration-300">
         <div>
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-800 group-hover:text-blue-500 transition-colors duration-300">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors duration-300">
             {title}
             <span className="block mt-2 w-24 h-1 bg-blue-500 rounded group-hover:w-32 transition-all duration-300"></span>
           </h2>
@@ -109,16 +109,16 @@ const imagesSecond = [
             {technologies.map((tech, index) => (
               <span
                 key={index}
-                className="bg-blue-50 text-blue-600 text-xs md:text-sm font-medium px-4 py-1.5 rounded-full border border-blue-100 hover:bg-blue-100 transition-colors duration-200"
+                className="bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-300 text-xs md:text-sm font-medium px-4 py-1.5 rounded-full border border-blue-100 dark:border-blue-500/20 hover:bg-blue-100 dark:hover:bg-blue-500/20 transition-colors duration-200"
               >
                 {tech}
               </span>
             ))}
           </div>
-          <h3 className="text-xl md:text-2xl font-bold text-gray-700 mb-6">
+          <h3 className="text-xl md:text-2xl font-bold text-gray-700 dark:text-slate-200 mb-6">
             {description}
           </h3>
-          <ul className="space-y-4 text-gray-600 text-base md:text-lg">
+          <ul className="space-y-4 text-gray-600 dark:text-slate-400 text-base md:text-lg">
             {caseStudyText.map((text, index) => (
               <li key={index} className="flex items-start">
                 <span className="inline-block w-2 h-2 bg-blue-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
@@ -134,9 +134,9 @@ const imagesSecond = [
               href={githubLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-full hover:bg-blue-50 transition-colors duration-200"
+              className="p-2 rounded-full hover:bg-blue-50 dark:hover:bg-slate-800 transition-colors duration-200"
             >
-              <AiOutlineGithub className="text-2xl text-gray-700 hover:text-blue-500 transition-colors duration-200" />
+              <AiOutlineGithub className="text-2xl text-gray-700 dark:text-slate-200 hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-200" />
             </a>
             <a
               href={deployedLink}
@@ -144,17 +144,19 @@ const imagesSecond = [
               rel="noopener noreferrer"
               className="p-2 rounded-full hover:bg-blue-50 transition-colors duration-200"
             >
-              <AiOutlineLink className="text-2xl text-gray-700 hover:text-blue-500 transition-colors duration-200" />
+              <AiOutlineLink className="text-2xl text-gray-700 dark:text-slate-200 hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-200" />
             </a>
           </div>
         </div>
       </div>
       <div className="w-full lg:w-2/3 relative min-h-[300px] md:min-h-[400px] lg:min-h-[500px] group">
-        <div className="absolute inset-0 flex items-center justify-center bg-gray-50 rounded-2xl overflow-hidden shadow-lg border border-gray-100">
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-50 dark:bg-slate-800/60 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-slate-700/60">
           <div className="relative w-full h-full">
             <img
               src={images[currentSlide]}
               alt={`${title} Slider`}
+              loading="lazy"
+              decoding="async"
               className="absolute inset-0 w-full h-full object-contain p-4 transition-opacity duration-500"
             />
 
@@ -163,17 +165,17 @@ const imagesSecond = [
               onClick={() =>
                 handleSlideChange("prev", currentSlide, setCurrentSlide, images.length)
               }
-              className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-blue-50"
+              className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 dark:bg-slate-800/90 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 focus:opacity-100 transition-opacity duration-300 hover:bg-blue-50 dark:hover:bg-slate-700"
             >
-              <ChevronLeft className="w-6 h-6 text-gray-700" />
+              <ChevronLeft className="w-6 h-6 text-gray-700 dark:text-slate-200" />
             </button>
             <button
               onClick={() =>
                 handleSlideChange("next", currentSlide, setCurrentSlide, images.length)
               }
-              className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 hover:bg-blue-50"
+              className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 dark:bg-slate-800/90 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 focus:opacity-100 transition-opacity duration-300 hover:bg-blue-50 dark:hover:bg-slate-700"
             >
-              <ChevronRight className="w-6 h-6 text-gray-700" />
+              <ChevronRight className="w-6 h-6 text-gray-700 dark:text-slate-200" />
             </button>
 
             {/* Slide Indicators */}
@@ -183,7 +185,7 @@ const imagesSecond = [
                   key={index}
                   className={`w-2 h-2 rounded-full transition-all duration-300 ${
                     currentSlide === index
-                      ? "bg-blue-500 w-6"
+                      ? "bg-blue-500 dark:bg-blue-400 w-6"
                       : "bg-gray-300 hover:bg-gray-400"
                   }`}
                   onClick={() => setCurrentSlide(index)}
@@ -197,13 +199,13 @@ const imagesSecond = [
   );
 
   return (
-    <div className="bg-gray-50/50 py-12 md:py-20">
+    <div className="bg-gray-50/50 dark:bg-slate-900/40 py-12 md:py-20">
       <div className="max-w-7xl mx-auto px-4">
-        <h2 className="text-4xl md:text-5xl font-bold text-gray-800 text-center">
+        <h2 className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white text-center">
           My Projects
           <span className="block mt-4 w-24 mx-auto h-1.5 bg-blue-500 rounded-full"></span>
         </h2>
-        <p className="text-gray-600 text-center mt-6 text-lg max-w-2xl mx-auto">
+        <p className="text-gray-600 dark:text-slate-400 text-center mt-6 text-lg max-w-2xl mx-auto">
           Explore my latest work and projects that showcase my skills in web development and design.
         </p>
       </div>

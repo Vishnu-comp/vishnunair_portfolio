@@ -12,9 +12,9 @@ const ContactForm = () => {
   return (
     <section className="relative min-h-screen py-20 px-6">
       {/* Background Elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-blue-50/30 -z-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-blue-50/30 dark:from-slate-900/60 dark:via-transparent dark:to-slate-900/40 -z-10"></div>
       <div className="absolute top-40 left-0 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
-      <div className="absolute top-40 right-0 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
+      <div className="absolute top-40 right-0 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animate-delay-2000"></div>
       
       <div className="max-w-5xl mx-auto">
         {/* Header Section */}
@@ -31,7 +31,7 @@ const ContactForm = () => {
               Let's Connect
             </span>
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600 dark:text-slate-400 max-w-2xl mx-auto">
             Have a project in mind? I'd love to hear about it. Let's discuss how we can work together.
           </p>
         </motion.div>
@@ -46,21 +46,21 @@ const ContactForm = () => {
           className="relative"
         >
           <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-600 transform -skew-y-6 rounded-3xl shadow-xl opacity-10"></div>
-          <div className="relative bg-white/80 backdrop-blur-md rounded-2xl shadow-xl p-8 sm:p-12">
+          <div className="relative bg-white/80 dark:bg-slate-900/80 backdrop-blur-md rounded-2xl shadow-xl p-8 sm:p-12">
             <form className="space-y-8">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 {/* Name Input */}
                 <div className="relative">
-                  <label className="text-sm font-medium text-gray-700 mb-2 block">
+                  <label className="text-sm font-medium text-gray-700 dark:text-slate-300 mb-2 block">
                     Your Name
                   </label>
                   <div className="relative">
                     <FiUser className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" />
                     <input
                       type="text"
-                      className="w-full pl-12 pr-4 py-3.5 rounded-xl border border-gray-200 
+                      className="w-full pl-12 pr-4 py-3.5 rounded-xl border border-gray-200 dark:border-slate-700 dark:bg-slate-800/60 dark:text-slate-100 dark:placeholder-slate-500 
                         focus:border-blue-500 focus:ring-2 focus:ring-blue-200 
-                        transition-all duration-200 bg-white/50 backdrop-blur-sm"
+                        transition-all duration-200 bg-white/50 dark:bg-slate-800/40 backdrop-blur-sm"
                       placeholder="John Doe"
                     />
                   </div>
@@ -93,7 +93,7 @@ const ContactForm = () => {
                   <FiMessageSquare className="absolute left-4 top-4 text-gray-400" />
                   <textarea
                     rows="6"
-                    className="w-full pl-12 pr-4 py-3.5 rounded-xl border border-gray-200 
+                    className="w-full pl-12 pr-4 py-3.5 rounded-xl border border-gray-200 dark:border-slate-700 dark:bg-slate-800/60 dark:text-slate-100 dark:placeholder-slate-500 
                       focus:border-blue-500 focus:ring-2 focus:ring-blue-200 
                       transition-all duration-200 bg-white/50 backdrop-blur-sm"
                     placeholder="Tell me about your project, goals, and timeline..."

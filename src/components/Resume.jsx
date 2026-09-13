@@ -3,13 +3,13 @@ import resumePDF from "../assets/VishnuResume.pdf";
 
 const Resume = () => {
   return (
-    <div id="resume" className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 py-16 px-4">
+    <div id="resume" className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-[#0b1120] dark:to-slate-900 py-16 px-4">
       <div className="w-full max-w-screen-lg">
       <br/>
       <br/>
         <div className="flex justify-between items-center mb-8">
           
-          <h1 className="text-4xl font-bold text-gray-800">My Resume</h1>
+          <h1 className="text-4xl font-bold text-gray-800 dark:text-white">My Resume</h1>
           <a
             href={resumePDF}
             download
@@ -21,7 +21,7 @@ const Resume = () => {
             Download PDF
           </a>
         </div>
-        <div className="bg-white p-4 rounded-xl shadow-lg">
+        <div className="bg-white dark:bg-slate-900/80 p-4 rounded-xl shadow-lg">
           <embed
             src={resumePDF}
             type="application/pdf"

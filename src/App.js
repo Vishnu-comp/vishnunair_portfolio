@@ -10,50 +10,71 @@ import Resume from "./components/Resume";
 import { Achievement } from "./components/Achiement";
 import InternshipExperience from "./components/Internship";
 import Work from "./components/Work";
-import { Analytics } from "@vercel/analytics/react"
+import GithubActivity from "./components/GithubActivity";
+import Footer from "./components/Footer";
+import NotFound from "./components/NotFound";
+import ScrollToTop from "./components/ScrollToTop";
+import FloatingActions from "./components/FloatingActions";
+import MobileBottomNav from "./components/MobileBottomNav";
+import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   return (
     <Router>
-      <div>
+      <ScrollToTop />
+      <div className="flex min-h-screen flex-col bg-white text-gray-800 dark:bg-surface dark:text-slate-200">
         <Navbar />
-        <Routes>
-          {/* Main Page */}
-          <Route
-            path="/"
-            element={
-              <>
-                <div id="hero">
-                  <br/>
-                  <Hero />
-                </div>
-                <div id="education">
-                  <Education />
-                </div>
-                <div id="internship">
-                  <InternshipExperience />
-                </div>
-                <div id="portfolio">
-                  <Portfolio />
-                </div>
-                <div id="achievements">
-                  <Achievement />
-                </div>
-                <div id="services">
-                  <Services />
-                </div>
-                <div id="whyhireme">
-                  <WhyHireMe />
-                </div>
-              </>
-            }
-          />
-          {/* Work Page */}
-          <Route path="/work" element={<Work />} />
-          {/* Resume Page */}
-          <Route path="/resume" element={<Resume />} />
-        </Routes>
+
+        <main className="flex-1">
+          <Routes>
+            {/* Main Page */}
+            <Route
+              path="/"
+              element={
+                <>
+                  <div id="hero">
+                    <br />
+                    <Hero />
+                  </div>
+                  <div id="education">
+                    <Education />
+                  </div>
+                  <div id="internship">
+                    <InternshipExperience />
+                  </div>
+                  <div id="portfolio">
+                    <Portfolio />
+                  </div>
+                  <div id="github">
+                    <GithubActivity />
+                  </div>
+                  <div id="achievements">
+                    <Achievement />
+                  </div>
+                  <div id="services">
+                    <Services />
+                  </div>
+                  <div id="whyhireme">
+                    <WhyHireMe />
+                  </div>
+                </>
+              }
+            />
+            {/* Work Page */}
+            <Route path="/work" element={<Work />} />
+            {/* Resume Page */}
+            <Route path="/resume" element={<Resume />} />
+            {/* Anything else -> friendly 404 instead of a blank page */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
+
+        <Footer />
       </div>
+
+      {/* Persistent overlays — rendered outside <main> so they survive route changes */}
+      <FloatingActions />
+      <MobileBottomNav />
       <Analytics />
     </Router>
   );

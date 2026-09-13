@@ -25,12 +25,12 @@ const TopSkills = () => {
   ];
 
   return (
-    <div className="bg-gradient-to-br from-gray-50 to-blue-50 py-16 px-4 sm:px-6 lg:px-8">
+    <div className="bg-gradient-to-br from-gray-50 to-blue-50 dark:from-slate-900/60 dark:to-slate-900/30 py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-center text-4xl font-extrabold text-gray-800 mb-4">
+        <h2 className="text-center text-4xl font-extrabold text-gray-800 dark:text-white mb-4">
           My Expertise
         </h2>
-        <p className="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+        <p className="text-center text-gray-600 dark:text-slate-400 mb-12 max-w-2xl mx-auto">
           Technologies and tools I've been working with recently
         </p>
         
@@ -41,14 +41,14 @@ const TopSkills = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="flex flex-col items-center justify-center bg-white/80 backdrop-blur-sm rounded-xl p-6 
+              className="flex flex-col items-center justify-center bg-white/80 dark:bg-slate-800/60 backdrop-blur-sm rounded-xl p-6 
                 shadow-lg hover:shadow-xl transform hover:-translate-y-2 transition-all duration-300
-                border border-gray-100 hover:border-blue-200"
+                border border-gray-100 dark:border-slate-700/60 hover:border-blue-200 dark:hover:border-blue-500/40"
             >
               <div className="mb-4 transform transition-transform duration-300 hover:scale-110">
                 {skill.logo}
               </div>
-              <p className="text-sm font-medium text-gray-700 text-center">
+              <p className="text-sm font-medium text-gray-700 dark:text-slate-300 text-center">
                 {skill.name}
               </p>
             </motion.div>

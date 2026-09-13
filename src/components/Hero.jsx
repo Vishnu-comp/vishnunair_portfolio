@@ -7,7 +7,7 @@ const Hero = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
-      className="bg-gradient-to-br from-blue-100 via-white to-blue-100 min-h-screen flex flex-col-reverse md:flex-row items-center justify-between px-6 md:px-16 lg:px-28 pt-20"
+      className="bg-gradient-to-br from-blue-100 via-white to-blue-100 dark:from-slate-950 dark:via-[#0b1120] dark:to-slate-900 min-h-screen flex flex-col-reverse md:flex-row items-center justify-between px-6 md:px-16 lg:px-28 pt-20"
     >
       {/* Left Text Section */}
       <motion.div
@@ -18,7 +18,7 @@ const Hero = () => {
       >
         <div className="space-y-6">
           {/* <p className="text-blue-600 font-semibold text-xl tracking-wide">Welcome to my portfolio</p> */}
-          <h1 className="text-5xl md:text-7xl font-bold text-gray-900 leading-tight">
+          <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white leading-tight">
             Hi, I am <span className="text-blue-600 relative">
               Vishnu Nair
               <div className="absolute bottom-0 left-0 w-full h-2 bg-blue-200 -z-10 transform -rotate-2"></div>
@@ -26,7 +26,7 @@ const Hero = () => {
           </h1>
         </div>
 
-        <p className="text-xl text-gray-600 leading-relaxed max-w-2xl">
+        <p className="text-xl text-gray-600 dark:text-slate-400 leading-relaxed max-w-2xl">
   Skilled <span className="text-blue-600 font-medium"> Software Development Engineer / Full Stack Developer </span> with expertise in building scalable, high-performance web applications. Strong experience with React.js and Next.js for creating responsive, user-focused interfaces, and backend development using Java, Python, and Node.js. Proven ability to optimize performance, reduce latency, build real-time solutions, and solve complex edge cases while delivering clean, maintainable code.
 </p>
 
@@ -41,7 +41,7 @@ const Hero = () => {
           {/* Email */}
           <a
             href="mailto:vishnunair2323@gmail.com"
-            className="p-3 bg-white shadow-md rounded-xl hover:bg-blue-50 hover:scale-110 transition-all duration-300"
+            className="p-3 bg-white dark:bg-slate-800 dark:text-slate-200 shadow-md rounded-xl hover:bg-blue-50 dark:hover:bg-slate-700 hover:scale-110 transition-all duration-300"
           >
             <svg
               className="w-6 h-6"
@@ -100,12 +100,13 @@ const Hero = () => {
         className="flex-1 flex justify-center items-center mb-16 md:mb-0"
       >
         <div className="relative w-72 md:w-[28rem] aspect-square">
-          <div className="absolute inset-0 bg-blue-500/20 rounded-full animate-pulse"></div>
+          <div className="absolute inset-0 bg-blue-500/20 dark:bg-blue-500/15 rounded-full animate-pulse"></div>
           <div className="absolute inset-0 bg-blue-300/10 rounded-full animate-pulse delay-75"></div>
           <img
             src="https://image2url.com/images/1758396995163-658d63fc-b4c6-4667-b54c-7a2f456cb3fe.jpg"
-            alt="Professional headshot"
-            className="relative z-10 w-full h-full object-cover rounded-full border-8 border-white shadow-2xl"
+            decoding="async"
+            alt="Professional headshot of Vishnu Nair"
+            className="relative z-10 w-full h-full object-cover rounded-full border-8 border-white dark:border-slate-800 shadow-2xl"
           />
           
         </div>

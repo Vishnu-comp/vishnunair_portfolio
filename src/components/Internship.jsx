@@ -37,19 +37,19 @@ const InternshipExperience = () => {
   ];
 
   return (
-    <div className="bg-gradient-to-b from-blue-50 to-white py-16 md:py-24">
+    <div className="bg-gradient-to-b from-blue-50 to-white dark:from-slate-900/60 dark:to-[#0b1120] py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-4">
         {/* Heading */}
         <motion.h2
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-4xl md:text-5xl font-bold text-gray-800 text-center"
+          className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white text-center"
         >
           My Work Experience
           <span className="block mt-4 w-32 mx-auto h-1.5 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full"></span>
         </motion.h2>
-        <p className="text-gray-600 text-center mt-6 text-lg max-w-2xl mx-auto">
+        <p className="text-gray-600 dark:text-slate-400 text-center mt-6 text-lg max-w-2xl mx-auto">
           Hands-on experience and valuable insights gained during my journey
         </p>
 
@@ -60,15 +60,15 @@ const InternshipExperience = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-12 max-w-4xl mx-auto bg-white rounded-2xl shadow-xl border border-gray-100 p-6 md:p-10 hover:shadow-2xl hover:border-blue-200 transition-all duration-300"
+            className="mt-12 max-w-4xl mx-auto bg-white dark:bg-slate-900/80 rounded-2xl shadow-xl border border-gray-100 dark:border-slate-700/60 p-6 md:p-10 hover:shadow-2xl hover:border-blue-200 dark:hover:border-blue-500/40 transition-all duration-300"
           >
             {/* Header */}
             <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6">
               <div className="flex-1">
-                <h3 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 text-transparent bg-clip-text">
+                <h3 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 dark:from-blue-400 dark:to-blue-200 text-transparent bg-clip-text">
                   {exp.position}
                 </h3>
-                <div className="mt-4 space-y-2 text-gray-600">
+                <div className="mt-4 space-y-2 text-gray-600 dark:text-slate-400">
                   <div className="flex items-center gap-2">
                     <Briefcase className="w-5 h-5 text-blue-500" />
                     <span className="font-medium">{exp.company}</span>
@@ -88,6 +88,8 @@ const InternshipExperience = () => {
               <div className="flex items-center justify-center w-28 h-28 sm:w-32 sm:h-32 p-4 bg-black rounded-2xl shadow-md border border-gray-800 hover:shadow-lg transition-shadow duration-300">
                 <img
                   src={exp.logo}
+                  loading="lazy"
+                  decoding="async"
                   alt={`${exp.company} logo`}
                   className="w-full h-full object-contain"
                 />
@@ -95,11 +97,11 @@ const InternshipExperience = () => {
             </div>
 
             {/* Divider */}
-            <div className="my-8 border-t border-gray-200"></div>
+            <div className="my-8 border-t border-gray-200 dark:border-slate-700/60"></div>
 
             {/* Contributions */}
             <div>
-              <h4 className="text-xl font-semibold text-gray-800 mb-6 flex items-center gap-2">
+              <h4 className="text-xl font-semibold text-gray-800 dark:text-white mb-6 flex items-center gap-2">
                 <Briefcase className="w-6 h-6 text-blue-500" />
                 Key Contributions
               </h4>
@@ -110,12 +112,12 @@ const InternshipExperience = () => {
                     initial={{ opacity: 0, x: 20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.4, delay: index * 0.2 }}
-                    className="flex items-start gap-4 p-4 rounded-xl bg-gradient-to-r from-blue-50/50 to-white hover:from-blue-100/50 hover:to-blue-50/50 transition-all duration-300 border border-blue-100/50"
+                    className="flex items-start gap-4 p-4 rounded-xl bg-gradient-to-r from-blue-50/50 to-white dark:from-blue-500/10 dark:to-slate-800/40 hover:from-blue-100/50 hover:to-blue-50/50 dark:hover:from-blue-500/15 transition-all duration-300 border border-blue-100/50 dark:border-blue-500/15"
                   >
                     <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center">
                       <Check className="w-4 h-4 text-white" />
                     </div>
-                    <p className="text-gray-700 font-medium">{task}</p>
+                    <p className="text-gray-700 dark:text-slate-300 font-medium">{task}</p>
                   </motion.div>
                 ))}
               </div>
@@ -124,7 +126,7 @@ const InternshipExperience = () => {
             {/* Technologies */}
             <div className="mt-8">
               <h4 className="text-xl font-semibold text-gray-800 mb-6 flex items-center gap-2">
-                <code className="text-blue-500">{"</>"}</code>
+                <code className="text-blue-500 dark:text-blue-400">{"</>"}</code>
                 Technologies Used
               </h4>
               <div className="flex flex-wrap gap-3">
