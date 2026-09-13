@@ -1,9 +1,14 @@
 /**
  * Dark-mode plumbing.
  *
- * The initial theme is applied by an inline script in public/index.html BEFORE
- * the bundle loads (see the "Prevent FOUC" block) so there is no white flash on
- * first paint. This module owns everything that happens after React mounts.
+ * LIGHT IS THE DEFAULT. The initial theme is applied by an inline script in
+ * public/index.html BEFORE the bundle loads (see the "Prevent FOUC" block) so
+ * there is no white flash on first paint. This module owns everything that
+ * happens after React mounts.
+ *
+ * The OS `prefers-color-scheme` is deliberately NOT followed: first-time
+ * visitors always get the light theme, and dark mode only appears when the
+ * visitor explicitly toggles it (the choice is then remembered).
  */
 
 export const THEME_KEY = "vn-theme";
@@ -13,13 +18,6 @@ export const THEME_EVENT = "vn-theme-change";
 
 const getRoot = () =>
   typeof document !== "undefined" ? document.documentElement : null;
-
-export function getSystemTheme() {
-  if (typeof window === "undefined" || !window.matchMedia) return THEMES.LIGHT;
-  return window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? THEMES.DARK
-    : THEMES.LIGHT;
-}
 
 /** Theme currently painted on <html> — the source of truth, not localStorage. */
 export function getInitialTheme() {
@@ -31,7 +29,7 @@ export function getInitialTheme() {
   } catch {
     /* private mode / storage disabled */
   }
-  return getSystemTheme();
+  return THEMES.LIGHT; // site default
 }
 
 export function applyTheme(theme) {

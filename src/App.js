@@ -33,7 +33,6 @@ function App() {
               element={
                 <>
                   <div id="hero">
-                    <br />
                     <Hero />
                   </div>
                   <div id="education">

@@ -8,6 +8,28 @@ export const site = {
   role: "Software Development Engineer / Full Stack Developer",
   email: "vishnunair2323@gmail.com",
 
+  /** Rotated by the hero typewriter, in order. */
+  roles: [
+    "Software Development Engineer",
+    "Full Stack Developer",
+    "MERN Stack Developer",
+    "Next.js + Spring Boot Engineer",
+  ],
+
+  /** Green-dot pill above the hero heading. */
+  availability: "Open to opportunities · Bengaluru / Remote",
+
+  /** Floating credential cards layered over the hero headshot. */
+  currentRole: { title: "Software Engineer", org: "Shoffr · Feb 2025 – Present" },
+  educationChip: "MCA · Christ University",
+
+  /** Hero stat strip. Values are strings so "2+" style entries work. */
+  stats: [
+    { value: "2+", label: "Years Experience" },
+    { value: "4", label: "Shipped Projects" },
+    { value: "44", label: "Public Repos" },
+  ],
+
   /**
    * WhatsApp quick-contact number in international format, digits only
    * (no "+", no spaces). Sourced from the public resume (+91-9967418222).

@@ -17,14 +17,15 @@
        * Prevent a flash of the wrong theme (FOUC).
        * Runs before React mounts so <html> already carries the `dark` class on
        * first paint. Mirrors the logic in src/utils/theme.js.
+       *
+       * LIGHT IS THE SITE DEFAULT. Dark mode is applied only when the visitor
+       * explicitly chose it earlier (stored preference) — the OS setting is
+       * deliberately ignored so first-time visitors always get light theme.
        */
       (function () {
         try {
           var stored = localStorage.getItem("vn-theme");
-          var prefersDark =
-            window.matchMedia &&
-            window.matchMedia("(prefers-color-scheme: dark)").matches;
-          var dark = stored ? stored === "dark" : prefersDark;
+          var dark = stored === "dark";
           var root = document.documentElement;
           root.classList.toggle("dark", dark);
           root.style.colorScheme = dark ? "dark" : "light";

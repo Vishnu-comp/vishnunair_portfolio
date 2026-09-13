@@ -60,6 +60,25 @@
   .hide-scrollbar::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera */
   }
+
+  /* Subtle dot-grid backdrop for the hero; fades out towards the edges. */
+  .bg-dots {
+    background-image: radial-gradient(
+      circle,
+      rgb(59 130 246 / 0.14) 1px,
+      transparent 1px
+    );
+    background-size: 22px 22px;
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black, transparent 75%);
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black, transparent 75%);
+  }
+  .dark .bg-dots {
+    background-image: radial-gradient(
+      circle,
+      rgb(148 163 184 / 0.12) 1px,
+      transparent 1px
+    );
+  }
 }
 
 /*

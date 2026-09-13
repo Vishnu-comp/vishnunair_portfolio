@@ -4,7 +4,6 @@ import {
   THEMES,
   applyTheme,
   getInitialTheme,
-  getSystemTheme,
   onThemeChange,
   cx,
 } from "../utils/theme";
@@ -12,46 +11,20 @@ import {
 /**
  * Light / Dark toggle.
  *
+ * - Light is the site default; dark appears only after an explicit choice.
  * - Reads the pre-paint decision made by the inline script in index.html
  *   (that script prevents the white flash before React mounts).
  * - Persists the choice to localStorage.
  * - Syncs with every other mounted toggle through the THEME_EVENT bus, so the
  *   navbar button and the mobile tab-bar button never disagree.
- * - Until the visitor makes an explicit choice, follows the OS live.
  */
 function useTheme() {
   const [theme, setTheme] = useState(THEMES.LIGHT);
-  const [hasStoredPreference, setHasStoredPreference] = useState(true);
 
   useEffect(() => {
     setTheme(getInitialTheme());
-    let stored = null;
-    try {
-      stored = window.localStorage.getItem("vn-theme");
-    } catch {
-      stored = null;
-    }
-    setHasStoredPreference(Boolean(stored));
-
-    // Another toggle (or the OS) changed the theme — mirror it.
-    const off = onThemeChange((next) => setTheme(next));
-
-    let offMedia = () => {};
-    if (!stored && window.matchMedia) {
-      const mq = window.matchMedia("(prefers-color-scheme: dark)");
-      const onChange = () => {
-        const next = getSystemTheme();
-        setTheme(next);
-        applyTheme(next);
-      };
-      mq.addEventListener("change", onChange);
-      offMedia = () => mq.removeEventListener("change", onChange);
-    }
-
-    return () => {
-      off();
-      offMedia();
-    };
+    // Another toggle changed the theme — mirror it.
+    return onThemeChange((next) => setTheme(next));
   }, []);
 
   const toggle = () => {
@@ -60,7 +33,7 @@ function useTheme() {
     applyTheme(next); // also broadcasts to the other toggle
   };
 
-  return { theme, isDark: theme === THEMES.DARK, toggle, hasStoredPreference };
+  return { theme, isDark: theme === THEMES.DARK, toggle };
 }
 
 /** Round icon button for the navbar. */
