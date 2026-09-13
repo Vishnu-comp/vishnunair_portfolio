@@ -123,3 +123,80 @@ export const mobileNavItems = [
 ];
 
 export default site;
+
+/**
+ * Role-tailored resume switcher (/resume?role=...).
+ * One entry per target role. Each panel is a curated spotlight — the full
+ * PDF embedded below it on /resume stays the canonical document.
+ */
+export const resumeRoles = [
+  {
+    id: "fullstack",
+    label: "Full-Stack",
+    tagline: "End-to-end product engineer",
+    summary:
+      "React & Next.js interfaces on Java Spring Boot and Node.js services, with MySQL & MongoDB underneath — shipped to production on Vercel and Docker.",
+    skills: [
+      "React", "Next.js", "TypeScript", "JavaScript", "Java", "Spring Boot",
+      "Node.js", "Express", "MySQL", "MongoDB", "RabbitMQ", "Tailwind CSS", "Docker", "Git",
+    ],
+    bullets: [
+      { org: "Shoffr", text: "Owns partner-portal surfaces end-to-end: trip-prioritization and co-passenger booking modules across Next.js UI and Spring Boot services." },
+      { org: "Shoffr", text: "CSV parsing & reconciliation logic that improved financial data accuracy across feeds." },
+      { org: "Shoffr", text: "Dashcam module with tabbed navigation switching front / rear / cabin video feeds." },
+      { org: "ICIER", text: "Shipped production MERN web apps — MongoDB schemas, Express APIs and React frontends consumed by real users." },
+    ],
+    projects: [
+      { name: "Unishare", note: "MERN community sharing platform", url: "https://unishare-ten.vercel.app/" },
+      { name: "CraveMate", note: "Food ordering w/ real-time stock (React + Spring Boot)", url: "https://vishnunairakasaairfd.vercel.app/" },
+      { name: "Intervo", note: "Automated interview management (MERN + Flask)", url: "https://intervoproject.com" },
+      { name: "Intervue", note: "Real-time classroom polls over Socket.io", url: "https://intervue-six.vercel.app/" },
+    ],
+  },
+  {
+    id: "frontend",
+    label: "Frontend",
+    tagline: "Interfaces that ship",
+    summary:
+      "React, Next.js, TypeScript and Tailwind — responsive, real-time UIs: sockets, live polls, multi-feed video. This portfolio is itself a React + Tailwind build.",
+    skills: [
+      "React", "Next.js", "TypeScript", "JavaScript", "Tailwind CSS", "Redux",
+      "Framer Motion", "Socket.io (client)", "Responsive UI", "Git",
+    ],
+    bullets: [
+      { org: "Shoffr", text: "Dashcam view UI: tab-based switching between front, rear and cabin video feeds." },
+      { org: "Shoffr", text: "Partner-portal UX for marking trip importance and managing co-passengers inside one booking." },
+      { org: "Intervue", text: "Live polling UI — teachers watch responses stream in while students answer and chat in real time." },
+      { org: "ICIER", text: "Built React frontends for production MERN apps with encryption-aware forms and validation." },
+    ],
+    projects: [
+      { name: "Intervue", note: "Real-time classroom polling UI", url: "https://intervue-six.vercel.app/" },
+      { name: "Unishare", note: "Community sharing platform UI", url: "https://unishare-ten.vercel.app/" },
+      { name: "CraveMate", note: "Responsive ordering app w/ search & filter UX", url: "https://vishnunairakasaairfd.vercel.app/" },
+      { name: "This portfolio", note: "React, Tailwind, dark mode, ⌘K palette", url: "https://vishnunairportfolio.vercel.app/" },
+    ],
+  },
+  {
+    id: "backend",
+    label: "Backend",
+    tagline: "APIs, data & the plumbing between them",
+    summary:
+      "Java Spring Boot and Node/Express services, MySQL & MongoDB schemas, RabbitMQ messaging, data reconciliation pipelines and Socket.io servers for live features.",
+    skills: [
+      "Java", "Spring Boot", "Node.js", "Express", "MySQL", "MongoDB",
+      "RabbitMQ", "REST APIs", "Socket.io", "Postman", "Docker", "Git",
+    ],
+    bullets: [
+      { org: "Shoffr", text: "Services behind trip-prioritization and co-passenger modules consumed by the partner portal." },
+      { org: "Shoffr", text: "CSV parsing & reconciliation logic improving financial data accuracy." },
+      { org: "ICIER", text: "Designed MongoDB schemas and Express APIs for production MERN applications." },
+      { org: "Intervo", text: "Interview-automation backend: progress tracking, interviewer analytics, random question generation and proctoring." },
+    ],
+    projects: [
+      { name: "Intervo", note: "Hiring-automation backend (Express + Flask)", url: "https://intervoproject.com" },
+      { name: "CraveMate", note: "Spring Boot services + real-time inventory", url: "https://vishnunairakasaairfd.vercel.app/" },
+      { name: "Unishare", note: "Express APIs + MongoDB, encrypted user data", url: "https://unishare-ten.vercel.app/" },
+      { name: "Intervue", note: "Socket.io server streaming live poll data", url: "https://intervue-six.vercel.app/" },
+    ],
+  },
+];

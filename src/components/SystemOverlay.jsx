@@ -13,6 +13,9 @@ import {
   FolderKanban,
   Route as RouteIcon,
   IdCard,
+  Layers,
+  Palette as PaletteIcon,
+  Server,
 } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { site } from "../data/site";
@@ -26,7 +29,7 @@ import { cx } from "../utils/theme";
  *  • Ctrl/Cmd+K  -> fuzzy COMMAND PALETTE (fast navigation + actions)
  *  • ` (backquote) or the palette's "Open developer terminal"
  *                -> a fake shell with real commands: help, whoami, neofetch,
- *                   skills, projects, journey, contact, theme, go, download,
+ *                   skills, projects, journey, resume <role>, contact, theme,
  *                   sudo hire --now … Tab completes, ↑/↓ replays history.
  *
  * Both are keyboard-first, close on Escape, lock body scroll while open and
@@ -71,6 +74,7 @@ export default function SystemOverlay() {
             line("  contact                email / phone / whatsapp"),
             line("  socials                github / linkedin"),
             line("  go <target>            hero | internship | projects | github | contact | work | resume | card"),
+            line("  resume <role>          fullstack | frontend | backend — tailored resume view"),
             line("  theme <dark|light>     switch theme"),
             line("  download <resume|vcard>  fetch the file"),
             line("  date                   server-local time in Bengaluru"),
@@ -146,6 +150,19 @@ export default function SystemOverlay() {
           );
           out.push(line("On the page: go internship", "text-slate-500"));
           return out;
+        case "resume": {
+          const role = (arg || "").toLowerCase();
+          const roles = ["fullstack", "frontend", "backend"];
+          if (!roles.includes(role)) {
+            return [
+              line("usage: resume <fullstack|frontend|backend>", "text-slate-400"),
+              line("Tailors the resume page to the role you're hiring for.", "text-slate-500"),
+            ];
+          }
+          navigate(`/resume?role=${role}`);
+          setMode(null);
+          return [line(`Resume, tailored for ${role}. Good targeting.`, "text-blue-300")];
+        }
         case "contact":
           out.push(
             line(`  email     ${site.email}`, "text-emerald-300"),
@@ -293,6 +310,9 @@ export default function SystemOverlay() {
       { label: "Go to: Contact", icon: Mail, keywords: "hire email form whatsapp connect", run: () => { setMode(null); setTimeout(() => { if (window.location.pathname !== "/") { navigate("/"); setTimeout(() => scrollToSection("#whyhireme"), 120); } else scrollToSection("#whyhireme"); }, 60); } },
       { label: "Open: Work at Shoffr", icon: RouteIcon, keywords: "shoffr experience job page", run: () => { setMode(null); navigate("/work"); } },
       { label: "Open: Resume", icon: Download, keywords: "cv pdf download", run: () => { setMode(null); navigate("/resume"); } },
+      { label: "Tailor resume → Full-Stack", icon: Layers, keywords: "cv role mern spring next end-to-end product engineer", run: () => { setMode(null); navigate("/resume?role=fullstack"); } },
+      { label: "Tailor resume → Frontend", icon: PaletteIcon, keywords: "cv role react nextjs typescript tailwind ui", run: () => { setMode(null); navigate("/resume?role=frontend"); } },
+      { label: "Tailor resume → Backend", icon: Server, keywords: "cv role java spring boot node express mysql mongodb api", run: () => { setMode(null); navigate("/resume?role=backend"); } },
       { label: "Open: Career-fair card", icon: IdCard, keywords: "qr vcard print contact card", run: () => { setMode(null); navigate("/card"); } },
       { label: "Open: Developer terminal", icon: TerminalIcon, keywords: "shell console easter egg commands", run: () => setMode("terminal") },
       { label: "Download: vCard", icon: Download, keywords: "contact save vcf phone", run: () => { setMode(null); const a = document.createElement("a"); a.href = "/vishnu-nair.vcf"; a.download = "Vishnu-Nair.vcf"; a.click(); } },
@@ -454,8 +474,9 @@ function TerminalShell({ runCommand, onClose }) {
     if (el) el.scrollTop = el.scrollHeight;
   }, [lines]);
 
-  const COMMAND_NAMES = ["help", "whoami", "neofetch", "skills", "projects", "journey", "contact", "socials", "go", "theme", "download", "date", "clear", "exit"];
+  const COMMAND_NAMES = ["help", "whoami", "neofetch", "skills", "projects", "journey", "resume", "contact", "socials", "go", "theme", "download", "date", "clear", "exit"];
   const SKILL_GROUPS = ["frontend", "backend", "db", "languages", "tools", "ai"];
+  const RESUME_ROLES = ["fullstack", "frontend", "backend"];
   const GO_TARGETS = ["hero", "education", "internship", "projects", "github", "achievements", "contact", "work", "resume", "card"];
 
   const complete = () => {
@@ -466,7 +487,7 @@ function TerminalShell({ runCommand, onClose }) {
       else if (m.length > 1) setLines((l) => [...l, line(m.join("   "), "text-slate-500")]);
       return;
     }
-    const pool = parts[0] === "skills" ? SKILL_GROUPS : parts[0] === "go" || parts[0] === "open" ? GO_TARGETS : [];
+    const pool = parts[0] === "skills" ? SKILL_GROUPS : parts[0] === "resume" ? RESUME_ROLES : parts[0] === "go" || parts[0] === "open" ? GO_TARGETS : [];
     const m = pool.filter((c) => c.startsWith(parts[parts.length - 1] || ""));
     if (m.length === 1) setInput([...parts.slice(0, -1), m[0]].join(" ") + " ");
   };

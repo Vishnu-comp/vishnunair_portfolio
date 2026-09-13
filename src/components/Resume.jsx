@@ -1,12 +1,51 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import resumePDF from "../assets/VishnuResume.pdf";
 import useSeo from "../hooks/useSeo";
+import ResumeTailor from "./ResumeTailor";
+import { resumeRoles } from "../data/site";
+
+const ROLE_KEY = "vn-resume-role";
+const ROLE_IDS = resumeRoles.map((r) => r.id);
 
 const Resume = () => {
+  const [params, setParams] = useSearchParams();
+
+  // Priority: ?role= URL param (shareable links) -> last choice (sticky for
+  // returning visitors) -> fullstack default.
+  const [role, setRoleState] = useState(() => {
+    const fromUrl = params.get("role");
+    if (ROLE_IDS.includes(fromUrl)) return fromUrl;
+    try {
+      const stored = window.localStorage.getItem(ROLE_KEY);
+      if (ROLE_IDS.includes(stored)) return stored;
+    } catch {
+      /* private mode etc. — fall through */
+    }
+    return "fullstack";
+  });
+
+  // Keep the URL shareable and remember the choice for next time.
+  const setRole = (id) => {
+    if (!ROLE_IDS.includes(id)) return;
+    setRoleState(id);
+    setParams({ role: id }, { replace: true });
+  };
+
+  useEffect(() => {
+    try {
+      window.localStorage.setItem(ROLE_KEY, role);
+    } catch {
+      /* ignore */
+    }
+  }, [role]);
+
+  const active = resumeRoles.find((r) => r.id === role) || resumeRoles[0];
+
   useSeo({
-    title: "Resume — Vishnu Nair | MCA, Software Development Engineer",
+    title: `Resume — Vishnu Nair | ${active.label} Software Engineer`,
     description:
-      "View and download the resume of Vishnu Nair: Software Development Engineer with React, Next.js, Java Spring Boot and Node.js experience at Shoffr and ICIER.",
+      "View and download the resume of Vishnu Nair: Software Development Engineer with React, Next.js, Java Spring Boot and Node.js experience at Shoffr and ICIER. Tailor the view for Frontend, Backend or Full-Stack roles.",
     path: "/resume",
   });
 
@@ -29,7 +68,14 @@ const Resume = () => {
             Download PDF
           </a>
         </div>
+
+        {/* Role-tailored spotlight above the canonical PDF */}
+        <ResumeTailor role={role} setRole={setRole} />
+
         <div className="bg-white dark:bg-slate-900/80 p-4 rounded-xl shadow-lg">
+          <p className="mb-3 px-1 text-xs text-gray-400 dark:text-slate-500">
+            The complete PDF — the panel above spotlights the {active.label.toLowerCase()} angle.
+          </p>
           <embed
             src={resumePDF}
             type="application/pdf"
