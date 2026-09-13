@@ -2,11 +2,12 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Hero from "./components/Hero";
 import Services from "./components/TopSkills";
-import CareerTimeline from "./components/CareerTimeline";
+import Education from "./components/Education";
 import WhyHireMe from "./components/ContactForm";
 import Portfolio from "./components/Portfolio";
 import Navbar from "./components/Navbar";
 import Resume from "./components/Resume";
+import InternshipExperience from "./components/Internship";
 import { Achievement } from "./components/Achiement";
 import Work from "./components/Work";
 import GithubActivity from "./components/GithubActivity";
@@ -37,8 +38,11 @@ function App() {
                   <div id="hero">
                     <Hero />
                   </div>
-                  <div id="journey">
-                    <CareerTimeline />
+                  <div id="education">
+                    <Education />
+                  </div>
+                  <div id="internship">
+                    <InternshipExperience />
                   </div>
                   <div id="portfolio">
                     <Portfolio />

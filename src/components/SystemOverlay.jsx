@@ -67,10 +67,10 @@ export default function SystemOverlay() {
             line("  neofetch               system card, terminal style"),
             line("  skills [group]         frontend | backend | db | languages | tools | ai"),
             line("  projects               shipped work + live links"),
-            line("  journey                the career timeline, chapter by chapter"),
+            line("  journey                BCA → MCA → ICIER → Shoffr, one line each"),
             line("  contact                email / phone / whatsapp"),
             line("  socials                github / linkedin"),
-            line("  go <target>            hero | journey | projects | github | contact | work | resume | card"),
+            line("  go <target>            hero | internship | projects | github | contact | work | resume | card"),
             line("  theme <dark|light>     switch theme"),
             line("  download <resume|vcard>  fetch the file"),
             line("  date                   server-local time in Bengaluru"),
@@ -138,15 +138,13 @@ export default function SystemOverlay() {
           );
           return out;
         case "journey":
-          site.journey.forEach((m) =>
-            out.push(
-              line(
-                `  ${m.period.padEnd(22, " ")}${m.title} @ ${m.org.split("—")[0].trim()}${m.current ? "  ← now" : ""}`,
-                m.current ? "text-emerald-300" : undefined
-              )
-            )
+          out.push(
+            line("  Sep 2020 – Jul 2023   BCA @ Kristu Jayanti College (83%)", "text-emerald-300"),
+            line("  Jul 2023 – May 2025   MCA @ Christ University (73%)"),
+            line("  May 2024 – Jul 2024   Jr. Software Development Intern @ ICIER"),
+            line("  Feb 2025 – Present    Software Engineer @ Shoffr   ← now", "text-emerald-300")
           );
-          out.push(line("The animated version: go journey", "text-slate-500"));
+          out.push(line("On the page: go internship", "text-slate-500"));
           return out;
         case "contact":
           out.push(
@@ -163,7 +161,8 @@ export default function SystemOverlay() {
         case "open": {
           const map = {
             hero: { hash: "#hero" },
-            journey: { hash: "#journey" },
+            education: { hash: "#education" },
+            internship: { hash: "#internship" },
             projects: { hash: "#portfolio" },
             github: { hash: "#github" },
             achievements: { hash: "#achievements" },
@@ -288,7 +287,7 @@ export default function SystemOverlay() {
   const actions = useMemo(
     () => [
       { label: "Go to: Home", icon: User, keywords: "hero top start", run: () => { setMode(null); setTimeout(() => { if (window.location.pathname !== "/") navigate("/"); else scrollToSection("#hero"); }, 60); } },
-      { label: "Go to: Journey timeline", icon: RouteIcon, keywords: "career education internship story timeline", run: () => { setMode(null); setTimeout(() => { if (window.location.pathname !== "/") { navigate("/"); setTimeout(() => scrollToSection("#journey"), 120); } else scrollToSection("#journey"); }, 60); } },
+      { label: "Go to: Internship & Experience", icon: RouteIcon, keywords: "career education internship experience shoffr ici", run: () => { setMode(null); setTimeout(() => { if (window.location.pathname !== "/") { navigate("/"); setTimeout(() => scrollToSection("#internship"), 120); } else scrollToSection("#internship"); }, 60); } },
       { label: "Go to: Projects", icon: FolderKanban, keywords: "portfolio work unishare cravemate intervo intervue", run: () => { setMode(null); setTimeout(() => { if (window.location.pathname !== "/") { navigate("/"); setTimeout(() => scrollToSection("#portfolio"), 120); } else scrollToSection("#portfolio"); }, 60); } },
       { label: "Go to: GitHub activity", icon: Github, keywords: "contributions streak repos", run: () => { setMode(null); setTimeout(() => { if (window.location.pathname !== "/") { navigate("/"); setTimeout(() => scrollToSection("#github"), 120); } else scrollToSection("#github"); }, 60); } },
       { label: "Go to: Contact", icon: Mail, keywords: "hire email form whatsapp connect", run: () => { setMode(null); setTimeout(() => { if (window.location.pathname !== "/") { navigate("/"); setTimeout(() => scrollToSection("#whyhireme"), 120); } else scrollToSection("#whyhireme"); }, 60); } },
@@ -457,7 +456,7 @@ function TerminalShell({ runCommand, onClose }) {
 
   const COMMAND_NAMES = ["help", "whoami", "neofetch", "skills", "projects", "journey", "contact", "socials", "go", "theme", "download", "date", "clear", "exit"];
   const SKILL_GROUPS = ["frontend", "backend", "db", "languages", "tools", "ai"];
-  const GO_TARGETS = ["hero", "journey", "projects", "github", "achievements", "contact", "work", "resume", "card"];
+  const GO_TARGETS = ["hero", "education", "internship", "projects", "github", "achievements", "contact", "work", "resume", "card"];
 
   const complete = () => {
     const parts = input.split(/\s+/);
