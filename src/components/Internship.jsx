@@ -128,7 +128,7 @@ const InternshipExperience = () => {
 
             {/* Technologies */}
             <div className="mt-8">
-              <h4 className="text-xl font-semibold text-gray-800 mb-6 flex items-center gap-2">
+              <h4 className="text-xl font-semibold text-gray-800 dark:text-white mb-6 flex items-center gap-2">
                 <code className="text-blue-500 dark:text-blue-400">{"</>"}</code>
                 Technologies Used
               </h4>

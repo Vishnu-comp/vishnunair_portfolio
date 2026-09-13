@@ -77,7 +77,7 @@ const Education = () => {
                       </div>
                       <div>
                         <h3 className="text-xl font-bold text-blue-600 dark:text-blue-400 mb-2 
-                          group-hover:text-blue-700 transition-colors duration-300">
+                          group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors duration-300">
                           {experience.degree}
                         </h3>
                         <div className="flex items-center gap-2 text-gray-600 dark:text-slate-400">
@@ -92,10 +92,10 @@ const Education = () => {
                   <div className="md:border-l border-gray-100 dark:border-slate-700/60 md:pl-8 space-y-4">
                     <div>
                       <h4 className="text-xl font-bold text-gray-800 dark:text-white mb-3 
-                        group-hover:text-gray-900 transition-colors duration-300">
+                        group-hover:text-gray-900 dark:group-hover:text-white transition-colors duration-300">
                         {experience.college}
                       </h4>
-                      <div className="flex items-center gap-2 text-gray-600">
+                      <div className="flex items-center gap-2 text-gray-600 dark:text-slate-400">
                         <IoLocationSharp className="text-blue-400" />
                         <span className="text-sm">{experience.location}</span>
                       </div>

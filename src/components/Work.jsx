@@ -157,19 +157,19 @@ const Work = () => {
                     Feb 2025 — Present
                   </p>
                 </div>
-                <div className="rounded-2xl border border-blue-100 bg-blue-50/70 p-4">
+                <div className="rounded-2xl border border-blue-100 dark:border-slate-700/60 bg-blue-50/70 dark:bg-slate-800/60 p-4">
                   <MapPin className="mb-3 h-5 w-5 text-blue-600" />
-                  <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-slate-400">
                     Location
                   </p>
-                  <p className="mt-1 font-semibold text-gray-800">Onsite</p>
+                  <p className="mt-1 font-semibold text-gray-800 dark:text-slate-100">Onsite</p>
                 </div>
-                <div className="rounded-2xl border border-blue-100 bg-blue-50/70 p-4">
+                <div className="rounded-2xl border border-blue-100 dark:border-slate-700/60 bg-blue-50/70 dark:bg-slate-800/60 p-4">
                   <Layers3 className="mb-3 h-5 w-5 text-blue-600" />
-                  <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-gray-500 dark:text-slate-400">
                     Focus
                   </p>
-                  <p className="mt-1 font-semibold text-gray-800">
+                  <p className="mt-1 font-semibold text-gray-800 dark:text-slate-100">
                     Product systems
                   </p>
                 </div>

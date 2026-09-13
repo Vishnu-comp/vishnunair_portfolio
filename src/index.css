@@ -30,6 +30,22 @@
     @apply bg-blue-500/25 text-blue-900 dark:bg-blue-400/30 dark:text-white;
   }
 
+  /*
+   * Chrome/Edge paint autofilled fields with a white background, which looks
+   * like a grey slab on the dark contact card. Force the fill + text colour
+   * to match the theme instead.
+   */
+  .dark input:-webkit-autofill,
+  .dark input:-webkit-autofill:hover,
+  .dark input:-webkit-autofill:focus,
+  .dark textarea:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px #1e293b inset;
+    box-shadow: 0 0 0 1000px #1e293b inset;
+    -webkit-text-fill-color: #f1f5f9;
+    caret-color: #f1f5f9;
+    transition: background-color 9999s ease-out;
+  }
+
   /* Keep focus rings visible in both themes */
   :focus-visible {
     @apply outline-none ring-4 ring-blue-300/60 dark:ring-blue-500/40;

@@ -70,7 +70,7 @@ const Hero = () => {
           {/* GitHub */}
           <a
             href="https://github.com/Vishnu-comp"
-            className="p-3 bg-white shadow-md rounded-xl hover:bg-blue-50 hover:scale-110 transition-all duration-300"
+            className="p-3 bg-white dark:bg-slate-800 dark:text-slate-200 shadow-md rounded-xl hover:bg-blue-50 dark:hover:bg-slate-700 hover:scale-110 transition-all duration-300"
           >
             <svg
               className="w-6 h-6"
@@ -88,7 +88,7 @@ const Hero = () => {
           {/* LinkedIn */}
           <a
             href="https://www.linkedin.com/in/vishnu-nair-aa462b245/"
-            className="p-3 bg-white shadow-md rounded-xl hover:bg-blue-50 hover:scale-110 transition-all duration-300"
+            className="p-3 bg-white dark:bg-slate-800 dark:text-slate-200 shadow-md rounded-xl hover:bg-blue-50 dark:hover:bg-slate-700 hover:scale-110 transition-all duration-300"
           >
             <svg
               className="w-6 h-6"
@@ -109,14 +109,14 @@ const Hero = () => {
         className="flex-1 flex justify-center items-center mb-16 md:mb-0"
       >
         <div className="relative w-72 md:w-[28rem] aspect-square">
-          <div className="absolute inset-0 bg-blue-500/20 dark:bg-blue-500/15 rounded-full animate-pulse"></div>
-          <div className="absolute inset-0 bg-blue-300/10 rounded-full animate-pulse delay-75"></div>
+          <div className="absolute inset-0 bg-blue-500/20 dark:bg-blue-500/25 rounded-full animate-pulse"></div>
+          <div className="absolute inset-0 bg-blue-300/10 dark:bg-blue-400/10 rounded-full animate-pulse delay-75"></div>
           {headshotFailed ? (
             /* Local monogram — the hero never shows an empty column again */
             <div
               role="img"
               aria-label={`${site.name} monogram`}
-              className="relative z-10 flex w-full h-full items-center justify-center rounded-full border-8 border-white dark:border-slate-800 shadow-2xl bg-gradient-to-br from-blue-500 to-blue-700"
+              className="relative z-10 flex w-full h-full items-center justify-center rounded-full border-8 border-white dark:border-slate-700 shadow-2xl shadow-blue-500/10 bg-gradient-to-br from-blue-500 to-blue-700"
             >
               <span className="text-7xl md:text-8xl font-extrabold tracking-tight text-white select-none">
                 VN
@@ -128,7 +128,7 @@ const Hero = () => {
               decoding="async"
               onError={() => setHeadshotFailed(true)}
               alt="Professional headshot of Vishnu Nair"
-              className="relative z-10 w-full h-full object-cover rounded-full border-8 border-white dark:border-slate-800 shadow-2xl"
+              className="relative z-10 w-full h-full object-cover rounded-full border-8 border-white dark:border-slate-700 shadow-2xl shadow-blue-500/10"
             />
           )}
         </div>
