@@ -18,6 +18,12 @@
     @apply bg-white text-gray-800 antialiased dark:bg-[#0b1120] dark:text-slate-200;
     /* Animate the light<->dark background/text swap instead of snapping */
     transition: background-color 0.3s ease, color 0.3s ease;
+    /*
+     * A single overflowing asset (e.g. a slow external image) must never be
+     * able to introduce a horizontal scrollbar and shift the fixed navbar's
+     * contents sideways.
+     */
+    overflow-x: hidden;
   }
 
   ::selection {

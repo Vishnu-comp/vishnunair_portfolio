@@ -183,6 +183,9 @@ const Work = () => {
                   <img
                     src="https://shoffr.in/icon/shoffr-hero-logo.svg"
                     loading="lazy"
+                    onError={(e) => {
+                      e.currentTarget.style.display = "none";
+                    }}
                     alt="Shoffr logo"
                     className="max-h-24 max-w-[190px] object-contain"
                   />

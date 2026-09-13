@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { site } from "../data/site";
 
 const Hero = () => {
+  /**
+   * The headshot used to be hotlinked to image2url.com, which went offline and
+   * left the hero with an empty right column (and a collapsed, broken <img>).
+   * If the remote photo ever fails again we fall back to a local monogram so
+   * the hero always looks intentional.
+   */
+  const [headshotFailed, setHeadshotFailed] = useState(false);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -19,9 +28,9 @@ const Hero = () => {
         <div className="space-y-6">
           {/* <p className="text-blue-600 font-semibold text-xl tracking-wide">Welcome to my portfolio</p> */}
           <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white leading-tight">
-            Hi, I am <span className="text-blue-600 relative">
+            Hi, I am <span className="text-blue-600 relative isolate">
               Vishnu Nair
-              <div className="absolute bottom-0 left-0 w-full h-2 bg-blue-200 -z-10 transform -rotate-2"></div>
+              <div className="absolute bottom-0 left-0 w-full h-2 bg-blue-200 dark:bg-blue-500/30 -z-10 transform -rotate-2"></div>
             </span>
           </h1>
         </div>
@@ -102,13 +111,26 @@ const Hero = () => {
         <div className="relative w-72 md:w-[28rem] aspect-square">
           <div className="absolute inset-0 bg-blue-500/20 dark:bg-blue-500/15 rounded-full animate-pulse"></div>
           <div className="absolute inset-0 bg-blue-300/10 rounded-full animate-pulse delay-75"></div>
-          <img
-            src="https://image2url.com/images/1758396995163-658d63fc-b4c6-4667-b54c-7a2f456cb3fe.jpg"
-            decoding="async"
-            alt="Professional headshot of Vishnu Nair"
-            className="relative z-10 w-full h-full object-cover rounded-full border-8 border-white dark:border-slate-800 shadow-2xl"
-          />
-          
+          {headshotFailed ? (
+            /* Local monogram — the hero never shows an empty column again */
+            <div
+              role="img"
+              aria-label={`${site.name} monogram`}
+              className="relative z-10 flex w-full h-full items-center justify-center rounded-full border-8 border-white dark:border-slate-800 shadow-2xl bg-gradient-to-br from-blue-500 to-blue-700"
+            >
+              <span className="text-7xl md:text-8xl font-extrabold tracking-tight text-white select-none">
+                VN
+              </span>
+            </div>
+          ) : (
+            <img
+              src="https://image2url.com/images/1758396995163-658d63fc-b4c6-4667-b54c-7a2f456cb3fe.jpg"
+              decoding="async"
+              onError={() => setHeadshotFailed(true)}
+              alt="Professional headshot of Vishnu Nair"
+              className="relative z-10 w-full h-full object-cover rounded-full border-8 border-white dark:border-slate-800 shadow-2xl"
+            />
+          )}
         </div>
       </motion.div>
     </motion.div>

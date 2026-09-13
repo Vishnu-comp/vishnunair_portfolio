@@ -90,6 +90,9 @@ const InternshipExperience = () => {
                   src={exp.logo}
                   loading="lazy"
                   decoding="async"
+                  onError={(e) => {
+                    e.currentTarget.style.display = "none";
+                  }}
                   alt={`${exp.company} logo`}
                   className="w-full h-full object-contain"
                 />

@@ -157,6 +157,13 @@ const imagesSecond = [
               alt={`${title} Slider`}
               loading="lazy"
               decoding="async"
+              onError={(e) => {
+                // image2url.com (old host) is offline; show a local placeholder
+                // instead of a broken-image glyph. Guard against loops.
+                if (!e.currentTarget.src.endsWith("/img-placeholder.svg")) {
+                  e.currentTarget.src = "/img-placeholder.svg";
+                }
+              }}
               className="absolute inset-0 w-full h-full object-contain p-4 transition-opacity duration-500"
             />
 

@@ -74,8 +74,9 @@ export const Achievement = () => {
                 <img
                   src={certificateImages[currentSlide]}
                   onError={(e) => {
-                    // via.placeholder.com is dead; hide the broken image instead of showing a 404 icon.
-                    e.currentTarget.style.opacity = "0.15";
+                    if (!e.currentTarget.src.endsWith("/img-placeholder.svg")) {
+                      e.currentTarget.src = "/img-placeholder.svg";
+                    }
                   }}
                   loading="lazy"
                   decoding="async"

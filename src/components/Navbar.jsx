@@ -118,17 +118,21 @@ const Navbar = () => {
           : "border-transparent bg-white/70 py-4 backdrop-blur-md dark:bg-slate-950/60"
       )}
     >
-      <div className="container mx-auto flex items-center justify-between px-4">
-        {/* Logo — shrinks slightly once scrolled */}
+      <div className="container mx-auto flex min-h-[3.5rem] items-center justify-between px-4">
+        {/* Logo — shrinks slightly once scrolled.
+            flex-shrink-0 + a local src guarantee the mark always occupies its
+            left slot at a stable size, even while other assets load. */}
         <Link
           to="/"
           onClick={closeMobileMenu}
           aria-label={`${site.name} — home`}
-          className="transition-transform duration-300 hover:scale-105"
+          className="flex flex-shrink-0 items-center transition-transform duration-300 hover:scale-105"
         >
           <img
             src={site.logo}
             decoding="async"
+            width="48"
+            height="48"
             alt={`${site.name} logo`}
             className={cx(
               "w-auto transition-all duration-300",
@@ -146,7 +150,7 @@ const Navbar = () => {
           ))}
         </ul>
 
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex flex-shrink-0 items-center gap-2 sm:gap-3">
           <ThemeToggle />
 
           <Link

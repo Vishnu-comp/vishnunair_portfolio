@@ -52,7 +52,7 @@ export const site = {
     work: "https://www.notion.so/Shoffr-Work-3078cf31ef1b80dfadfdf0daebb9fdd2",
   },
 
-  logo: "https://github.com/user-attachments/assets/7323e2bc-209b-4ddf-9983-62b6e31b2672",
+  logo: "/logos.png",
 };
 
 /**

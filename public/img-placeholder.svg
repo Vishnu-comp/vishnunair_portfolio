@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500" role="img" aria-label="Preview unavailable">
+  <rect x="8" y="8" width="784" height="484" rx="20" fill="none" stroke="#94a3b8" stroke-opacity="0.45" stroke-width="2" stroke-dasharray="10 8"/>
+  <g transform="translate(400 218)" stroke="#94a3b8" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <rect x="-70" y="-52" width="140" height="104" rx="14"/>
+    <circle cx="-26" cy="-14" r="13"/>
+    <path d="M-70 34 L-22 -8 L14 24 L38 2 L70 34"/>
+  </g>
+  <text x="400" y="330" text-anchor="middle" font-family="Roboto, Helvetica, Arial, sans-serif" font-size="26" fill="#94a3b8">Screenshot unavailable</text>
+  <text x="400" y="364" text-anchor="middle" font-family="Roboto, Helvetica, Arial, sans-serif" font-size="17" fill="#94a3b8" fill-opacity="0.75">The image host for this project is offline</text>
+</svg>
