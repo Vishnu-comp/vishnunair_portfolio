@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Briefcase, Download, GraduationCap } from "lucide-react";
+import { ArrowRight, Download } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { site } from "../data/site";
 import { scrollToSection } from "../hooks/useNavigation";
