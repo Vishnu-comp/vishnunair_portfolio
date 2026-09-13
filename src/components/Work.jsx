@@ -179,7 +179,7 @@ const Work = () => {
             <div className="relative mx-auto w-full max-w-sm">
               <div className="absolute -inset-5 rounded-[2rem] bg-gradient-to-br from-blue-100 to-indigo-100 opacity-70 blur-xl" />
               <div className="relative rounded-[2rem] border border-blue-100 bg-gradient-to-br from-white to-blue-50 p-8 shadow-xl">
-                <div className="flex h-44 items-center justify-center rounded-2xl border border-dashed border-blue-200 bg-white/80">
+                <div className="flex h-44 items-center justify-center rounded-2xl border border-gray-800 bg-black">
                   <img
                     src="https://shoffr.in/icon/shoffr-hero-logo.svg"
                     alt="Shoffr logo"

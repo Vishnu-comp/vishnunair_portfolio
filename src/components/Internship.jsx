@@ -24,7 +24,7 @@ const InternshipExperience = () => {
       duration: "Feb 2025 - Present",
       company: "SHOFFR - THE GOLD STANDARD OF RIDES",
       location: "Onsite",
-      logo: "https://image2url.com/images/1754031405909-de6495fd-cfd4-4e4d-a367-ed7e7cefdac2.png",
+      logo: "https://shoffr.in/icon/shoffr-hero-logo.svg",
       description: [
         "Built a feature to mark and manage trip importance levels, enhancing admin visibility and prioritization on the portal.",
         "Implemented a co-passenger module enabling users to add and manage multiple travelers within a single booking.",
@@ -85,7 +85,7 @@ const InternshipExperience = () => {
               </div>
 
               {/* Logo */}
-              <div className="flex items-center justify-center w-28 h-28 sm:w-32 sm:h-32 p-4 bg-white rounded-2xl shadow-md border border-blue-100 hover:shadow-lg transition-shadow duration-300">
+              <div className="flex items-center justify-center w-28 h-28 sm:w-32 sm:h-32 p-4 bg-black rounded-2xl shadow-md border border-gray-800 hover:shadow-lg transition-shadow duration-300">
                 <img
                   src={exp.logo}
                   alt={`${exp.company} logo`}
