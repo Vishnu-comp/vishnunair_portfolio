@@ -10,10 +10,11 @@ export const site = {
 
   /**
    * WhatsApp quick-contact number in international format, digits only
-   * (no "+", no spaces). Example for India: "919876543210".
-   * Leave as "" to hide the WhatsApp floating button entirely.
+   * (no "+", no spaces). Sourced from the public resume (+91-9967418222).
+   * Change it here and the hero icon, footer icon and floating button all
+   * update. Set to "" to hide the WhatsApp entry points again.
    */
-  whatsapp: "",
+  whatsapp: "919967418222",
 
   /** Prefilled WhatsApp message used by the floating button. */
   whatsappMessage: "Hi Vishnu, I came across your portfolio and would love to connect.",

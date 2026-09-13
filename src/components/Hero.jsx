@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { FaWhatsapp } from "react-icons/fa";
 import { site } from "../data/site";
 
 const Hero = () => {
@@ -10,6 +11,13 @@ const Hero = () => {
    * the hero always looks intentional.
    */
   const [headshotFailed, setHeadshotFailed] = useState(false);
+
+  /** Click-to-chat link; hidden entirely if no number is configured. */
+  const waHref = site.whatsapp
+    ? `https://wa.me/${site.whatsapp.replace(/\D/g, "")}?text=${encodeURIComponent(
+        site.whatsappMessage
+      )}`
+    : null;
 
   return (
     <motion.div
@@ -50,6 +58,8 @@ const Hero = () => {
           {/* Email */}
           <a
             href="mailto:vishnunair2323@gmail.com"
+            aria-label="Email Vishnu Nair"
+            title="Email"
             className="p-3 bg-white dark:bg-slate-800 dark:text-slate-200 shadow-md rounded-xl hover:bg-blue-50 dark:hover:bg-slate-700 hover:scale-110 transition-all duration-300"
           >
             <svg
@@ -70,6 +80,8 @@ const Hero = () => {
           {/* GitHub */}
           <a
             href="https://github.com/Vishnu-comp"
+            aria-label="Vishnu Nair on GitHub"
+            title="GitHub"
             className="p-3 bg-white dark:bg-slate-800 dark:text-slate-200 shadow-md rounded-xl hover:bg-blue-50 dark:hover:bg-slate-700 hover:scale-110 transition-all duration-300"
           >
             <svg
@@ -88,6 +100,8 @@ const Hero = () => {
           {/* LinkedIn */}
           <a
             href="https://www.linkedin.com/in/vishnu-nair-aa462b245/"
+            aria-label="Vishnu Nair on LinkedIn"
+            title="LinkedIn"
             className="p-3 bg-white dark:bg-slate-800 dark:text-slate-200 shadow-md rounded-xl hover:bg-blue-50 dark:hover:bg-slate-700 hover:scale-110 transition-all duration-300"
           >
             <svg
@@ -98,6 +112,20 @@ const Hero = () => {
               <path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 011.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 001.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 00-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
             </svg>
           </a>
+
+          {/* WhatsApp — same tile treatment as email/github/linkedin */}
+          {waHref && (
+            <a
+              href={waHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Chat with Vishnu Nair on WhatsApp"
+              title="WhatsApp"
+              className="p-3 bg-white dark:bg-slate-800 dark:text-slate-200 shadow-md rounded-xl hover:bg-emerald-50 dark:hover:bg-slate-700 hover:text-emerald-600 dark:hover:text-emerald-400 hover:scale-110 transition-all duration-300"
+            >
+              <FaWhatsapp className="w-6 h-6" aria-hidden="true" />
+            </a>
+          )}
         </motion.div>
       </motion.div>
 

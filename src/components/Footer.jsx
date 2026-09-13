@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowUp, Github, Linkedin, Mail, MapPin, Heart } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 import { navItems, site } from "../data/site";
 import { useSectionNavigation } from "../hooks/useNavigation";
 
@@ -13,6 +14,12 @@ import { useSectionNavigation } from "../hooks/useNavigation";
 const Footer = () => {
   const { goTo } = useSectionNavigation();
   const year = new Date().getFullYear();
+
+  const waHref = site.whatsapp
+    ? `https://wa.me/${site.whatsapp.replace(/\D/g, "")}?text=${encodeURIComponent(
+        site.whatsappMessage
+      )}`
+    : null;
 
   const socials = [
     {
@@ -30,6 +37,10 @@ const Footer = () => {
       href: `mailto:${site.email}`,
       icon: Mail,
     },
+    // Only rendered when a number is configured in src/data/site.js
+    ...(waHref
+      ? [{ label: "WhatsApp", href: waHref, icon: FaWhatsapp, accent: true }]
+      : []),
   ];
 
   return (
@@ -56,19 +67,23 @@ const Footer = () => {
             </p>
 
             <div className="mt-6 flex gap-3">
-              {socials.map((s) => {
-                const Icon = s.icon;
+              {socials.map((social) => {
+                const Icon = social.icon;
                 return (
                   <a
-                    key={s.label}
-                    href={s.href}
-                    target={s.href.startsWith("http") ? "_blank" : undefined}
+                    key={social.label}
+                    href={social.href}
+                    target={social.href.startsWith("http") ? "_blank" : undefined}
                     rel={
-                      s.href.startsWith("http") ? "noopener noreferrer" : undefined
+                      social.href.startsWith("http") ? "noopener noreferrer" : undefined
                     }
-                    aria-label={s.label}
-                    title={s.label}
-                    className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-600 transition-all duration-300 hover:-translate-y-1 hover:border-blue-300 hover:text-blue-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-blue-500 dark:hover:text-blue-400"
+                    aria-label={social.label}
+                    title={social.label}
+                    className={
+                      social.accent
+                        ? "flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-600 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-300 hover:text-emerald-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-emerald-500 dark:hover:text-emerald-400"
+                        : "flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-600 transition-all duration-300 hover:-translate-y-1 hover:border-blue-300 hover:text-blue-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-blue-500 dark:hover:text-blue-400"
+                    }
                   >
                     <Icon className="h-5 w-5" aria-hidden="true" />
                   </a>
