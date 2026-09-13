@@ -22,6 +22,18 @@ export const site = {
   githubUsername: "Vishnu-comp",
 
   /**
+   * Contact form delivery.
+   *
+   * Leave "" to use Formsubmit.co's free AJAX endpoint for `email` above
+   * (no signup; the owner clicks a one-time activation link on first use).
+   *
+   * If you later prefer Formspree/Web3Forms, paste the endpoint URL here
+   * (e.g. "https://formspree.io/f/xyzabcq") and the same JSON payload will be
+   * POSTed to it instead.
+   */
+  contactEndpoint: "",
+
+  /**
    * Stack you use professionally that GitHub's per-repo "primary language"
    * field cannot see — private company repos (Shoffr), and frameworks that
    * GitHub buckets under the host language (Next.js -> JavaScript, JSX,
