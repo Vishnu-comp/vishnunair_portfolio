@@ -186,12 +186,6 @@ const Work = () => {
                     className="max-h-24 max-w-[190px] object-contain"
                   />
                 </div>
-                <div className="mt-6 flex items-center justify-between text-sm">
-                  <span className="font-semibold text-gray-500">Partner platform</span>
-                  <span className="rounded-full bg-blue-100 px-3 py-1 font-semibold text-blue-700">
-                    Active
-                  </span>
-                </div>
               </div>
             </div>
           </div>
