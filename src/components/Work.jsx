@@ -181,7 +181,7 @@ const Work = () => {
               <div className="relative rounded-[2rem] border border-blue-100 bg-gradient-to-br from-white to-blue-50 p-8 shadow-xl">
                 <div className="flex h-44 items-center justify-center rounded-2xl border border-dashed border-blue-200 bg-white/80">
                   <img
-                    src="https://image2url.com/images/1754031405909-de6495fd-cfd4-4e4d-a367-ed7e7cefdac2.png"
+                    src="https://shoffr.in/icon/shoffr-hero-logo.svg"
                     alt="Shoffr logo"
                     className="max-h-24 max-w-[190px] object-contain"
                   />
