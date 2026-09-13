@@ -87,19 +87,6 @@ const Hero = () => {
         transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
         className="flex-1 text-left space-y-7 relative z-10"
       >
-        {/* Availability pill */}
-        <motion.span
-          initial={{ y: -12, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="inline-flex items-center gap-2.5 rounded-full border border-emerald-200 bg-emerald-50/90 px-4 py-1.5 text-sm font-medium text-emerald-700 shadow-sm dark:border-emerald-500/30 dark:bg-emerald-500/10 dark:text-emerald-300"
-        >
-          <span className="relative flex h-2.5 w-2.5">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
-            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500"></span>
-          </span>
-          {site.availability}
-        </motion.span>
 
         <div className="space-y-4">
           <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white leading-tight">
@@ -124,10 +111,10 @@ const Hero = () => {
 
         <p className="text-lg md:text-xl text-gray-600 dark:text-slate-400 leading-relaxed max-w-xl">
           Building scalable, high-performance web applications with{" "}
-          <span className="font-medium text-blue-600 dark:text-blue-400">React & Next.js</span>{" "}
+          <span className="font-medium text-blue-600 dark:text-blue-400">React, Next.js & TypeScript</span>{" "}
           on the front end and{" "}
           <span className="font-medium text-blue-600 dark:text-blue-400">
-            Java, Python & Node.js
+            Java, Spring Boot Python & Node.js
           </span>{" "}
           behind it — currently engineering ride workflows at Shoffr.
         </p>
@@ -278,43 +265,6 @@ const Hero = () => {
               className="relative z-10 w-full h-full object-cover rounded-full border-8 border-white dark:border-slate-700 shadow-2xl shadow-blue-500/10"
             />
           )}
-
-          {/* Floating credential card */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.9 }}
-            className="absolute -left-3 bottom-10 md:-left-12 z-20 animate-float"
-          >
-            <div className="flex items-center gap-3 rounded-2xl border border-gray-100 bg-white/95 px-4 py-3 shadow-xl shadow-slate-900/10 backdrop-blur dark:border-slate-700/60 dark:bg-slate-800/95 dark:shadow-black/30">
-              <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600 dark:bg-blue-500/15 dark:text-blue-400">
-                <Briefcase className="h-5 w-5" aria-hidden="true" />
-              </span>
-              <span>
-                <span className="block text-sm font-bold text-gray-900 dark:text-white">
-                  {site.currentRole.title}
-                </span>
-                <span className="block text-xs text-gray-500 dark:text-slate-400">
-                  {site.currentRole.org}
-                </span>
-              </span>
-            </div>
-          </motion.div>
-
-          {/* Floating education chip */}
-          <motion.div
-            initial={{ opacity: 0, y: -12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 1.1 }}
-            className="absolute -right-2 top-8 md:-right-8 z-20 animate-float-delayed"
-          >
-            <div className="flex items-center gap-2 rounded-full border border-gray-100 bg-white/95 px-4 py-2 shadow-lg shadow-slate-900/10 backdrop-blur dark:border-slate-700/60 dark:bg-slate-800/95 dark:shadow-black/30">
-              <GraduationCap className="h-4 w-4 text-blue-500 dark:text-blue-400" aria-hidden="true" />
-              <span className="text-xs font-semibold text-gray-700 dark:text-slate-200">
-                {site.educationChip}
-              </span>
-            </div>
-          </motion.div>
         </div>
       </motion.div>
 

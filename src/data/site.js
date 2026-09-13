@@ -10,6 +10,7 @@ export const site = {
 
   /** Rotated by the hero typewriter, in order. */
   roles: [
+    "Full-Stack Developer",
     "Software Development Engineer",
     "Full Stack Developer",
     "MERN Stack Developer",
