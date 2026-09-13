@@ -3,41 +3,159 @@
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/logos.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <!-- ===================== Primary SEO ===================== -->
+    <title>Vishnu Nair | Software Development Engineer & Full Stack Developer — Bengaluru</title>
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      content="Portfolio of Vishnu Nair — Software Development Engineer / Full Stack Developer in Bengaluru, India. React, Next.js, Java Spring Boot and Node.js: live projects, work experience at Shoffr, certifications and resume."
     />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logos.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+    <meta name="author" content="Vishnu Nair" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <link rel="canonical" href="https://vishnunairportfolio.vercel.app/" />
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>Vishnu Nair </title>
+    <!-- ===================== Open Graph ===================== -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Vishnu Nair — Portfolio" />
+    <meta property="og:url" content="https://vishnunairportfolio.vercel.app/" />
+    <meta property="og:title" content="Vishnu Nair | Software Development Engineer" />
+    <meta
+      property="og:description"
+      content="Full Stack Developer building scalable web apps with React, Next.js, Java Spring Boot and Node.js. Projects, Shoffr work experience, certifications and resume."
+    />
+    <meta property="og:image" content="https://vishnunairportfolio.vercel.app/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Vishnu Nair — Software Development Engineer, Full Stack Developer" />
+    <meta property="og:locale" content="en_IN" />
+
+    <!-- ===================== Twitter / X ===================== -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Vishnu Nair | Software Development Engineer" />
+    <meta
+      name="twitter:description"
+      content="Full Stack Developer — React, Next.js, Java Spring Boot, Node.js. Projects, experience and resume."
+    />
+    <meta name="twitter:image" content="https://vishnunairportfolio.vercel.app/og-image.png" />
+    <meta name="twitter:image:alt" content="Vishnu Nair — Software Development Engineer, Full Stack Developer" />
+
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logos.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <!-- ===================== Structured data ===================== -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://vishnunairportfolio.vercel.app/#person",
+            "name": "Vishnu Nair",
+            "url": "https://vishnunairportfolio.vercel.app/",
+            "image": "https://vishnunairportfolio.vercel.app/og-image.png",
+            "jobTitle": "Software Development Engineer",
+            "description": "Full Stack Developer with expertise in React, Next.js, Java Spring Boot and Node.js, building scalable high-performance web applications.",
+            "email": "mailto:vishnunair2323@gmail.com",
+            "telephone": "+91-9967418222",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Bengaluru",
+              "addressRegion": "Karnataka",
+              "addressCountry": "IN"
+            },
+            "worksFor": {
+              "@type": "Organization",
+              "name": "Shoffr",
+              "url": "https://shoffr.in"
+            },
+            "alumniOf": {
+              "@type": "CollegeOrUniversity",
+              "name": "Christ (Deemed to be University)",
+              "address": "Bengaluru, India"
+            },
+            "knowsAbout": [
+              "React",
+              "Next.js",
+              "JavaScript",
+              "Java",
+              "Spring Boot",
+              "Node.js",
+              "Express.js",
+              "MongoDB",
+              "MySQL",
+              "Python",
+              "Tailwind CSS",
+              "Docker",
+              "REST APIs",
+              "WebSockets"
+            ],
+            "sameAs": [
+              "https://github.com/Vishnu-comp",
+              "https://www.linkedin.com/in/vishnu-nair-aa462b245/"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://vishnunairportfolio.vercel.app/#website",
+            "url": "https://vishnunairportfolio.vercel.app/",
+            "name": "Vishnu Nair — Portfolio",
+            "description": "Portfolio of Vishnu Nair, Software Development Engineer and Full Stack Developer based in Bengaluru, India.",
+            "inLanguage": "en",
+            "publisher": { "@id": "https://vishnunairportfolio.vercel.app/#person" }
+          }
+        ]
+      }
+    </script>
+
+    <script>
+      /*
+       * Prevent a flash of the wrong theme (FOUC).
+       * Runs before React mounts so <html> already carries the `dark` class on
+       * first paint. Mirrors the logic in src/utils/theme.js.
+       *
+       * LIGHT IS THE SITE DEFAULT. Dark mode is applied only when the visitor
+       * explicitly chose it earlier (stored preference) — the OS setting is
+       * deliberately ignored so first-time visitors always get light theme.
+       */
+      (function () {
+        try {
+          var stored = localStorage.getItem("vn-theme");
+          var dark = stored === "dark";
+          var root = document.documentElement;
+          root.classList.toggle("dark", dark);
+          root.style.colorScheme = dark ? "dark" : "light";
+          var meta = document.querySelector('meta[name="theme-color"]');
+          if (meta) meta.setAttribute("content", dark ? "#0b1120" : "#ffffff");
+        } catch (e) {
+          /* storage unavailable — stay in light mode */
+        }
+      })();
+    </script>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
     <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
+      Static, crawlable summary for agents that do not execute JavaScript
+      (some search bots, link previewers, accessibility tools). React renders
+      the real experience into #root on top of this.
     -->
+    <noscript>
+      <h1>Vishnu Nair — Software Development Engineer / Full Stack Developer</h1>
+      <p>
+        Bengaluru, India. Building scalable, high-performance web applications
+        with React, Next.js, Java, Python and Node.js. Currently a Software
+        Engineer at Shoffr; previously a Junior Software Development Intern at
+        ICIER. MCA, Christ (Deemed to be University); BCA, Kristu Jayanti
+        College.
+      </p>
+      <ul>
+        <li><a href="https://github.com/Vishnu-comp">GitHub — github.com/Vishnu-comp</a></li>
+        <li><a href="https://www.linkedin.com/in/vishnu-nair-aa462b245/">LinkedIn — Vishnu Nair</a></li>
+        <li><a href="mailto:vishnunair2323@gmail.com">vishnunair2323@gmail.com</a></li>
+      </ul>
+      <p>This portfolio requires JavaScript for the interactive experience.</p>
+    </noscript>
+    <div id="root"></div>
   </body>
 </html>

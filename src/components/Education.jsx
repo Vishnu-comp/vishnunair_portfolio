@@ -25,7 +25,7 @@ const Education = () => {
   return (
     <section className="py-24 px-4 sm:px-6 lg:px-8">
       {/* Background with subtle gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-white to-blue-50/30 -z-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-white to-blue-50/30 dark:from-slate-900/60 dark:via-transparent dark:to-slate-900/40 -z-10"></div>
       
       {/* Heading */}
       <motion.div
@@ -41,7 +41,7 @@ const Education = () => {
             Educational Journey
             </span>
           </h2> */}
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-800 text-center">
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white text-center">
             Educational Journey
           </h1>
         </div>
@@ -60,11 +60,11 @@ const Education = () => {
               className="group relative"
             >
               {/* Card */}
-              <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 
+              <div className="bg-white/80 dark:bg-slate-900/70 backdrop-blur-sm rounded-3xl p-8 
                 shadow-[0_4px_20px_rgba(0,0,0,0.06)] 
                 hover:shadow-[0_8px_30px_rgba(59,130,246,0.1)] 
                 transition-all duration-300
-                border border-gray-100/50">
+                border border-gray-100/50 dark:border-slate-700/50">
                 <div className="grid md:grid-cols-2 gap-8">
                   {/* Left Column */}
                   <div className="space-y-4">
@@ -76,11 +76,11 @@ const Education = () => {
                         <span className="text-white font-bold text-xl">{index + 1}</span>
                       </div>
                       <div>
-                        <h3 className="text-xl font-bold text-blue-600 mb-2 
-                          group-hover:text-blue-700 transition-colors duration-300">
+                        <h3 className="text-xl font-bold text-blue-600 dark:text-blue-400 mb-2 
+                          group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors duration-300">
                           {experience.degree}
                         </h3>
-                        <div className="flex items-center gap-2 text-gray-600">
+                        <div className="flex items-center gap-2 text-gray-600 dark:text-slate-400">
                           <BsCalendarEvent className="text-blue-400" />
                           <span className="text-sm">{experience.duration}</span>
                         </div>
@@ -89,23 +89,23 @@ const Education = () => {
                   </div>
 
                   {/* Right Column */}
-                  <div className="md:border-l border-gray-100 md:pl-8 space-y-4">
+                  <div className="md:border-l border-gray-100 dark:border-slate-700/60 md:pl-8 space-y-4">
                     <div>
-                      <h4 className="text-xl font-bold text-gray-800 mb-3 
-                        group-hover:text-gray-900 transition-colors duration-300">
+                      <h4 className="text-xl font-bold text-gray-800 dark:text-white mb-3 
+                        group-hover:text-gray-900 dark:group-hover:text-white transition-colors duration-300">
                         {experience.college}
                       </h4>
-                      <div className="flex items-center gap-2 text-gray-600">
+                      <div className="flex items-center gap-2 text-gray-600 dark:text-slate-400">
                         <IoLocationSharp className="text-blue-400" />
                         <span className="text-sm">{experience.location}</span>
                       </div>
                     </div>
                     <div className="inline-flex items-center gap-2 px-5 py-2.5 
-                      bg-gradient-to-r from-blue-50 to-blue-100/50 
+                      bg-gradient-to-r from-blue-50 to-blue-100/50 dark:from-blue-500/10 dark:to-blue-500/5 
                       rounded-full text-blue-600 font-medium
                       shadow-sm shadow-blue-100">
-                      <span className="text-blue-500">CGPA:</span>
-                      <span className="text-blue-700">{experience.percentage}</span>
+                      <span className="text-blue-500 dark:text-blue-400">CGPA:</span>
+                      <span className="text-blue-700 dark:text-blue-300">{experience.percentage}</span>
                     </div>
                   </div>
                 </div>

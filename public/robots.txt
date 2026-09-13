@@ -1,3 +1,8 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Allow: /
+
+# Asset folders with no indexable content
+Disallow: /static/
+
+Sitemap: https://vishnunairportfolio.vercel.app/sitemap.xml

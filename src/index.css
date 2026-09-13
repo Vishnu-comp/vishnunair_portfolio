@@ -3,13 +3,114 @@
 @tailwind components;
 @tailwind utilities;
 /* slick-carousel styles */
-@import "~slick-carousel/slick/slick.css"; 
+@import "~slick-carousel/slick/slick.css";
 @import "~slick-carousel/slick/slick-theme.css";
 
-.hide-scrollbar {
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Offset anchor targets so the fixed navbar never covers a heading */
+    scroll-padding-top: 84px;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-white text-gray-800 antialiased dark:bg-[#0b1120] dark:text-slate-200;
+    /* Animate the light<->dark background/text swap instead of snapping */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    /*
+     * A single overflowing asset (e.g. a slow external image) must never be
+     * able to introduce a horizontal scrollbar and shift the fixed navbar's
+     * contents sideways.
+     */
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    @apply bg-blue-500/25 text-blue-900 dark:bg-blue-400/30 dark:text-white;
+  }
+
+  /*
+   * Chrome/Edge paint autofilled fields with a white background, which looks
+   * like a grey slab on the dark contact card. Force the fill + text colour
+   * to match the theme instead.
+   */
+  .dark input:-webkit-autofill,
+  .dark input:-webkit-autofill:hover,
+  .dark input:-webkit-autofill:focus,
+  .dark textarea:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px #1e293b inset;
+    box-shadow: 0 0 0 1000px #1e293b inset;
+    -webkit-text-fill-color: #f1f5f9;
+    caret-color: #f1f5f9;
+    transition: background-color 9999s ease-out;
+  }
+
+  /* Keep focus rings visible in both themes */
+  :focus-visible {
+    @apply outline-none ring-4 ring-blue-300/60 dark:ring-blue-500/40;
+  }
+}
+
+@layer utilities {
+  .hide-scrollbar {
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* Internet Explorer 10+ */
   }
   .hide-scrollbar::-webkit-scrollbar {
     display: none; /* Chrome, Safari, Opera */
   }
+
+  /* Subtle dot-grid backdrop for the hero; fades out towards the edges. */
+  .bg-dots {
+    background-image: radial-gradient(
+      circle,
+      rgb(59 130 246 / 0.14) 1px,
+      transparent 1px
+    );
+    background-size: 22px 22px;
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black, transparent 75%);
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, black, transparent 75%);
+  }
+  .dark .bg-dots {
+    background-image: radial-gradient(
+      circle,
+      rgb(148 163 184 / 0.12) 1px,
+      transparent 1px
+    );
+  }
+}
+
+/*
+ * Accessibility: honour the OS "reduce motion" setting.
+ * Framer Motion + the auto-advancing carousels animate constantly, which can
+ * trigger vestibular disorders. This neutralises CSS animation/transition for
+ * those users without disabling functionality.
+ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/*
+ * Print: the /card route (and the #connect section) should print as a clean
+ * contact card. Everything carrying .no-print (navbar, footer, FABs, bottom
+ * tab bar, action buttons) disappears from the sheet.
+ */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #ffffff !important;
+  }
+}
