@@ -112,7 +112,7 @@ const Navbar = () => {
     <nav
       aria-label="Main"
       className={cx(
-        "fixed inset-x-0 top-0 z-50 w-full border-b transition-all duration-300 ease-out-expo",
+        "no-print fixed inset-x-0 top-0 z-50 w-full border-b transition-all duration-300 ease-out-expo",
         scrolled
           ? "border-gray-200/70 bg-white/90 py-2 shadow-lg shadow-slate-900/5 backdrop-blur-md dark:border-slate-800 dark:bg-slate-950/85 dark:shadow-black/20"
           : "border-transparent bg-white/70 py-4 backdrop-blur-md dark:bg-slate-950/60"

@@ -31,7 +31,7 @@ const MobileBottomNav = () => {
   return (
     <nav
       aria-label="Mobile"
-      className="fixed inset-x-0 bottom-0 z-40 border-t border-gray-200/80 bg-white/95 backdrop-blur-lg md:hidden dark:border-slate-700/70 dark:bg-slate-900/95"
+      className="no-print fixed inset-x-0 bottom-0 z-40 border-t border-gray-200/80 bg-white/95 backdrop-blur-lg md:hidden dark:border-slate-700/70 dark:bg-slate-900/95"
       style={{ paddingBottom: "env(safe-area-inset-bottom, 0px)" }}
     >
       <ul className="flex items-stretch justify-around px-1 py-1.5">

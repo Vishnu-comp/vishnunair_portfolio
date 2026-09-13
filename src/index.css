@@ -100,3 +100,17 @@
     scroll-behavior: auto !important;
   }
 }
+
+/*
+ * Print: the /card route (and the #connect section) should print as a clean
+ * contact card. Everything carrying .no-print (navbar, footer, FABs, bottom
+ * tab bar, action buttons) disappears from the sheet.
+ */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #ffffff !important;
+  }
+}

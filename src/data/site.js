@@ -42,6 +42,11 @@ export const site = {
   /** Prefilled WhatsApp message used by the floating button. */
   whatsappMessage: "Hi Vishnu, I came across your portfolio and would love to connect.",
 
+  /** Phone as stored in the vCard / tel: links. */
+  phone: "+919967418222",
+  /** Phone as displayed on the contact card. */
+  phoneDisplay: "+91 99674 18222",
+
   /** GitHub username that powers the GitHub Activity widget. */
   githubUsername: "Vishnu-comp",
 

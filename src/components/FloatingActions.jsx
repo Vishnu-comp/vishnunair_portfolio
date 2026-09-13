@@ -58,7 +58,7 @@ const FloatingActions = () => {
   ].filter(Boolean);
 
   return (
-    <div className="pointer-events-none fixed right-4 z-40 flex flex-col items-end gap-3 bottom-24 md:bottom-8 md:right-8">
+    <div className="no-print pointer-events-none fixed right-4 z-40 flex flex-col items-end gap-3 bottom-24 md:bottom-8 md:right-8">
       <AnimatePresence>
         {open &&
           actions.map((action, i) => {

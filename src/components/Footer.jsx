@@ -44,7 +44,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="relative border-t border-gray-200 bg-white pt-16 pb-28 md:pb-12 dark:border-slate-800 dark:bg-slate-950">
+    <footer className="no-print relative border-t border-gray-200 bg-white pt-16 pb-28 md:pb-12 dark:border-slate-800 dark:bg-slate-950">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
           {/* Brand */}
@@ -162,6 +162,14 @@ const Footer = () => {
                 >
                   LinkedIn profile
                 </a>
+              </li>
+              <li>
+                <Link
+                  to="/card"
+                  className="text-gray-600 transition-colors hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400"
+                >
+                  Career-fair card (QR + vCard)
+                </Link>
               </li>
             </ul>
 
