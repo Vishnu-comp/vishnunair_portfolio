@@ -85,10 +85,6 @@ const MobileBottomNav = () => {
             </li>
           );
         })}
-
-        <li className="flex-1">
-          <ThemeToggleCompact />
-        </li>
       </ul>
     </nav>
   );
