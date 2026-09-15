@@ -62,7 +62,7 @@ const Footer = () => {
               with React, Next.js, Java Spring Boot and Node.
             </p>
             <p className="mt-4 flex items-center gap-2 text-sm text-gray-500 dark:text-slate-500">
-              <MapPin className="h-4 w-4 text-blue-500" aria-hidden="true" />
+              <MapPin className="h-4 w-4 text-blue-500 dark:text-gold-400" aria-hidden="true" />
               Bengaluru, India · Open to opportunities
             </p>
 

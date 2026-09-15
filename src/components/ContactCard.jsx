@@ -67,7 +67,7 @@ const QrTile = ({ src, caption, sub }) => (
 const ContactCard = ({ standalone = false }) => (
   <div
     className={
-      "relative overflow-hidden rounded-3xl border border-gray-100 bg-white/90 shadow-2xl shadow-blue-500/10 backdrop-blur dark:border-slate-700/60 dark:bg-slate-900/85 " +
+      "relative overflow-hidden rounded-3xl border border-gray-100 bg-white/90 shadow-2xl shadow-blue-500/10 dark:shadow-gold-500/10 backdrop-blur dark:border-slate-700/60 dark:bg-slate-900/85 " +
       (standalone ? "p-6 sm:p-10" : "p-6 sm:p-10")
     }
   >

@@ -250,7 +250,7 @@ const Hero = () => {
             <div
               role="img"
               aria-label={`${site.name} monogram`}
-              className="relative z-10 flex w-full h-full items-center justify-center rounded-full border-8 border-white dark:border-slate-700 shadow-2xl shadow-blue-500/10 bg-gradient-to-br from-blue-500 to-blue-700"
+              className="relative z-10 flex w-full h-full items-center justify-center rounded-full border-8 border-white dark:border-slate-700 shadow-2xl shadow-blue-500/10 dark:shadow-gold-500/10 bg-gradient-to-br from-blue-500 to-blue-700 dark:bg-gold-gradient"
             >
               <span className="text-7xl md:text-8xl font-extrabold tracking-tight text-white select-none">
                 VN
@@ -262,7 +262,7 @@ const Hero = () => {
               decoding="async"
               onError={() => setHeadshotFailed(true)}
               alt="Professional headshot of Vishnu Nair"
-              className="relative z-10 w-full h-full object-cover rounded-full border-8 border-white dark:border-slate-700 shadow-2xl shadow-blue-500/10"
+              className="relative z-10 w-full h-full object-cover rounded-full border-8 border-white dark:border-slate-700 shadow-2xl shadow-blue-500/10 dark:shadow-gold-500/10"
             />
           )}
         </div>

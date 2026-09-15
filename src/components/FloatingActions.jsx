@@ -74,7 +74,7 @@ const FloatingActions = () => {
 
             const classes = cx(
               "group pointer-events-auto relative flex h-12 w-12 items-center justify-center rounded-full shadow-lg",
-              "transition-all duration-200 hover:scale-110 focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-300/60",
+              "transition-all duration-200 hover:scale-110 focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-300/60 dark:focus-visible:ring-gold-300/50",
               action.accent
                 ? "bg-emerald-500 text-white hover:bg-emerald-600"
                 : "bg-white text-gray-700 hover:text-blue-600 border border-gray-200 dark:bg-slate-800 dark:text-slate-200 dark:border-slate-600 dark:hover:text-gold-300"
@@ -145,9 +145,9 @@ const FloatingActions = () => {
         whileTap={{ scale: 0.92 }}
         className={cx(
           "pointer-events-auto flex h-14 w-14 items-center justify-center rounded-full text-white shadow-xl",
-          "bg-gradient-to-br from-blue-500 to-blue-700",
-          "transition-shadow duration-300 hover:shadow-blue-500/40",
-          "focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-300/60",
+          "bg-gradient-to-br from-blue-500 to-blue-700 dark:bg-gold-gradient",
+          "transition-shadow duration-300 hover:shadow-blue-500/40 dark:hover:shadow-gold-500/30",
+          "focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-300/60 dark:focus-visible:ring-gold-300/50",
           open && "shadow-blue-500/40 dark:shadow-gold-500/30"
         )}
       >

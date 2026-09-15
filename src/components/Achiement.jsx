@@ -46,7 +46,7 @@ export const Achievement = () => {
               My Achievements
             </h2>
           </div>
-          <div className="w-24 h-1.5 bg-gradient-to-r from-blue-500 to-blue-600 mx-auto dark:from-gold-100 dark:to-gold-600 rounded-full"></div>
+          <div className="w-24 h-1.5 bg-gradient-to-r from-blue-500 to-blue-600 mx-auto dark:bg-gold-gradient rounded-full"></div>
           <p className="mt-6 text-lg text-gray-600 dark:text-slate-400 max-w-2xl mx-auto">
             Certifications and recognition that showcase my expertise and continuous learning journey.
           </p>
@@ -92,7 +92,7 @@ export const Achievement = () => {
               aria-label="Previous Certificate"
               className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 dark:bg-slate-800/90 p-4 rounded-full
                 shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300
-                hover:bg-blue-50 hover:scale-110 transform"
+                hover:bg-blue-50 dark:hover:bg-slate-700 hover:scale-110 transform"
             >
               <ChevronLeft className="w-6 h-6 text-gray-700 dark:text-slate-200" />
             </button>
@@ -101,7 +101,7 @@ export const Achievement = () => {
               aria-label="Next Certificate"
               className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 dark:bg-slate-800/90 p-4 rounded-full
                 shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300
-                hover:bg-blue-50 hover:scale-110 transform"
+                hover:bg-blue-50 dark:hover:bg-slate-700 hover:scale-110 transform"
             >
               <ChevronRight className="w-6 h-6 text-gray-700 dark:text-slate-200" />
             </button>

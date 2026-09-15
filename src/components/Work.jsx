@@ -268,7 +268,7 @@ const Work = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.45, delay: index * 0.06 }}
-                className="group rounded-2xl border border-gray-100 dark:border-slate-700/60 bg-white/85 dark:bg-slate-900/70 p-6 shadow-[0_8px_30px_rgba(15,23,42,0.05)] dark:shadow-black/50 transition duration-300 hover:-translate-y-1 hover:border-blue-200 dark:hover:border-gold-500/40 hover:shadow-[0_16px_35px_rgba(59,130,246,0.12)]"
+                className="group rounded-2xl border border-gray-100 dark:border-slate-700/60 bg-white/85 dark:bg-slate-900/70 p-6 shadow-[0_8px_30px_rgba(15,23,42,0.05)] dark:shadow-black/50 transition duration-300 hover:-translate-y-1 hover:border-blue-200 dark:hover:border-gold-500/40 hover:shadow-[0_16px_35px_rgba(59,130,246,0.12)] dark:hover:shadow-[0_16px_35px_rgba(187,152,91,0.15)]"
               >
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-bold tracking-widest text-blue-500 dark:text-gold-300">
@@ -290,7 +290,7 @@ const Work = () => {
       </section>
 
       <section className="px-6 pb-20 md:px-12 lg:px-20">
-        <div className="mx-auto max-w-7xl rounded-3xl bg-gradient-to-r from-blue-600 to-blue-700 dark:from-gold-100 dark:to-gold-600 px-6 py-10 text-white dark:text-black shadow-xl shadow-blue-500/20 dark:shadow-gold-500/25 md:px-12 md:py-12">
+        <div className="mx-auto max-w-7xl rounded-3xl bg-gradient-to-r from-blue-600 to-blue-700 dark:bg-gold-gradient px-6 py-10 text-white dark:text-black shadow-xl shadow-blue-500/20 dark:shadow-gold-500/25 md:px-12 md:py-12">
           <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
             <div>
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-100 dark:text-black/70">

@@ -103,7 +103,7 @@ const imagesSecond = [
         <div>
           <h2 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white group-hover:text-blue-500 dark:group-hover:text-gold-300 transition-colors duration-300">
             {title}
-            <span className="block mt-2 w-24 h-1 bg-blue-500 rounded group-hover:w-32 transition-all duration-300"></span>
+            <span className="block mt-2 w-24 h-1 bg-blue-500 dark:bg-gold-400 rounded group-hover:w-32 transition-all duration-300"></span>
           </h2>
           <div className="flex flex-wrap gap-2 my-6">
             {technologies.map((tech, index) => (
@@ -142,7 +142,7 @@ const imagesSecond = [
               href={deployedLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 rounded-full hover:bg-blue-50 transition-colors duration-200"
+              className="p-2 rounded-full hover:bg-blue-50 dark:hover:bg-slate-800 transition-colors duration-200"
             >
               <AiOutlineLink className="text-2xl text-gray-700 dark:text-slate-200 hover:text-blue-500 dark:hover:text-gold-300 transition-colors duration-200" />
             </a>
@@ -210,7 +210,7 @@ const imagesSecond = [
       <div className="max-w-7xl mx-auto px-4">
         <h2 className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white text-center">
           My Projects
-          <span className="block mt-4 w-24 mx-auto h-1.5 bg-blue-500 rounded-full"></span>
+          <span className="block mt-4 w-24 mx-auto h-1.5 bg-blue-500 dark:bg-gold-gradient rounded-full"></span>
         </h2>
         <p className="text-gray-600 dark:text-slate-400 text-center mt-6 text-lg max-w-2xl mx-auto">
           Explore my latest work and projects that showcase my skills in web development and design.

@@ -74,7 +74,7 @@
 
   /* Keep focus rings visible in both themes */
   :focus-visible {
-    @apply outline-none ring-4 ring-blue-300/60 dark:ring-blue-500/40;
+    @apply outline-none ring-4 ring-blue-300/60 dark:ring-gold-500/40;
   }
 }
 

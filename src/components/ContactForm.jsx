@@ -146,7 +146,7 @@ const ContactForm = () => {
           className="text-center space-y-4 mb-16"
         >
           <h2 className="text-4xl sm:text-5xl font-bold">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400 dark:from-gold-100 dark:to-gold-600">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400 dark:bg-gold-gradient">
               Let's Connect
             </span>
           </h2>
@@ -358,9 +358,9 @@ const ContactForm = () => {
                 whileHover={sending ? undefined : { scale: 1.02 }}
                 whileTap={sending ? undefined : { scale: 0.98 }}
                 className={cx(
-                  "w-full py-4 px-6 bg-gradient-to-r from-blue-500 to-blue-600",
+                  "w-full py-4 px-6 bg-gradient-to-r from-blue-500 to-blue-600 dark:bg-gold-gradient dark:text-black",
                   "text-white font-medium rounded-xl shadow-lg",
-                  "hover:shadow-blue-500/25 hover:shadow-xl",
+                  "hover:shadow-blue-500/25 hover:shadow-xl dark:hover:shadow-gold-500/30",
                   "transform transition-all duration-200",
                   "focus:ring-4 focus:ring-blue-200 dark:focus:ring-gold-500/30 focus:outline-none",
                   "flex items-center justify-center gap-2 group",

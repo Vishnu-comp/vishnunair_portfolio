@@ -37,7 +37,7 @@ const Education = () => {
         className="text-center mb-20"
       >
         <div className="flex items-center justify-center gap-3 mb-6">
-          <FaGraduationCap className="text-4xl text-blue-500" />
+          <FaGraduationCap className="text-4xl text-blue-500 dark:text-gold-400" />
           {/* <h2 className="text-4xl sm:text-5xl font-bold">
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400">
             Educational Journey
@@ -47,7 +47,7 @@ const Education = () => {
             Educational Journey
           </h1>
         </div>
-        <div className="w-24 h-1.5 bg-gradient-to-r from-blue-500 to-blue-600 mx-auto dark:from-gold-100 dark:to-gold-600 rounded-full"></div>
+        <div className="w-24 h-1.5 bg-gradient-to-r from-blue-500 to-blue-600 mx-auto dark:bg-gold-gradient rounded-full"></div>
       </motion.div>
 
       {/* Timeline Section */}
@@ -71,10 +71,10 @@ const Education = () => {
                   {/* Left Column */}
                   <div className="space-y-4">
                     <div className="flex items-start gap-4">
-                      <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 dark:from-gold-100 dark:to-gold-600 
+                      <div className="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-600 dark:bg-gold-gradient 
                         rounded-2xl flex items-center justify-center transform 
                         group-hover:scale-110 group-hover:rotate-3 transition-all duration-300
-                        shadow-lg shadow-blue-500/20">
+                        shadow-lg shadow-blue-500/20 dark:shadow-gold-500/30">
                         <span className="text-white font-bold text-xl dark:text-black">{index + 1}</span>
                       </div>
                       <div>
@@ -83,7 +83,7 @@ const Education = () => {
                           {experience.degree}
                         </h3>
                         <div className="flex items-center gap-2 text-gray-600 dark:text-slate-400">
-                          <BsCalendarEvent className="text-blue-400" />
+                          <BsCalendarEvent className="text-blue-400 dark:text-gold-400" />
                           <span className="text-sm">{experience.duration}</span>
                         </div>
                       </div>
@@ -98,14 +98,14 @@ const Education = () => {
                         {experience.college}
                       </h4>
                       <div className="flex items-center gap-2 text-gray-600 dark:text-slate-400">
-                        <IoLocationSharp className="text-blue-400" />
+                        <IoLocationSharp className="text-blue-400 dark:text-gold-400" />
                         <span className="text-sm">{experience.location}</span>
                       </div>
                     </div>
                     <div className="inline-flex items-center gap-2 px-5 py-2.5 
                       bg-gradient-to-r from-blue-50 to-blue-100/50 dark:from-gold-500/10 dark:to-gold-500/5 
                       rounded-full text-blue-600 font-medium
-                      shadow-sm shadow-blue-100">
+                      shadow-sm shadow-blue-100 dark:shadow-black/40">
                       <span className="text-blue-500 dark:text-gold-300">CGPA:</span>
                       <span className="text-blue-700 dark:text-gold-200">{experience.percentage}</span>
                     </div>

@@ -32,7 +32,7 @@ const MONTHS = [
   "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
 ];
 
-function StatCard({ icon: Icon, label, value, accent = "text-blue-600" }) {
+function StatCard({ icon: Icon, label, value, accent = "text-blue-600 dark:text-gold-300" }) {
   return (
     <div className="flex items-center gap-3 rounded-2xl border border-gray-100 bg-white/80 p-4 shadow-sm transition-colors dark:border-slate-700/60 dark:bg-slate-800/50">
       <span
@@ -246,7 +246,7 @@ function RepoCard({ repo }) {
           <GitBranch className="h-4 w-4 flex-shrink-0 text-gray-400 dark:text-slate-500" />
           <span className="truncate">{repo.name}</span>
         </h4>
-        <ExternalLink className="h-4 w-4 flex-shrink-0 text-gray-300 transition group-hover:text-blue-500 dark:text-slate-600" />
+        <ExternalLink className="h-4 w-4 flex-shrink-0 text-gray-300 transition group-hover:text-blue-500 dark:group-hover:text-gold-400 dark:text-slate-600" />
       </div>
 
       {repo.description && (
@@ -369,7 +369,7 @@ const GithubActivity = () => {
                 GitHub Activity
               </h2>
             </div>
-            <span className="mt-4 block h-1.5 w-24 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 dark:from-gold-100 dark:to-gold-600" />
+            <span className="mt-4 block h-1.5 w-24 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 dark:bg-gold-gradient" />
             <p className="mt-6 max-w-2xl text-lg text-gray-600 dark:text-slate-400">
               Live from the GitHub API — contribution calendar, commit streaks,
               language mix and the repositories I keep coming back to.

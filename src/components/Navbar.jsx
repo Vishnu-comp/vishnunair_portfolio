@@ -157,8 +157,8 @@ const Navbar = () => {
             to="/resume"
             onClick={closeMobileMenu}
             className={cx(
-              "hidden items-center gap-2 rounded-full bg-blue-600 font-semibold text-white transition-all duration-300",
-              "hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-lg sm:inline-flex",
+              "hidden items-center gap-2 rounded-full bg-blue-600 font-semibold text-white transition-all duration-300 dark:bg-gold-gradient dark:text-black",
+              "hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-lg sm:inline-flex dark:hover:bg-gold-gradient dark:hover:opacity-90",
               scrolled ? "px-4 py-1.5 text-sm" : "px-6 py-2 text-base"
             )}
           >

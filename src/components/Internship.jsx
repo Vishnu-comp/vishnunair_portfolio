@@ -47,7 +47,7 @@ const InternshipExperience = () => {
           className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white text-center"
         >
           My Work Experience
-          <span className="block mt-4 w-32 mx-auto h-1.5 bg-gradient-to-r from-blue-400 to-blue-600 rounded-full"></span>
+          <span className="block mt-4 w-32 mx-auto h-1.5 bg-gradient-to-r from-blue-400 to-blue-600 dark:bg-gold-gradient rounded-full"></span>
         </motion.h2>
         <p className="text-gray-600 dark:text-slate-400 text-center mt-6 text-lg max-w-2xl mx-auto">
           Hands-on experience and valuable insights gained during my journey
@@ -65,7 +65,7 @@ const InternshipExperience = () => {
             {/* Header */}
             <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6">
               <div className="flex-1">
-                <h3 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 dark:from-gold-100 dark:to-gold-600 text-transparent bg-clip-text">
+                <h3 className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-blue-600 to-blue-800 dark:bg-gold-gradient text-transparent bg-clip-text">
                   {exp.position}
                 </h3>
                 <div className="mt-4 space-y-2 text-gray-600 dark:text-slate-400">
@@ -117,7 +117,7 @@ const InternshipExperience = () => {
                     transition={{ duration: 0.4, delay: index * 0.2 }}
                     className="flex items-start gap-4 p-4 rounded-xl bg-gradient-to-r from-blue-50/50 to-white dark:from-gold-500/10 dark:to-slate-800/40 hover:from-blue-100/50 hover:to-blue-50/50 dark:hover:from-gold-500/15 transition-all duration-300 border border-blue-100/50 dark:border-gold-500/15"
                   >
-                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center">
+                    <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-500 dark:bg-gold-500 flex items-center justify-center">
                       <Check className="w-4 h-4 text-white" />
                     </div>
                     <p className="text-gray-700 dark:text-slate-300 font-medium">{task}</p>
@@ -136,7 +136,7 @@ const InternshipExperience = () => {
                 {exp.technologies.map((tech) => (
                   <span
                     key={tech}
-                    className="px-5 py-2.5 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 text-white text-sm dark:from-gold-100 dark:to-gold-600 dark:text-black font-medium hover:from-blue-600 hover:to-blue-700 transition-colors duration-200 shadow-sm hover:shadow-md"
+                    className="px-5 py-2.5 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 text-white text-sm dark:bg-gold-gradient dark:text-black font-medium hover:from-blue-600 hover:to-blue-700 transition-colors duration-200 shadow-sm hover:shadow-md"
                   >
                     {tech}
                   </span>
@@ -151,7 +151,7 @@ const InternshipExperience = () => {
                   href={exp.workLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-lg dark:from-gold-100 dark:to-gold-600 dark:text-black hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-md hover:shadow-lg group"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-lg dark:bg-gold-gradient dark:text-black hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-md hover:shadow-lg group"
                 >
                   <span>View Work</span>
                   <ExternalLink className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
