@@ -24,7 +24,7 @@ const NotFound = () => {
       transition={{ duration: 0.5 }}
       className="max-w-lg"
     >
-      <p className="text-7xl font-extrabold tracking-tight text-blue-600 md:text-8xl dark:text-blue-400">
+      <p className="text-7xl font-extrabold tracking-tight text-blue-600 md:text-8xl dark:bg-gold-gradient dark:bg-clip-text dark:text-transparent">
         404
       </p>
       <h1 className="mt-4 text-3xl font-bold text-gray-900 md:text-4xl dark:text-white">
@@ -38,14 +38,14 @@ const NotFound = () => {
       <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
         <Link
           to="/"
-          className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 font-semibold text-white shadow-lg shadow-blue-500/20 transition hover:-translate-y-0.5 hover:bg-blue-700"
+          className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 font-semibold text-white shadow-lg shadow-blue-500/20 transition hover:-translate-y-0.5 hover:bg-blue-700 dark:bg-gold-gradient dark:text-black dark:shadow-gold-500/25"
         >
           <Home className="h-5 w-5" aria-hidden="true" />
           Back to home
         </Link>
         <Link
           to="/resume"
-          className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white/70 px-6 py-3 font-semibold text-blue-700 transition hover:border-blue-400 hover:bg-white dark:border-slate-700 dark:bg-slate-800/60 dark:text-blue-300 dark:hover:border-blue-500"
+          className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white/70 px-6 py-3 font-semibold text-blue-700 transition hover:border-blue-400 hover:bg-white dark:border-slate-700 dark:bg-slate-800/60 dark:text-gold-200 dark:hover:border-gold-500"
         >
           <Compass className="h-5 w-5" aria-hidden="true" />
           View my resume

@@ -99,9 +99,9 @@ const imagesSecond = [
     deployedLink,
   }) => (
     <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 mt-16 px-4 group">
-      <div className="bg-white dark:bg-slate-900/80 rounded-2xl shadow-lg p-8 flex flex-col justify-between w-full lg:w-1/3 border border-gray-100 dark:border-slate-700/60 hover:border-blue-200 dark:hover:border-blue-500/40 transition-all duration-300">
+      <div className="bg-white dark:bg-slate-900/80 rounded-2xl shadow-lg p-8 flex flex-col justify-between w-full lg:w-1/3 border border-gray-100 dark:border-slate-700/60 hover:border-blue-200 dark:hover:border-gold-500/40 transition-all duration-300">
         <div>
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white group-hover:text-blue-500 dark:group-hover:text-blue-400 transition-colors duration-300">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white group-hover:text-blue-500 dark:group-hover:text-gold-300 transition-colors duration-300">
             {title}
             <span className="block mt-2 w-24 h-1 bg-blue-500 rounded group-hover:w-32 transition-all duration-300"></span>
           </h2>
@@ -109,7 +109,7 @@ const imagesSecond = [
             {technologies.map((tech, index) => (
               <span
                 key={index}
-                className="bg-blue-50 dark:bg-blue-500/10 text-blue-600 dark:text-blue-300 text-xs md:text-sm font-medium px-4 py-1.5 rounded-full border border-blue-100 dark:border-blue-500/20 hover:bg-blue-100 dark:hover:bg-blue-500/20 transition-colors duration-200"
+                className="bg-blue-50 dark:bg-gold-500/10 text-blue-600 dark:text-gold-200 text-xs md:text-sm font-medium px-4 py-1.5 rounded-full border border-blue-100 dark:border-gold-500/20 hover:bg-blue-100 dark:hover:bg-gold-500/20 transition-colors duration-200"
               >
                 {tech}
               </span>
@@ -121,7 +121,7 @@ const imagesSecond = [
           <ul className="space-y-4 text-gray-600 dark:text-slate-400 text-base md:text-lg">
             {caseStudyText.map((text, index) => (
               <li key={index} className="flex items-start">
-                <span className="inline-block w-2 h-2 bg-blue-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                <span className="inline-block w-2 h-2 bg-blue-400 dark:bg-gold-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
                 {text}
               </li>
             ))}
@@ -136,7 +136,7 @@ const imagesSecond = [
               rel="noopener noreferrer"
               className="p-2 rounded-full hover:bg-blue-50 dark:hover:bg-slate-800 transition-colors duration-200"
             >
-              <AiOutlineGithub className="text-2xl text-gray-700 dark:text-slate-200 hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-200" />
+              <AiOutlineGithub className="text-2xl text-gray-700 dark:text-slate-200 hover:text-blue-500 dark:hover:text-gold-300 transition-colors duration-200" />
             </a>
             <a
               href={deployedLink}
@@ -144,7 +144,7 @@ const imagesSecond = [
               rel="noopener noreferrer"
               className="p-2 rounded-full hover:bg-blue-50 transition-colors duration-200"
             >
-              <AiOutlineLink className="text-2xl text-gray-700 dark:text-slate-200 hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-200" />
+              <AiOutlineLink className="text-2xl text-gray-700 dark:text-slate-200 hover:text-blue-500 dark:hover:text-gold-300 transition-colors duration-200" />
             </a>
           </div>
         </div>
@@ -192,7 +192,7 @@ const imagesSecond = [
                   key={index}
                   className={`w-2 h-2 rounded-full transition-all duration-300 ${
                     currentSlide === index
-                      ? "bg-blue-500 dark:bg-blue-400 w-6"
+                      ? "bg-blue-500 dark:bg-gold-400 w-6"
                       : "bg-gray-300 hover:bg-gray-400"
                   }`}
                   onClick={() => setCurrentSlide(index)}

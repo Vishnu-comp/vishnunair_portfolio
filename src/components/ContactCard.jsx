@@ -72,7 +72,7 @@ const ContactCard = ({ standalone = false }) => (
     }
   >
     {/* accent wash */}
-    <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-blue-100/70 blur-3xl dark:bg-blue-500/10" aria-hidden="true" />
+    <div className="pointer-events-none absolute -right-20 -top-20 h-64 w-64 rounded-full bg-blue-100/70 blur-3xl dark:bg-gold-500/10" aria-hidden="true" />
 
     <div className="relative grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
       {/* ---------- identity + rows ---------- */}
@@ -87,7 +87,7 @@ const ContactCard = ({ standalone = false }) => (
           />
           <div>
             <p className="text-2xl font-bold text-gray-900 dark:text-white">{site.name}</p>
-            <p className="text-sm font-medium text-blue-600 dark:text-blue-400">
+            <p className="text-sm font-medium text-blue-600 dark:text-gold-300">
               {site.role}
             </p>
           </div>
@@ -98,12 +98,12 @@ const ContactCard = ({ standalone = false }) => (
             const Icon = row.icon;
             const content = (
               <>
-                <Icon className="h-4 w-4 flex-shrink-0 text-blue-500 dark:text-blue-400" aria-hidden="true" />
+                <Icon className="h-4 w-4 flex-shrink-0 text-blue-500 dark:text-gold-300" aria-hidden="true" />
                 <span className="truncate">{row.value}</span>
               </>
             );
             const cls =
-              "flex items-center gap-2.5 rounded-xl border border-gray-100 bg-gray-50/70 px-3.5 py-2.5 text-sm text-gray-700 transition-colors hover:border-blue-200 hover:text-blue-700 dark:border-slate-700/60 dark:bg-slate-800/50 dark:text-slate-300 dark:hover:border-blue-500/40 dark:hover:text-blue-300";
+              "flex items-center gap-2.5 rounded-xl border border-gray-100 bg-gray-50/70 px-3.5 py-2.5 text-sm text-gray-700 transition-colors hover:border-blue-200 hover:text-blue-700 dark:border-slate-700/60 dark:bg-slate-800/50 dark:text-slate-300 dark:hover:border-gold-500/40 dark:hover:text-gold-200";
             return (
               <li key={row.label}>
                 {row.href ? (
@@ -129,7 +129,7 @@ const ContactCard = ({ standalone = false }) => (
           <a
             href="/vishnu-nair.vcf"
             download="Vishnu-Nair.vcf"
-            className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-500/25 transition-all hover:-translate-y-0.5 hover:bg-blue-700"
+            className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-blue-500/25 transition-all hover:-translate-y-0.5 hover:bg-blue-700 dark:bg-gold-gradient dark:text-black dark:shadow-gold-500/25"
           >
             <Download className="h-4 w-4" aria-hidden="true" />
             Save contact (.vcf)
@@ -148,7 +148,7 @@ const ContactCard = ({ standalone = false }) => (
           <button
             type="button"
             onClick={() => window.print()}
-            className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-6 py-3 text-sm font-semibold text-gray-700 transition-all hover:-translate-y-0.5 hover:border-blue-300 hover:text-blue-700 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200 dark:hover:border-blue-500 dark:hover:text-blue-300"
+            className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-6 py-3 text-sm font-semibold text-gray-700 transition-all hover:-translate-y-0.5 hover:border-blue-300 hover:text-blue-700 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-200 dark:hover:border-gold-500 dark:hover:text-gold-200"
           >
             <Printer className="h-4 w-4" aria-hidden="true" />
             Print card

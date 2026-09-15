@@ -23,10 +23,10 @@ const ROLE_ICONS = {
 
 const ROLE_THEME = {
   fullstack: {
-    accent: "text-blue-600 dark:text-blue-400",
-    chip: "border-blue-200 bg-blue-50 text-blue-700 dark:border-blue-500/25 dark:bg-blue-500/10 dark:text-blue-300",
-    badge: "bg-blue-100 text-blue-700 dark:bg-blue-500/15 dark:text-blue-300",
-    arrow: "text-gray-300 group-hover:text-blue-500 dark:text-slate-600 dark:group-hover:text-blue-400",
+    accent: "text-blue-600 dark:text-gold-300",
+    chip: "border-blue-200 bg-blue-50 text-blue-700 dark:border-gold-500/25 dark:bg-gold-500/10 dark:text-gold-200",
+    badge: "bg-blue-100 text-blue-700 dark:bg-gold-500/15 dark:text-gold-200",
+    arrow: "text-gray-300 group-hover:text-blue-500 dark:text-slate-600 dark:group-hover:text-gold-300",
   },
   frontend: {
     accent: "text-sky-600 dark:text-sky-400",

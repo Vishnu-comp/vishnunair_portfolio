@@ -30,7 +30,7 @@ const fieldClasses = [
   "w-full pl-12 pr-4 py-3.5 rounded-xl border backdrop-blur-sm",
   "border-gray-200 bg-white/50 text-gray-900 placeholder-gray-400",
   "dark:border-slate-600/80 dark:bg-slate-800/60 dark:text-slate-100 dark:placeholder-slate-500",
-  "focus:border-blue-500 focus:ring-2 focus:ring-blue-200 dark:focus:ring-blue-500/30",
+  "focus:border-blue-500 focus:ring-2 focus:ring-blue-200 dark:focus:ring-gold-500/30 dark:focus:border-gold-500",
   "transition-all duration-200 outline-none",
 ].join(" ");
 
@@ -126,11 +126,15 @@ const ContactForm = () => {
   const sending = status === "sending";
 
   return (
-    <section className="relative min-h-screen py-20 px-6">
+    /* overflow-hidden: the animated blobs drift up to ~30px past the
+       viewport edges mid-keyframe; without clipping they make the whole
+       document wider than the screen and the page can be panned sideways
+       on mobile (drifting the fixed navbar / bottom tab bar with it). */
+    <section className="relative min-h-screen overflow-hidden py-20 px-6">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-blue-50/30 dark:from-slate-900/60 dark:via-transparent dark:to-slate-900/40 -z-10"></div>
-      <div className="absolute top-40 left-0 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob dark:bg-blue-500/10 dark:mix-blend-normal"></div>
-      <div className="absolute top-40 right-0 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animate-delay-2000 dark:bg-purple-500/10 dark:mix-blend-normal"></div>
+      <div className="absolute top-40 left-0 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob dark:bg-gold-500/10 dark:mix-blend-normal"></div>
+      <div className="absolute top-40 right-0 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animate-delay-2000 dark:bg-gold-400/10 dark:mix-blend-normal"></div>
 
       <div className="max-w-5xl mx-auto">
         {/* Header Section */}
@@ -142,7 +146,7 @@ const ContactForm = () => {
           className="text-center space-y-4 mb-16"
         >
           <h2 className="text-4xl sm:text-5xl font-bold">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400 dark:from-blue-400 dark:to-blue-300">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400 dark:from-gold-100 dark:to-gold-600">
               Let's Connect
             </span>
           </h2>
@@ -160,7 +164,7 @@ const ContactForm = () => {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="relative"
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-600 transform -skew-y-6 rounded-3xl shadow-xl opacity-10 dark:opacity-15"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-600 dark:from-gold-500 dark:to-gold-600 transform -skew-y-6 rounded-3xl shadow-xl opacity-10 dark:opacity-15"></div>
           <div className="relative bg-white/80 dark:bg-slate-900/80 backdrop-blur-md rounded-2xl shadow-xl p-8 sm:p-12">
             <form className="space-y-8" onSubmit={handleSubmit} noValidate>
               {/* Honeypot — invisible to humans, irresistible to bots */}
@@ -358,7 +362,7 @@ const ContactForm = () => {
                   "text-white font-medium rounded-xl shadow-lg",
                   "hover:shadow-blue-500/25 hover:shadow-xl",
                   "transform transition-all duration-200",
-                  "focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-500/30 focus:outline-none",
+                  "focus:ring-4 focus:ring-blue-200 dark:focus:ring-gold-500/30 focus:outline-none",
                   "flex items-center justify-center gap-2 group",
                   sending && "cursor-wait opacity-80"
                 )}

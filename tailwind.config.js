@@ -7,16 +7,59 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Roboto', 'sans-serif'], // Add your custom font here
+        // Body text — Inter: a crisp, modern neutral that reads far better
+        // on screen than the old Roboto fallback.
+        sans: ["Inter", "ui-sans-serif", "system-ui", "-apple-system", "sans-serif"],
+        // Headings / display type — Space Grotesk: geometric, slightly
+        // technical character that gives the portfolio its own voice.
+        display: ["Space Grotesk", "Inter", "ui-sans-serif", "sans-serif"],
+        // Code, kbd chips and the dev terminal easter egg.
+        mono: ["JetBrains Mono", "ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
       },
       colors: {
         // Single source of truth for the dark surface palette so every
         // component stays consistent instead of hand-picking slate shades.
+        // Dark mode is a true BLACK theme (not navy).
         surface: {
-          DEFAULT: "#0b1120",
-          soft: "#111a2e",
-          raised: "#16213a",
+          DEFAULT: "#000000",
+          soft: "#0a0a0a",
+          raised: "#161616",
         },
+        // The dark UI is built on the `slate-*` scale (always via dark:
+        // variants), so remap it to a pure neutral/black scale here — one
+        // change re-points every dark surface, border and muted text in the
+        // app from navy to black without touching the components.
+        slate: {
+          50: "#fafafa",
+          100: "#f5f5f5",
+          200: "#e5e5e5",
+          300: "#d4d4d4",
+          400: "#a3a3a3",
+          500: "#737373",
+          600: "#525252",
+          700: "#404040",
+          800: "#262626",
+          900: "#171717",
+          950: "#0a0a0a",
+        },
+        // Dark-mode accent: warm cream→bronze gold. Anchored on the exact
+        // gradient stops used by `bg-gold-gradient` (#fff3ca / #bb985b).
+        gold: {
+          50: "#fdf8e9",
+          100: "#fff3ca",
+          200: "#f5e3ab",
+          300: "#e9d190",
+          400: "#dcb96f",
+          500: "#cfa75c",
+          600: "#bb985b",
+          700: "#9a7a45",
+          800: "#7c6136",
+          900: "#64502d",
+        },
+      },
+      backgroundImage: {
+        // The dark-mode accent gradient (used as bg + gradient text).
+        "gold-gradient": "linear-gradient(127.56deg, #fff3ca -6.75%, #bb985b 105.89%)",
       },
       keyframes: {
         // Referenced by ContactForm.jsx background blobs — this keyframe was

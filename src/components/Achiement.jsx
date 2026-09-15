@@ -41,12 +41,12 @@ export const Achievement = () => {
           className="text-center mb-16"
         >
           <div className="flex items-center justify-center gap-3 mb-4">
-            <FaTrophy className="text-4xl text-blue-500" />
+            <FaTrophy className="text-4xl text-blue-500 dark:text-gold-400" />
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
               My Achievements
             </h2>
           </div>
-          <div className="w-24 h-1.5 bg-gradient-to-r from-blue-500 to-blue-600 mx-auto rounded-full"></div>
+          <div className="w-24 h-1.5 bg-gradient-to-r from-blue-500 to-blue-600 mx-auto dark:from-gold-100 dark:to-gold-600 rounded-full"></div>
           <p className="mt-6 text-lg text-gray-600 dark:text-slate-400 max-w-2xl mx-auto">
             Certifications and recognition that showcase my expertise and continuous learning journey.
           </p>
@@ -115,7 +115,7 @@ export const Achievement = () => {
                   aria-label={`Go to certificate ${index + 1}`}
                   className={`transition-all duration-300 rounded-full 
                     ${currentSlide === index 
-                      ? "w-8 h-2 bg-blue-500 dark:bg-blue-400" 
+                      ? "w-8 h-2 bg-blue-500 dark:bg-gold-400" 
                       : "w-2 h-2 bg-gray-300 hover:bg-gray-400"
                     }`}
                 />
@@ -130,8 +130,8 @@ export const Achievement = () => {
           </div>
 
           {/* Decorative Elements */}
-          <div className="absolute -top-4 -right-4 w-24 h-24 bg-blue-500/10 rounded-full blur-2xl"></div>
-          <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl"></div>
+          <div className="absolute -top-4 -right-4 w-24 h-24 bg-blue-500/10 dark:bg-gold-600/15 rounded-full blur-2xl"></div>
+          <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-blue-500/10 dark:bg-gold-600/15 rounded-full blur-2xl"></div>
         </motion.div>
       </div>
     </section>

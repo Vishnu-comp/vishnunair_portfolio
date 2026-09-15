@@ -77,7 +77,7 @@ const FloatingActions = () => {
               "transition-all duration-200 hover:scale-110 focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-300/60",
               action.accent
                 ? "bg-emerald-500 text-white hover:bg-emerald-600"
-                : "bg-white text-gray-700 hover:text-blue-600 border border-gray-200 dark:bg-slate-800 dark:text-slate-200 dark:border-slate-600 dark:hover:text-blue-400"
+                : "bg-white text-gray-700 hover:text-blue-600 border border-gray-200 dark:bg-slate-800 dark:text-slate-200 dark:border-slate-600 dark:hover:text-gold-300"
             );
 
             return (
@@ -129,7 +129,7 @@ const FloatingActions = () => {
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             aria-label="Back to top"
             title="Back to top"
-            className="pointer-events-auto flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white/90 text-gray-600 shadow-lg backdrop-blur transition-colors hover:text-blue-600 focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-300/60 dark:border-slate-600 dark:bg-slate-800/90 dark:text-slate-300 dark:hover:text-blue-400"
+            className="pointer-events-auto flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 bg-white/90 text-gray-600 shadow-lg backdrop-blur transition-colors hover:text-blue-600 focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-300/60 dark:border-slate-600 dark:bg-slate-800/90 dark:text-slate-300 dark:hover:text-gold-300"
           >
             <ArrowUp className="h-5 w-5" aria-hidden="true" />
           </motion.button>
@@ -148,7 +148,7 @@ const FloatingActions = () => {
           "bg-gradient-to-br from-blue-500 to-blue-700",
           "transition-shadow duration-300 hover:shadow-blue-500/40",
           "focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-300/60",
-          open && "shadow-blue-500/40"
+          open && "shadow-blue-500/40 dark:shadow-gold-500/30"
         )}
       >
         <motion.span

@@ -12,22 +12,48 @@
     /* Offset anchor targets so the fixed navbar never covers a heading */
     scroll-padding-top: 84px;
     -webkit-text-size-adjust: 100%;
+    /*
+     * The VIEWPORT must never pan sideways. If the document is even a few px
+     * wider than the screen, a slightly angled mobile swipe pans the whole
+     * page (and position:fixed elements — navbar, bottom tab bar — ride
+     * along with that pan and then rubber-band back, i.e. the "navbar goes
+     * left/right while scrolling" bug). Clipping at the document level makes
+     * that physically impossible on mobile.
+     */
+    overflow-x: hidden;
   }
 
   body {
-    @apply bg-white text-gray-800 antialiased dark:bg-[#0b1120] dark:text-slate-200;
+    @apply bg-white text-gray-800 antialiased dark:bg-black dark:text-slate-200;
     /* Animate the light<->dark background/text swap instead of snapping */
     transition: background-color 0.3s ease, color 0.3s ease;
     /*
-     * A single overflowing asset (e.g. a slow external image) must never be
-     * able to introduce a horizontal scrollbar and shift the fixed navbar's
-     * contents sideways.
+     * Same guard as on <html>, one level down: a single overflowing asset
+     * (e.g. a slow external image) must never be able to introduce a
+     * horizontal scrollbar or a hidden sideways pan on mobile.
      */
     overflow-x: hidden;
   }
 
   ::selection {
-    @apply bg-blue-500/25 text-blue-900 dark:bg-blue-400/30 dark:text-white;
+    @apply bg-blue-500/25 text-blue-900 dark:bg-gold-400/30 dark:text-white;
+  }
+
+  /*
+   * Display type: every heading uses Space Grotesk (loaded in index.html)
+   * so titles carry the portfolio's character while body text stays in
+   * Inter. Slightly tighter tracking gives large titles a modern, polished
+   * feel. Explicit font-mono/font-sans utilities still win where needed
+   * (terminal, kbd chips).
+   */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: theme("fontFamily.display");
+    letter-spacing: -0.02em;
   }
 
   /*
@@ -39,8 +65,8 @@
   .dark input:-webkit-autofill:hover,
   .dark input:-webkit-autofill:focus,
   .dark textarea:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 1000px #1e293b inset;
-    box-shadow: 0 0 0 1000px #1e293b inset;
+    -webkit-box-shadow: 0 0 0 1000px #171717 inset;
+    box-shadow: 0 0 0 1000px #171717 inset;
     -webkit-text-fill-color: #f1f5f9;
     caret-color: #f1f5f9;
     transition: background-color 9999s ease-out;
@@ -75,7 +101,7 @@
   .dark .bg-dots {
     background-image: radial-gradient(
       circle,
-      rgb(148 163 184 / 0.12) 1px,
+      rgb(220 185 111 / 0.10) 1px,
       transparent 1px
     );
   }

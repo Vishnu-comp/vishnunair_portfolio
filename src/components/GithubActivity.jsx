@@ -221,7 +221,7 @@ function LanguageBar({ languages, alsoWorkingWith = [] }) {
             {alsoWorkingWith.map((tech) => (
               <span
                 key={tech}
-                className="rounded-full border border-blue-100 bg-white px-3 py-1 text-xs font-medium text-blue-700 dark:border-slate-600 dark:bg-slate-800 dark:text-blue-300"
+                className="rounded-full border border-blue-100 bg-white px-3 py-1 text-xs font-medium text-blue-700 dark:border-slate-600 dark:bg-slate-800 dark:text-gold-200"
               >
                 {tech}
               </span>
@@ -239,10 +239,10 @@ function RepoCard({ repo }) {
       href={repo.url}
       target="_blank"
       rel="noopener noreferrer"
-      className="group flex flex-col rounded-2xl border border-gray-100 bg-white/80 p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg dark:border-slate-700/60 dark:bg-slate-800/50 dark:hover:border-blue-500/40"
+      className="group flex flex-col rounded-2xl border border-gray-100 bg-white/80 p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg dark:border-slate-700/60 dark:bg-slate-800/50 dark:hover:border-gold-500/40"
     >
       <div className="flex items-start justify-between gap-3">
-        <h4 className="flex items-center gap-2 text-base font-semibold text-gray-900 group-hover:text-blue-600 dark:text-white dark:group-hover:text-blue-400">
+        <h4 className="flex items-center gap-2 text-base font-semibold text-gray-900 group-hover:text-blue-600 dark:text-white dark:group-hover:text-gold-300">
           <GitBranch className="h-4 w-4 flex-shrink-0 text-gray-400 dark:text-slate-500" />
           <span className="truncate">{repo.name}</span>
         </h4>
@@ -350,8 +350,8 @@ const GithubActivity = () => {
       id="github-activity"
       className="relative overflow-hidden bg-gray-50/70 py-16 md:py-24 dark:bg-slate-900/40"
     >
-      <div className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-blue-200/30 blur-3xl dark:bg-blue-500/10" />
-      <div className="pointer-events-none absolute -right-24 bottom-0 h-72 w-72 rounded-full bg-indigo-200/30 blur-3xl dark:bg-indigo-500/10" />
+      <div className="pointer-events-none absolute -left-24 top-10 h-72 w-72 rounded-full bg-blue-200/30 blur-3xl dark:bg-gold-500/10" />
+      <div className="pointer-events-none absolute -right-24 bottom-0 h-72 w-72 rounded-full bg-indigo-200/30 blur-3xl dark:bg-gold-400/10" />
 
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Header */}
@@ -369,7 +369,7 @@ const GithubActivity = () => {
                 GitHub Activity
               </h2>
             </div>
-            <span className="mt-4 block h-1.5 w-24 rounded-full bg-gradient-to-r from-blue-500 to-blue-600" />
+            <span className="mt-4 block h-1.5 w-24 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 dark:from-gold-100 dark:to-gold-600" />
             <p className="mt-6 max-w-2xl text-lg text-gray-600 dark:text-slate-400">
               Live from the GitHub API — contribution calendar, commit streaks,
               language mix and the repositories I keep coming back to.
@@ -381,7 +381,7 @@ const GithubActivity = () => {
               type="button"
               onClick={() => load(true)}
               disabled={loading || refreshing}
-              className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white/80 px-4 py-2 text-sm font-medium text-gray-600 transition hover:border-blue-300 hover:text-blue-600 disabled:opacity-50 dark:border-slate-700 dark:bg-slate-800/60 dark:text-slate-300 dark:hover:border-blue-500/50 dark:hover:text-blue-400"
+              className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white/80 px-4 py-2 text-sm font-medium text-gray-600 transition hover:border-blue-300 hover:text-blue-600 disabled:opacity-50 dark:border-slate-700 dark:bg-slate-800/60 dark:text-slate-300 dark:hover:border-gold-500/50 dark:hover:text-gold-300"
             >
               <RefreshCw
                 className={cx("h-4 w-4", refreshing && "animate-spin")}
@@ -449,7 +449,7 @@ const GithubActivity = () => {
                     href={data.profile.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm text-blue-600 hover:underline dark:text-blue-400"
+                    className="text-sm text-blue-600 hover:underline dark:text-gold-300"
                   >
                     @{data.profile.login}
                   </a>

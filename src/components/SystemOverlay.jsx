@@ -423,7 +423,7 @@ function Palette({ actions, onClose }) {
                   className={cx(
                     "flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm transition-colors",
                     i === active
-                      ? "bg-blue-50 text-blue-700 dark:bg-blue-500/10 dark:text-blue-300"
+                      ? "bg-blue-50 text-blue-700 dark:bg-gold-500/10 dark:text-gold-200"
                       : "text-gray-700 dark:text-slate-300"
                   )}
                 >

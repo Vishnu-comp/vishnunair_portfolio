@@ -82,7 +82,7 @@ const Footer = () => {
                     className={
                       social.accent
                         ? "flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-600 transition-all duration-300 hover:-translate-y-1 hover:border-emerald-300 hover:text-emerald-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-emerald-500 dark:hover:text-emerald-400"
-                        : "flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-600 transition-all duration-300 hover:-translate-y-1 hover:border-blue-300 hover:text-blue-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-blue-500 dark:hover:text-blue-400"
+                        : "flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-600 transition-all duration-300 hover:-translate-y-1 hover:border-blue-300 hover:text-blue-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:border-gold-500 dark:hover:text-gold-300"
                     }
                   >
                     <Icon className="h-5 w-5" aria-hidden="true" />
@@ -103,7 +103,7 @@ const Footer = () => {
                   {item.isRoute ? (
                     <Link
                       to={item.href}
-                      className="text-sm text-gray-600 transition-colors hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400"
+                      className="text-sm text-gray-600 transition-colors hover:text-blue-600 dark:text-slate-400 dark:hover:text-gold-300"
                     >
                       {item.label}
                     </Link>
@@ -111,7 +111,7 @@ const Footer = () => {
                     <button
                       type="button"
                       onClick={() => goTo(item)}
-                      className="text-left text-sm text-gray-600 transition-colors hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400"
+                      className="text-left text-sm text-gray-600 transition-colors hover:text-blue-600 dark:text-slate-400 dark:hover:text-gold-300"
                     >
                       {item.label}
                     </button>
@@ -121,7 +121,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/resume"
-                  className="text-sm text-gray-600 transition-colors hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400"
+                  className="text-sm text-gray-600 transition-colors hover:text-blue-600 dark:text-slate-400 dark:hover:text-gold-300"
                 >
                   Resume
                 </Link>
@@ -138,7 +138,7 @@ const Footer = () => {
               <li>
                 <a
                   href={`mailto:${site.email}`}
-                  className="break-all text-gray-600 transition-colors hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400"
+                  className="break-all text-gray-600 transition-colors hover:text-blue-600 dark:text-slate-400 dark:hover:text-gold-300"
                 >
                   {site.email}
                 </a>
@@ -148,7 +148,7 @@ const Footer = () => {
                   href={site.links.live}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-600 transition-colors hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400"
+                  className="text-gray-600 transition-colors hover:text-blue-600 dark:text-slate-400 dark:hover:text-gold-300"
                 >
                   {site.links.live.replace(/^https?:\/\//, "")}
                 </a>
@@ -158,7 +158,7 @@ const Footer = () => {
                   href={site.links.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-600 transition-colors hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400"
+                  className="text-gray-600 transition-colors hover:text-blue-600 dark:text-slate-400 dark:hover:text-gold-300"
                 >
                   LinkedIn profile
                 </a>
@@ -166,7 +166,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/card"
-                  className="text-gray-600 transition-colors hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400"
+                  className="text-gray-600 transition-colors hover:text-blue-600 dark:text-slate-400 dark:hover:text-gold-300"
                 >
                   Career-fair card (QR + vCard)
                 </Link>
@@ -176,7 +176,7 @@ const Footer = () => {
             <button
               type="button"
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="mt-6 inline-flex items-center gap-2 rounded-full border border-gray-200 px-4 py-2 text-sm font-medium text-gray-600 transition-all hover:-translate-y-0.5 hover:border-blue-300 hover:text-blue-600 dark:border-slate-700 dark:text-slate-300 dark:hover:border-blue-500 dark:hover:text-blue-400"
+              className="mt-6 inline-flex items-center gap-2 rounded-full border border-gray-200 px-4 py-2 text-sm font-medium text-gray-600 transition-all hover:-translate-y-0.5 hover:border-blue-300 hover:text-blue-600 dark:border-slate-700 dark:text-slate-300 dark:hover:border-gold-500 dark:hover:text-gold-300"
             >
               <ArrowUp className="h-4 w-4" aria-hidden="true" />
               Back to top

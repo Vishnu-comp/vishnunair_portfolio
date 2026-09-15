@@ -39,7 +39,7 @@ export function applyTheme(theme) {
   // Keeps browser UI (scrollbars, form controls, PDF embeds) in sync.
   root.style.colorScheme = theme === THEMES.DARK ? "dark" : "light";
   const meta = document.querySelector('meta[name="theme-color"]');
-  if (meta) meta.setAttribute("content", theme === THEMES.DARK ? "#0b1120" : "#ffffff");
+  if (meta) meta.setAttribute("content", theme === THEMES.DARK ? "#000000" : "#ffffff");
   try {
     window.localStorage.setItem(THEME_KEY, theme);
   } catch {
