@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { FaTrophy } from "react-icons/fa";
+import DoodleField from "./Doodles";
 
 export const Achievement = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -32,7 +33,8 @@ export const Achievement = () => {
     <section className="py-24 relative overflow-hidden">
       {/* Background with subtle patterns */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-blue-50/30 dark:from-slate-900/60 dark:via-transparent dark:to-slate-900/40 -z-10"></div>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <DoodleField variant={1} />
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -41,12 +43,12 @@ export const Achievement = () => {
           className="text-center mb-16"
         >
           <div className="flex items-center justify-center gap-3 mb-4">
-            <FaTrophy className="text-4xl text-blue-500" />
+            <FaTrophy className="text-4xl text-blue-500 dark:text-gold-400" />
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
               My Achievements
             </h2>
           </div>
-          <div className="w-24 h-1.5 bg-gradient-to-r from-blue-500 to-blue-600 mx-auto rounded-full"></div>
+          <div className="w-24 h-1.5 bg-gradient-to-r from-blue-500 to-blue-600 mx-auto dark:bg-gold-gradient rounded-full"></div>
           <p className="mt-6 text-lg text-gray-600 dark:text-slate-400 max-w-2xl mx-auto">
             Certifications and recognition that showcase my expertise and continuous learning journey.
           </p>
@@ -92,7 +94,7 @@ export const Achievement = () => {
               aria-label="Previous Certificate"
               className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 dark:bg-slate-800/90 p-4 rounded-full
                 shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300
-                hover:bg-blue-50 hover:scale-110 transform"
+                hover:bg-blue-50 dark:hover:bg-slate-700 hover:scale-110 transform"
             >
               <ChevronLeft className="w-6 h-6 text-gray-700 dark:text-slate-200" />
             </button>
@@ -101,7 +103,7 @@ export const Achievement = () => {
               aria-label="Next Certificate"
               className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 dark:bg-slate-800/90 p-4 rounded-full
                 shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300
-                hover:bg-blue-50 hover:scale-110 transform"
+                hover:bg-blue-50 dark:hover:bg-slate-700 hover:scale-110 transform"
             >
               <ChevronRight className="w-6 h-6 text-gray-700 dark:text-slate-200" />
             </button>
@@ -115,7 +117,7 @@ export const Achievement = () => {
                   aria-label={`Go to certificate ${index + 1}`}
                   className={`transition-all duration-300 rounded-full 
                     ${currentSlide === index 
-                      ? "w-8 h-2 bg-blue-500 dark:bg-blue-400" 
+                      ? "w-8 h-2 bg-blue-500 dark:bg-gold-400" 
                       : "w-2 h-2 bg-gray-300 hover:bg-gray-400"
                     }`}
                 />
@@ -130,8 +132,8 @@ export const Achievement = () => {
           </div>
 
           {/* Decorative Elements */}
-          <div className="absolute -top-4 -right-4 w-24 h-24 bg-blue-500/10 rounded-full blur-2xl"></div>
-          <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-blue-500/10 rounded-full blur-2xl"></div>
+          <div className="absolute -top-4 -right-4 w-24 h-24 bg-blue-500/10 dark:bg-gold-600/15 rounded-full blur-2xl"></div>
+          <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-blue-500/10 dark:bg-gold-600/15 rounded-full blur-2xl"></div>
         </motion.div>
       </div>
     </section>

@@ -6,6 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#ffffff" />
 
+    <!-- Type system: Space Grotesk (headings) · Inter (body) · JetBrains Mono (code/terminal) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- ===================== Primary SEO ===================== -->
     <title>Vishnu Nair | Software Development Engineer & Full Stack Developer — Bengaluru</title>
     <meta
@@ -127,7 +135,7 @@
           root.classList.toggle("dark", dark);
           root.style.colorScheme = dark ? "dark" : "light";
           var meta = document.querySelector('meta[name="theme-color"]');
-          if (meta) meta.setAttribute("content", dark ? "#0b1120" : "#ffffff");
+          if (meta) meta.setAttribute("content", dark ? "#000000" : "#ffffff");
         } catch (e) {
           /* storage unavailable — stay in light mode */
         }

@@ -30,7 +30,7 @@ const NavLink = ({ item, isActive, onNavigate }) => {
       {/* Animated underline: full-width + blue when active, grows on hover */}
       <span
         className={cx(
-          "absolute -bottom-0.5 left-0 h-0.5 rounded-full bg-blue-600 transition-all duration-300 ease-out-expo dark:bg-blue-400",
+          "absolute -bottom-0.5 left-0 h-0.5 rounded-full bg-blue-600 transition-all duration-300 ease-out-expo dark:bg-gold-400",
           isActive ? "w-full opacity-100" : "w-0 opacity-0"
         )}
         aria-hidden="true"
@@ -41,8 +41,8 @@ const NavLink = ({ item, isActive, onNavigate }) => {
   const className = cx(
     linkBase,
     isActive
-      ? "text-blue-600 dark:text-blue-400"
-      : "text-gray-700 hover:text-blue-600 dark:text-slate-300 dark:hover:text-blue-400"
+      ? "text-blue-600 dark:text-gold-300"
+      : "text-gray-700 hover:text-blue-600 dark:text-slate-300 dark:hover:text-gold-300"
   );
 
   if (item.isRoute) {
@@ -157,8 +157,8 @@ const Navbar = () => {
             to="/resume"
             onClick={closeMobileMenu}
             className={cx(
-              "hidden items-center gap-2 rounded-full bg-blue-600 font-semibold text-white transition-all duration-300",
-              "hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-lg sm:inline-flex",
+              "hidden items-center gap-2 rounded-full bg-blue-600 font-semibold text-white transition-all duration-300 dark:bg-gold-gradient dark:text-black",
+              "hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-lg sm:inline-flex dark:hover:bg-gold-gradient dark:hover:opacity-90",
               scrolled ? "px-4 py-1.5 text-sm" : "px-6 py-2 text-base"
             )}
           >
@@ -212,8 +212,8 @@ const Navbar = () => {
                   const cls = cx(
                     "block w-full rounded-lg px-4 py-3 text-left text-base font-medium transition-colors duration-200",
                     active
-                      ? "bg-blue-50 text-blue-600 dark:bg-blue-500/10 dark:text-blue-400"
-                      : "text-gray-700 hover:bg-blue-50 hover:text-blue-600 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-blue-400"
+                      ? "bg-blue-50 text-blue-600 dark:bg-gold-500/10 dark:text-gold-300"
+                      : "text-gray-700 hover:bg-blue-50 hover:text-blue-600 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-gold-300"
                   );
                   return (
                     <li key={item.href}>
@@ -240,7 +240,7 @@ const Navbar = () => {
                   <Link
                     to="/resume"
                     onClick={closeMobileMenu}
-                    className="flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white transition-colors duration-300 hover:bg-blue-700"
+                    className="flex w-full items-center justify-center gap-2 rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white transition-colors duration-300 hover:bg-blue-700 dark:bg-gold-gradient dark:text-black dark:hover:bg-gold-gradient dark:hover:opacity-90"
                   >
                     <FileText className="h-4 w-4" aria-hidden="true" />
                     Resume

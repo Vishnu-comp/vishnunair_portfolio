@@ -111,13 +111,13 @@ const TopSkills = () => (
           >
             {/* Group header */}
             <div className="mb-6 flex items-baseline gap-4">
-              <h3 className="text-lg font-bold uppercase tracking-[0.14em] text-blue-600 dark:text-blue-400">
+              <h3 className="text-lg font-bold uppercase tracking-[0.14em] text-blue-600 dark:text-gold-300">
                 {group.title}
               </h3>
               <span className="hidden sm:block text-sm text-gray-500 dark:text-slate-500">
                 {group.blurb}
               </span>
-              <span className="h-px flex-1 bg-gradient-to-r from-blue-200 to-transparent dark:from-slate-700" />
+              <span className="h-px flex-1 bg-gradient-to-r from-blue-200 to-transparent dark:from-gold-500/60 dark:from-slate-700" />
             </div>
 
             {/* Tiles */}
@@ -130,7 +130,7 @@ const TopSkills = () => (
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: i * 0.06 }}
                   whileHover={{ y: -6 }}
-                  className="flex flex-col items-center justify-center gap-3 rounded-xl border border-gray-100 bg-white/80 p-5 shadow-lg backdrop-blur-sm transition-colors duration-300 hover:border-blue-200 hover:shadow-xl dark:border-slate-700/60 dark:bg-slate-800/60 dark:hover:border-blue-500/40"
+                  className="flex flex-col items-center justify-center gap-3 rounded-xl border border-gray-100 bg-white/80 p-5 shadow-lg backdrop-blur-sm transition-colors duration-300 hover:border-blue-200 hover:shadow-xl dark:border-slate-700/60 dark:bg-slate-800/60 dark:hover:border-gold-500/40"
                 >
                   <span className="transition-transform duration-300 hover:scale-110">
                     {skill.logo}

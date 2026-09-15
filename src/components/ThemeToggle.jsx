@@ -53,7 +53,7 @@ const ThemeToggle = ({ className = "" }) => {
         "border border-gray-200 bg-white/80 text-gray-600",
         "transition-all duration-300 hover:scale-110 hover:border-blue-300 hover:text-blue-600",
         "dark:border-slate-600 dark:bg-slate-800/80 dark:text-slate-300",
-        "dark:hover:border-blue-500 dark:hover:text-blue-400",
+        "dark:hover:border-gold-500 dark:hover:text-gold-300",
         className
       )}
     >
@@ -88,7 +88,7 @@ export const ThemeToggleCompact = () => {
       type="button"
       onClick={toggle}
       aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
-      className="flex w-full flex-col items-center gap-1 rounded-lg px-2 py-1.5 text-[11px] font-medium text-gray-500 transition-colors hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400"
+      className="flex w-full flex-col items-center gap-1 rounded-lg px-2 py-1.5 text-[11px] font-medium text-gray-500 transition-colors hover:text-blue-600 dark:text-slate-400 dark:hover:text-gold-300"
     >
       {isDark ? (
         <Sun className="h-5 w-5" aria-hidden="true" />

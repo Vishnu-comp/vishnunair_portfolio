@@ -18,14 +18,14 @@ const CardPage = () => {
   });
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50/40 px-4 pt-28 pb-16 dark:from-slate-950 dark:via-[#0b1120] dark:to-slate-900">
+    <main className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50/40 px-4 pt-28 pb-16 dark:from-slate-950 dark:via-black dark:to-slate-900">
       <div className="mx-auto max-w-4xl">
         <ContactCard standalone />
 
         <div className="no-print mt-8 text-center">
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 transition-colors hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 transition-colors hover:text-blue-700 dark:text-gold-300 dark:hover:text-gold-200"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
             Back to portfolio
