@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Calendar, MapPin, Briefcase, Check, ExternalLink } from "lucide-react";
+import DoodleField from "./Doodles";
 
 const InternshipExperience = () => {
   const experience = [
@@ -37,8 +38,9 @@ const InternshipExperience = () => {
   ];
 
   return (
-    <div className="bg-gradient-to-b from-blue-50 to-white dark:from-slate-900/60 dark:to-black py-16 md:py-24">
-      <div className="max-w-7xl mx-auto px-4">
+    <div className="relative overflow-hidden bg-gradient-to-b from-blue-50 to-white dark:from-slate-900/60 dark:to-black py-16 md:py-24">
+      <DoodleField variant={2} />
+      <div className="relative z-10 max-w-7xl mx-auto px-4">
         {/* Heading */}
         <motion.h2
           initial={{ opacity: 0, y: -20 }}

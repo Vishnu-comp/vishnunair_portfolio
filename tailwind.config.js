@@ -77,6 +77,22 @@ module.exports = {
           "0%, 100%": { opacity: "1" },
           "50%": { opacity: "0" },
         },
+        // Doodle background marks: gentle drift + twinkle. The float keyframe
+        // re-applies the Tailwind rotate var so `rotate-*` utilities survive
+        // the animation (a plain transform would override them).
+        doodleFloat: {
+          "0%, 100%": { transform: "translateY(0px) rotate(var(--tw-rotate, 0deg))" },
+          "50%": { transform: "translateY(-7px) rotate(var(--tw-rotate, 0deg))" },
+        },
+        doodleTwinkle: {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.35" },
+        },
+        // Strokes draw themselves in (pairs with pathLength=1 on the path).
+        doodleDraw: {
+          from: { strokeDashoffset: "1" },
+          to: { strokeDashoffset: "0" },
+        },
       },
       animation: {
         blob: "blob 9s ease-in-out infinite",
@@ -90,6 +106,14 @@ module.exports = {
         "spin-slow": "spin 16s linear infinite",
         // Hero: typewriter caret.
         caret: "caret 1.1s steps(2, start) infinite",
+        // Doodle background marks (negative delays desync the loops so the
+        // scatter never moves in lockstep).
+        "doodle-float": "doodleFloat 7s ease-in-out infinite",
+        "doodle-float-delayed": "doodleFloat 8.5s ease-in-out -2.5s infinite",
+        "doodle-float-slow": "doodleFloat 10.5s ease-in-out -4s infinite",
+        "doodle-twinkle": "doodleTwinkle 3.4s ease-in-out infinite",
+        "doodle-twinkle-fast": "doodleTwinkle 2.2s ease-in-out -0.8s infinite",
+        "doodle-draw": "doodleDraw 1.3s ease-out forwards",
       },
       transitionTimingFunction: {
         "out-expo": "cubic-bezier(0.16, 1, 0.3, 1)",

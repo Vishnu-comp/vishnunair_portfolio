@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { FaTrophy } from "react-icons/fa";
+import DoodleField from "./Doodles";
 
 export const Achievement = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -32,7 +33,8 @@ export const Achievement = () => {
     <section className="py-24 relative overflow-hidden">
       {/* Background with subtle patterns */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-blue-50/30 dark:from-slate-900/60 dark:via-transparent dark:to-slate-900/40 -z-10"></div>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <DoodleField variant={1} />
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

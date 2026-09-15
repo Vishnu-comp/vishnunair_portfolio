@@ -8,6 +8,7 @@ import {
   HiOutlineMailOpen,
 } from "react-icons/hi";
 import { Loader2 } from "lucide-react";
+import DoodleField from "./Doodles";
 import { site } from "../data/site";
 import { cx } from "../utils/theme";
 
@@ -135,8 +136,9 @@ const ContactForm = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-blue-50/30 dark:from-slate-900/60 dark:via-transparent dark:to-slate-900/40 -z-10"></div>
       <div className="absolute top-40 left-0 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob dark:bg-gold-500/10 dark:mix-blend-normal"></div>
       <div className="absolute top-40 right-0 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animate-delay-2000 dark:bg-gold-400/10 dark:mix-blend-normal"></div>
+      <DoodleField variant={2} />
 
-      <div className="max-w-5xl mx-auto">
+      <div className="relative z-10 max-w-5xl mx-auto">
         {/* Header Section */}
         <motion.div
           initial="hidden"

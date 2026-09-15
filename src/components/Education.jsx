@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { IoLocationSharp } from "react-icons/io5";
 import { BsCalendarEvent } from "react-icons/bs";
 import { FaGraduationCap } from "react-icons/fa";
+import DoodleField from "./Doodles";
 
 const Education = () => {
   const experiences = [
@@ -28,13 +29,14 @@ const Education = () => {
     <section className="relative py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
       {/* Background with subtle gradient */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-white to-blue-50/30 dark:from-slate-900/60 dark:via-transparent dark:to-slate-900/40 -z-10"></div>
-      
+      <DoodleField variant={1} />
+
       {/* Heading */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="text-center mb-20"
+        className="relative z-10 text-center mb-20"
       >
         <div className="flex items-center justify-center gap-3 mb-6">
           <FaGraduationCap className="text-4xl text-blue-500 dark:text-gold-400" />
@@ -51,7 +53,7 @@ const Education = () => {
       </motion.div>
 
       {/* Timeline Section */}
-      <div className="max-w-5xl mx-auto">
+      <div className="relative z-10 max-w-5xl mx-auto">
         <div className="space-y-12">
           {experiences.map((experience, index) => (
             <motion.div

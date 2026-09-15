@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { AiOutlineGithub, AiOutlineLink } from "react-icons/ai";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import DoodleField from "./Doodles";
 
 const Portfolio = () => {
   const [currentSlideFirst, setCurrentSlideFirst] = useState(0);
@@ -98,7 +99,7 @@ const imagesSecond = [
     githubLink,
     deployedLink,
   }) => (
-    <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 mt-16 px-4 group">
+    <div className="relative z-10 max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 mt-16 px-4 group">
       <div className="bg-white dark:bg-slate-900/80 rounded-2xl shadow-lg p-8 flex flex-col justify-between w-full lg:w-1/3 border border-gray-100 dark:border-slate-700/60 hover:border-blue-200 dark:hover:border-gold-500/40 transition-all duration-300">
         <div>
           <h2 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white group-hover:text-blue-500 dark:group-hover:text-gold-300 transition-colors duration-300">
@@ -206,8 +207,9 @@ const imagesSecond = [
   );
 
   return (
-    <div className="bg-gray-50/50 dark:bg-slate-900/40 py-12 md:py-20">
-      <div className="max-w-7xl mx-auto px-4">
+    <div className="relative overflow-hidden bg-gray-50/50 dark:bg-slate-900/40 py-12 md:py-20">
+      <DoodleField variant={3} />
+      <div className="relative z-10 max-w-7xl mx-auto px-4">
         <h2 className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white text-center">
           My Projects
           <span className="block mt-4 w-24 mx-auto h-1.5 bg-blue-500 dark:bg-gold-gradient rounded-full"></span>

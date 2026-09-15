@@ -5,6 +5,7 @@ import { ArrowRight, Download } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { site } from "../data/site";
 import { scrollToSection } from "../hooks/useNavigation";
+import DoodleField from "./Doodles";
 
 /**
  * Types → holds → deletes → next role. Respects prefers-reduced-motion by
@@ -75,10 +76,12 @@ const Hero = () => {
       transition={{ duration: 1 }}
       className="relative bg-gradient-to-br from-blue-50 via-white to-blue-100/70 dark:from-slate-950 dark:via-black dark:to-slate-900 min-h-screen flex flex-col-reverse md:flex-row items-center justify-between px-6 md:px-16 lg:px-28 pt-28 pb-24 overflow-hidden"
     >
-      {/* Decorative backdrop: dot grid + soft blobs */}
+      {/* Decorative backdrop: dot grid + soft blobs + hand-drawn doodles
+          (two of them sketch themselves in on load) */}
       <div className="pointer-events-none absolute inset-0 bg-dots" aria-hidden="true" />
       <div className="pointer-events-none absolute -top-24 -left-24 h-96 w-96 rounded-full bg-blue-200/40 blur-3xl dark:bg-gold-500/10" aria-hidden="true" />
       <div className="pointer-events-none absolute bottom-0 -right-24 h-96 w-96 rounded-full bg-indigo-200/40 blur-3xl dark:bg-gold-400/10" aria-hidden="true" />
+      <DoodleField variant={0} />
 
       {/* ---------------- Left: copy ---------------- */}
       <motion.div

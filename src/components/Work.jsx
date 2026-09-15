@@ -10,6 +10,7 @@ import {
   MapPin,
 } from "lucide-react";
 import useSeo from "../hooks/useSeo";
+import DoodleField from "./Doodles";
 
 const workHighlights = [
   {
@@ -82,8 +83,9 @@ const Work = () => {
       <section className="relative px-6 pb-16 pt-12 md:px-12 md:pb-24 lg:px-20 lg:pt-20">
         <div className="pointer-events-none absolute -right-24 top-4 h-72 w-72 rounded-full bg-blue-200/40 dark:bg-gold-500/10 blur-3xl" />
         <div className="pointer-events-none absolute -left-24 bottom-0 h-64 w-64 rounded-full bg-indigo-100/50 dark:bg-gold-400/10 blur-3xl" />
+        <DoodleField variant={3} />
 
-        <div className="relative mx-auto max-w-7xl">
+        <div className="relative z-10 mx-auto max-w-7xl">
           <motion.div
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
