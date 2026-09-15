@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { Home, FolderKanban, Briefcase, Github, Mail } from "lucide-react";
 import { mobileNavItems } from "../data/site";
 import { useSectionNavigation, useScrollSpy } from "../hooks/useNavigation";
-import { ThemeToggleCompact } from "./ThemeToggle";
 import { cx } from "../utils/theme";
 
 const ICONS = {
