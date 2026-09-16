@@ -126,6 +126,17 @@ const Footer = () => {
                   Resume
                 </Link>
               </li>
+              {/* Not in navItems: the desktop bar is already 8 links wide at
+                  the lg breakpoint, and one more would push it to wrap. */}
+              <li>
+                <button
+                  type="button"
+                  onClick={() => goTo({ href: "#ask-ai" })}
+                  className="text-left text-sm text-gray-600 transition-colors hover:text-blue-600 dark:text-slate-400 dark:hover:text-gold-300"
+                >
+                  Ask AI about me
+                </button>
+              </li>
             </ul>
           </nav>
 

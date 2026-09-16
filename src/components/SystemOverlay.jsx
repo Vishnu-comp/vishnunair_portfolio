@@ -184,6 +184,7 @@ export default function SystemOverlay() {
             github: { hash: "#github" },
             achievements: { hash: "#achievements" },
             contact: { hash: "#whyhireme" },
+            ask: { hash: "#ask-ai" },
             work: { route: "/work" },
             resume: { route: "/resume" },
             card: { route: "/card" },

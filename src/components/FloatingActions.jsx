@@ -6,6 +6,7 @@ import {
   MessageCircle,
   Plus,
   Send,
+  Sparkles,
 } from "lucide-react";
 import { site } from "../data/site";
 import { useScrolled, useSectionNavigation } from "../hooks/useNavigation";
@@ -15,7 +16,8 @@ import { cx } from "../utils/theme";
  * Floating action cluster (desktop + tablet; the mobile bottom tab bar owns
  * small screens, so this sits higher up there to avoid overlapping it).
  *
- *  • Expandable "+" -> Email, WhatsApp (only if site.whatsapp is set), Hire me
+ *  • Expandable "+" -> Ask AI (jumps to the prefill panel), Email, WhatsApp
+ *    (only if site.whatsapp is set), Hire me
  *  • Back-to-top appears after 400px of scroll
  *
  * Everything is keyboard reachable and announces itself to screen readers.
@@ -39,6 +41,17 @@ const FloatingActions = () => {
       onClick: () => {
         setOpen(false);
         goTo({ href: "#whyhireme" });
+      },
+    },
+    {
+      // A recruiter who isn't ready to write directly still wants an answer —
+      // this hands them the prefill instead of losing them.
+      key: "ask",
+      label: "Ask AI",
+      icon: Sparkles,
+      onClick: () => {
+        setOpen(false);
+        goTo({ href: "#ask-ai" });
       },
     },
     {

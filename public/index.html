@@ -52,6 +52,19 @@
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logos.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 
+    <!--
+      Plain-text profile for AI assistants and for crawlers that never run JS.
+      The "Ask AI about me" section (src/data/aiContext.js) points here too, so
+      an assistant with browsing can pull the long version instead of relying on
+      the compact fact sheet embedded in the link.
+    -->
+    <link
+      rel="alternate"
+      type="text/plain"
+      href="%PUBLIC_URL%/llms.txt"
+      title="Vishnu Nair — plain-text profile for humans and AI assistants"
+    />
+
     <!-- ===================== Structured data ===================== -->
     <script type="application/ld+json">
       {
@@ -162,6 +175,11 @@
         <li><a href="https://www.linkedin.com/in/vishnu-nair-aa462b245/">LinkedIn — Vishnu Nair</a></li>
         <li><a href="mailto:vishnunair2323@gmail.com">vishnunair2323@gmail.com</a></li>
       </ul>
+      <p>
+        A plain-text version of everything above — for people skimming and for AI
+        assistants asked about him — is at
+        <a href="/llms.txt">/llms.txt</a>.
+      </p>
       <p>This portfolio requires JavaScript for the interactive experience.</p>
     </noscript>
     <div id="root"></div>

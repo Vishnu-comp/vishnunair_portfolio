@@ -17,6 +17,7 @@ import Footer from "./components/Footer";
 import NotFound from "./components/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 import FloatingActions from "./components/FloatingActions";
+import AskAI from "./components/AskAI";
 import MobileBottomNav from "./components/MobileBottomNav";
 import SystemOverlay from "./components/SystemOverlay";
 import { Analytics } from "@vercel/analytics/react";
@@ -58,6 +59,14 @@ function App() {
                   </div>
                   <div id="whyhireme">
                     <WhyHireMe />
+                  </div>
+                  {/*
+                   * Sits between the contact form and the card on purpose: a
+                   * visitor who has read the pitch but isn't ready to email is
+                   * exactly the person who wants a second opinion first.
+                   */}
+                  <div id="ask-ai">
+                    <AskAI />
                   </div>
                   <div id="connect">
                     <section className="bg-gray-50/70 px-4 py-20 sm:px-6 lg:px-8 dark:bg-slate-900/40">
