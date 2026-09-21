@@ -1,70 +1,72 @@
-# Getting Started with Create React App
+# Vishnu Nair — Portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+React (CRA) + Tailwind + Framer Motion portfolio, deployed on Vercel. Everything
+personal is centralised in `src/data/site.js`; the rest of this README covers the
+bits that are easy to break by accident.
 
-## Available Scripts
+## Edit my details
 
-In the project directory, you can run:
+`src/data/site.js` is the single source of truth for name, role, links, WhatsApp
+number, stack and the role-tailored resume lenses (`resumeRoles`).
 
-### `npm start`
+One copy is *generated* from it and one is *hand-maintained*, and they have to
+agree:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+| File | What it is | How it is kept in sync |
+| --- | --- | --- |
+| `src/data/aiContext.js` | The fact sheet handed to ChatGPT / Claude / Perplexity | Generated from `site.js` — nothing to edit unless the tone should change |
+| `public/llms.txt` | Plain-text profile for AI assistants and JS-less crawlers | Edited by hand; mirror any `site.js` change here |
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## "Ask AI about me" (`#ask-ai`)
 
-### `npm test`
+A visitor types a question, picks an assistant, and the site opens
+`https://chatgpt.com/?q=…` / `https://claude.ai/new?q=…` /
+`https://www.perplexity.ai/search?q=…` with the question **and** a compact fact
+sheet already in the composer. No chatbot is hosted here, so there is no API key
+in a public bundle, no metered endpoint, and the conversation stays in the
+visitor's own account.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Settings a visitor can change (each one is remembered in `localStorage` and
+carried in the shareable link): **Tone** (`positive` default, `balanced`,
+`critical`), **Context** (`brief` / `full` / `link`) and **Hiring lens**
+(same three values as `/resume?role=…`).
 
-### `npm run build`
+Worth knowing before touching it:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Positive is the default tone**, and it is *framing*, not spin: it asks the
+  model to lead with evidenced strengths, forbids inventing anything the fact
+  sheet doesn't prove, and explicitly tells it to answer honestly if a weakness
+  is asked about directly. A "say only good things" instruction would be visible
+  in the preview and would push the model to fill gaps with praise — the one
+  outcome that actually hurts. Keep it that way if you edit `TONE_RULES`.
+- ChatGPT sometimes **submits** the prefill on arrival rather than waiting for
+  Enter, so the prompt is deliberately plain text with no markup — and the exact
+  text is previewable in the UI.
+- Nobody documents how long a `?q=` link may be, so the meter is two honest
+  guesses, not a spec: `PROMPT_CHAR_TIGHT` (2 400 → amber, "probably fine,
+  can't promise it") and `PROMPT_CHAR_LIMIT` (4 000 → red, "stop guessing, copy
+  the prompt"). Every default the panel can boot into stays green on purpose — a
+  tool that warns about its own starting state trains people to ignore it.
+- **Gemini has no URL prefill**, so that button copies the prompt and opens the app.
+- The phone number is intentionally left out of every AI prompt.
+- The "Hiring lens" control shares `localStorage["vn-resume-role"]` with
+  `/resume?role=…`, so both pages always speak about the same target role.
+- `/ ?ask=claude&q=…&detail=full&role=backend#ask-ai` is a shareable link — the
+  "Copy shareable link" button builds one, `ScrollToTop` honours the hash.
+- `src/components/AskAI.test.js` guards the prompt budget for every tone × lens
+  combination, the ASCII-only rule, the "positive must not mean dishonest"
+  clauses, the per-assistant URL shapes and the share-link params. Run it after
+  editing any of the above.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Other entry points
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+`go ask` in the ⌘K terminal · the floating **+** menu · the footer · a panel at the
+bottom of `/resume`.
 
-### `npm run eject`
+## Scripts
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```bash
+npm start          # dev server
+npm run build      # production build
+npm test           # jest (src/**/*.test.js)
+```

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
+import { Sparkles } from "lucide-react";
 import resumePDF from "../assets/VishnuResume.pdf";
 import useSeo from "../hooks/useSeo";
+import { useSectionNavigation } from "../hooks/useNavigation";
 import ResumeTailor from "./ResumeTailor";
 import { resumeRoles } from "../data/site";
 
@@ -10,6 +12,7 @@ const ROLE_IDS = resumeRoles.map((r) => r.id);
 
 const Resume = () => {
   const [params, setParams] = useSearchParams();
+  const { goTo } = useSectionNavigation();
 
   // Priority: ?role= URL param (shareable links) -> last choice (sticky for
   // returning visitors) -> fullstack default.
@@ -81,6 +84,36 @@ const Resume = () => {
             type="application/pdf"
             className="w-full h-[80vh] rounded-lg"
           />
+        </div>
+
+        {/*
+         * The PDF answers "what did he do"; an assistant is better at "does
+         * that fit my team". Same role lens as the panel above — the choice is
+         * shared through localStorage, so the two pages can't disagree.
+         */}
+        <div className="mt-6 flex flex-col items-start justify-between gap-4 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm sm:flex-row sm:items-center dark:border-slate-800 dark:bg-slate-900/70">
+          <div className="flex items-start gap-3">
+            <span className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-blue-50 text-blue-600 dark:bg-gold-500/10 dark:text-gold-300">
+              <Sparkles className="h-4 w-4" aria-hidden="true" />
+            </span>
+            <div>
+              <p className="text-sm font-semibold text-gray-900 dark:text-white">
+                Want a second opinion on this resume?
+              </p>
+              <p className="mt-0.5 text-sm text-gray-600 dark:text-slate-400">
+                The {active.label.toLowerCase()} lens above travels with you —{" "}
+                <span className="whitespace-nowrap">one click</span> opens ChatGPT, Claude or Perplexity
+                with these facts already typed in. Nothing is hosted on this site.
+              </p>
+            </div>
+          </div>
+          <button
+            type="button"
+            onClick={() => goTo({ href: "#ask-ai" })}
+            className="shrink-0 rounded-full bg-blue-600 px-5 py-2 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-lg dark:bg-gold-gradient dark:text-black dark:hover:opacity-90"
+          >
+            Ask an AI about me
+          </button>
         </div>
       </div>
     </div>
