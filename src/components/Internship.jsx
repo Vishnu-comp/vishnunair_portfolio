@@ -1,7 +1,52 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Calendar, MapPin, Briefcase, Check, ExternalLink } from "lucide-react";
+import {
+  ArrowRight,
+  Briefcase,
+  Calendar,
+  Check,
+  ExternalLink,
+  MapPin,
+} from "lucide-react";
 import DoodleField from "./Doodles";
+
+/**
+ * The "View Work" button under an experience card.
+ *
+ * It takes either an in-app route ("/work") or a full URL and renders the
+ * matching element: an internal Link for routes — same tab, no reload, and no
+ * "this leaves the site" affordance — and a new-tab anchor with
+ * rel="noopener noreferrer" for anything external. So the card data can point
+ * at whatever should be shown without the caller having to remember which
+ * attributes go with which.
+ */
+const WorkLink = ({ href, label = "View Work" }) => {
+  if (!href) return null;
+  const external = /^https?:\/\//i.test(href);
+  const className =
+    "inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-lg dark:bg-gold-gradient dark:text-black hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-md hover:shadow-lg group";
+  const inner = (
+    <>
+      <span>{label}</span>
+      {external ? (
+        <ExternalLink className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+      ) : (
+        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+      )}
+    </>
+  );
+
+  return external ? (
+    <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
+      {inner}
+    </a>
+  ) : (
+    <Link to={href} className={className}>
+      {inner}
+    </Link>
+  );
+};
 
 const InternshipExperience = () => {
   const experience = [
@@ -33,7 +78,11 @@ const InternshipExperience = () => {
         "Engineered a Dashcam view module with tab-based navigation to switch between front, rear, and cabin feeds."
       ],
       technologies: ["NextJS", "Tailwind CSS", "Java Springboot", "MySql"],
-      workLink: "https://www.notion.so/Shoffr-Work-3078cf31ef1b80dfadfdf0daebb9fdd2?source=copy_link", 
+      // The write-up now lives in the repo (src/components/Work.jsx) rather
+      // than in Notion, so this is an in-app route: no copy_link token, no
+      // leaving the site, and the content stays visible to crawlers.
+      workLink: "/work",
+      workLabel: "View Work at Shoffr",
     },
   ];
 
@@ -146,18 +195,10 @@ const InternshipExperience = () => {
               </div>
             </div>
 
-            {/* View Work Link */}
+            {/* View Work Link — route or URL, see WorkLink above */}
             {exp.workLink && (
               <div className="mt-8">
-                <a
-                  href={exp.workLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-lg dark:bg-gold-gradient dark:text-black hover:from-blue-700 hover:to-blue-800 transition-all duration-300 shadow-md hover:shadow-lg group"
-                >
-                  <span>View Work</span>
-                  <ExternalLink className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                </a>
+                <WorkLink href={exp.workLink} label={exp.workLabel} />
               </div>
             )}
           </motion.div>
