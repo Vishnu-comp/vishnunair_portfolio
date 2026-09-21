@@ -21,8 +21,11 @@ import {
   AI_LINKS,
   AI_PROVIDERS,
   DEFAULT_QUESTION,
+  DEFAULT_TONE,
   PROMPT_CHAR_LIMIT,
+  PROMPT_CHAR_TIGHT,
   PROMPT_LEVELS,
+  PROMPT_TONES,
   SUGGESTED_QUESTIONS,
   buildPrompt,
   parseShareParams,
@@ -55,6 +58,7 @@ import { cx } from "../utils/theme";
  */
 
 const DETAIL_KEY = "vn-ask-detail";
+const TONE_KEY = "vn-ask-tone";
 const PROVIDER_KEY = "vn-ask-provider";
 const ROLE_KEY = "vn-resume-role"; // deliberately shared with src/components/Resume.jsx
 const ROLE_IDS = resumeRoles.map((r) => r.id);
@@ -141,48 +145,58 @@ const ProviderMark = ({ id, className }) => {
  * arrow-key friendly because they are real buttons, animated active pill).
  */
 
-const Segmented = ({ label, value, options, onChange, name }) => (
-  <div className="min-w-0">
-    <span className="mb-2 block text-[11px] font-semibold uppercase tracking-wider text-gray-400 dark:text-slate-500">
-      {label}
-    </span>
-    <div
-      role="radiogroup"
-      aria-label={label}
-      className="inline-flex flex-wrap gap-1 rounded-full bg-gray-100 p-1 dark:bg-slate-800"
-    >
-      {options.map((opt) => {
-        const selected = opt.id === value;
-        return (
-          <button
-            key={opt.id}
-            type="button"
-            role="radio"
-            aria-checked={selected}
-            name={name}
-            title={opt.note}
-            onClick={() => onChange(opt.id)}
-            className={cx(
-              "relative rounded-full px-3 py-1.5 text-xs font-medium transition-colors",
-              selected
-                ? "text-gray-900 dark:text-white"
-                : "text-gray-500 hover:text-gray-800 dark:text-slate-400 dark:hover:text-slate-200"
-            )}
-          >
-            {selected && (
-              <motion.span
-                layoutId={`ask-pill-${label}`}
-                className="absolute inset-0 rounded-full bg-white shadow-sm dark:bg-slate-700"
-                transition={{ type: "spring", stiffness: 400, damping: 32 }}
-              />
-            )}
-            <span className="relative z-10">{opt.label}</span>
-          </button>
-        );
-      })}
+const Segmented = ({ label, value, options, onChange, name, showNote = false }) => {
+  const active = options.find((o) => o.id === value);
+  return (
+    <div className="min-w-0">
+      <span className="mb-2 block text-[11px] font-semibold uppercase tracking-wider text-gray-400 dark:text-slate-500">
+        {label}
+      </span>
+      <div
+        role="radiogroup"
+        aria-label={label}
+        className="inline-flex flex-wrap gap-1 rounded-full bg-gray-100 p-1 dark:bg-slate-800"
+      >
+        {options.map((opt) => {
+          const selected = opt.id === value;
+          return (
+            <button
+              key={opt.id}
+              type="button"
+              role="radio"
+              aria-checked={selected}
+              name={name}
+              title={opt.note}
+              onClick={() => onChange(opt.id)}
+              className={cx(
+                "relative rounded-full px-3 py-1.5 text-xs font-medium transition-colors",
+                selected
+                  ? "text-gray-900 dark:text-white"
+                  : "text-gray-500 hover:text-gray-800 dark:text-slate-400 dark:hover:text-slate-200"
+              )}
+            >
+              {selected && (
+                <motion.span
+                  layoutId={`ask-pill-${label}`}
+                  className="absolute inset-0 rounded-full bg-white shadow-sm dark:bg-slate-700"
+                  transition={{ type: "spring", stiffness: 400, damping: 32 }}
+                />
+              )}
+              <span className="relative z-10">{opt.label}</span>
+            </button>
+          );
+        })}
+      </div>
+      {/* The caption exists so a choice that changes the *answer* — the tone —
+          is explained where it is made, not hidden in a tooltip. */}
+      {showNote && active && active.note && (
+        <p className="mt-2 max-w-md text-[11px] leading-relaxed text-gray-500 dark:text-slate-500">
+          {active.note}
+        </p>
+      )}
     </div>
-  </div>
-);
+  );
+};
 
 const HintLine = ({ icon: Icon, title, children }) => (
   <li className="flex gap-3">
@@ -221,14 +235,23 @@ const AskAI = () => {
     const stored = read(ROLE_KEY);
     return ROLE_IDS.includes(stored) ? stored : "fullstack";
   });
+  const [tone, setTone] = useState(() => {
+    if (seed.tone) return seed.tone;
+    const stored = read(TONE_KEY);
+    return PROMPT_TONES.some((t) => t.id === stored) ? stored : DEFAULT_TONE;
+  });
   const [showPrompt, setShowPrompt] = useState(false);
   const [feedback, setFeedback] = useState(null); // { tone, text }
   const feedbackTimer = useRef(null);
 
-  const prompt = useMemo(() => buildPrompt({ question, level, role }), [question, level, role]);
+  const prompt = useMemo(
+    () => buildPrompt({ question, level, role, tone }),
+    [question, level, role, tone]
+  );
   // Measured against the real thing rather than an estimate.
   const urlChars = useMemo(() => AI_PROVIDERS[0].href(prompt).length, [prompt]);
-  const overLimit = prompt.length > PROMPT_CHAR_LIMIT;
+  // ok -> tight -> over, against the two heuristics documented in aiContext.js.
+  const meter = prompt.length > PROMPT_CHAR_LIMIT ? "over" : prompt.length > PROMPT_CHAR_TIGHT ? "tight" : "ok";
   const isDefault = question.trim() === DEFAULT_QUESTION;
 
   /* Feedback is a single transient line — simpler than four independent
@@ -243,12 +266,12 @@ const AskAI = () => {
   /* Keep the URL shareable in the same spirit as /resume?role=... */
   const persist = useCallback(
     (next) => {
-      const merged = { ask: next.provider ?? null, q: next.question ?? null, detail: next.level ?? null, role: next.role ?? null };
       const search = new URLSearchParams();
-      if (merged.ask) search.set("ask", merged.ask);
-      if (merged.q && merged.q !== DEFAULT_QUESTION) search.set("q", merged.q);
-      if (merged.detail && merged.detail !== "brief") search.set("detail", merged.detail);
-      if (merged.role && merged.role !== "fullstack") search.set("role", merged.role);
+      if (next.provider) search.set("ask", next.provider);
+      if (next.question && next.question !== DEFAULT_QUESTION) search.set("q", next.question);
+      if (next.level && next.level !== "brief") search.set("detail", next.level);
+      if (next.role && next.role !== "fullstack") search.set("role", next.role);
+      if (next.tone && next.tone !== DEFAULT_TONE) search.set("tone", next.tone);
       setParams(search, { replace: true });
     },
     [setParams]
@@ -261,24 +284,30 @@ const AskAI = () => {
     });
   };
 
+  const changeTone = (id) => {
+    setTone(id);
+    write(TONE_KEY, id);
+    persist({ tone: id, provider: params.get("ask"), question, level, role });
+  };
+
   const changeLevel = (id) => {
     setLevel(id);
     write(DETAIL_KEY, id);
-    persist({ level: id, provider: params.get("ask"), question, role });
+    persist({ level: id, provider: params.get("ask"), question, role, tone });
   };
 
   const changeRole = (id) => {
     setRole(id);
     write(ROLE_KEY, id); // /resume reads the same key, so both pages follow this choice
-    persist({ role: id, provider: params.get("ask"), question, level });
+    persist({ role: id, provider: params.get("ask"), question, level, tone });
   };
 
   const openIn = (provider) => {
     write(PROVIDER_KEY, provider.id);
     // Which assistant gets used, and whether people stick to the short prompt,
     // is the only way to know if this section earns its place on the page.
-    safeTrack(ASK_AI_EVENTS.open, { provider: provider.id, level });
-    persist({ provider: provider.id, question, level, role });
+    safeTrack(ASK_AI_EVENTS.open, { provider: provider.id, level, tone });
+    persist({ provider: provider.id, question, level, role, tone });
     if (provider.pastes) {
       // Gemini ignores query params, so the prompt has to travel by clipboard.
       copyText(prompt).then((ok) =>
@@ -289,7 +318,7 @@ const AskAI = () => {
           ok ? "info" : "warn"
         )
       );
-    } else if (overLimit) {
+    } else if (meter === "over") {
       say(
         `This link is ${urlChars.toLocaleString()} chars. Some clients truncate very long URLs — "Copy prompt" is the safe route.`,
         "warn"
@@ -339,7 +368,9 @@ const AskAI = () => {
             Curious whether I&apos;m worth a conversation? Send the question to
             ChatGPT, Claude, Perplexity or Gemini with a short fact sheet about
             me already typed in — every word stays editable before it is sent,
-            and the chat lives in your account, not on this site.
+            and the chat lives in your account, not on this site. By default the
+            assistant is asked to lead with what I do well; switch the tone to
+            Balanced or Critical if you&apos;d rather hear what&apos;s thin.
           </p>
         </motion.div>
 
@@ -351,14 +382,24 @@ const AskAI = () => {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-xl dark:border-slate-800 dark:bg-slate-900/70"
         >
-          {/* options */}
-          <div className="flex flex-col gap-5 border-b border-gray-100 bg-gray-50/60 px-5 py-4 sm:px-6 lg:flex-row lg:items-end lg:justify-between dark:border-slate-800 dark:bg-slate-950/40">
+          {/* options — tone first, because it is the one setting that changes
+              the *answer* rather than the amount of text being sent */}
+          <div className="grid gap-5 border-b border-gray-100 bg-gray-50/60 px-5 py-4 sm:grid-cols-2 sm:px-6 lg:grid-cols-3 dark:border-slate-800 dark:bg-slate-950/40">
             <Segmented
-              label="Context sent with the question"
+              label="Tone of the answer"
+              value={tone}
+              options={PROMPT_TONES}
+              onChange={changeTone}
+              name="ask-tone"
+              showNote
+            />
+            <Segmented
+              label="Context sent along"
               value={level}
               options={PROMPT_LEVELS}
               onChange={changeLevel}
               name="ask-level"
+              showNote
             />
             <Segmented
               label="Hiring lens"
@@ -433,9 +474,9 @@ const AskAI = () => {
                   <span
                     className={cx(
                       "font-mono tabular-nums",
-                      overLimit
-                        ? "text-amber-600 dark:text-amber-400"
-                        : "text-gray-500 dark:text-slate-500"
+                      meter === "over" && "text-rose-600 dark:text-rose-400",
+                      meter === "tight" && "text-amber-600 dark:text-amber-400",
+                      meter === "ok" && "text-gray-500 dark:text-slate-500"
                     )}
                   >
                     {prompt.length.toLocaleString()} / {PROMPT_CHAR_LIMIT.toLocaleString()} chars ·{" "}
@@ -453,8 +494,10 @@ const AskAI = () => {
                   <span
                     className={cx(
                       "block h-full rounded-full transition-all duration-300",
-                      overLimit
+                      meter === "over"
                         ? "bg-gradient-to-r from-amber-400 to-rose-500"
+                        : meter === "tight"
+                        ? "bg-gradient-to-r from-amber-300 to-amber-500"
                         : "bg-gradient-to-r from-blue-500 to-blue-600 dark:from-gold-400 dark:to-gold-600"
                     )}
                     style={{
@@ -463,16 +506,24 @@ const AskAI = () => {
                   />
                 </div>
                 <p className="mt-2 text-[11px] leading-relaxed text-gray-500 dark:text-slate-500">
-                  {overLimit ? (
+                  {meter === "over" ? (
                     <>
-                      Over the ~{PROMPT_CHAR_LIMIT.toLocaleString()}-char budget some clients allow in a
-                      query string, so the question may arrive cut off. Use{" "}
+                      Past {PROMPT_CHAR_LIMIT.toLocaleString()} characters this section stops guessing
+                      that a link survives the trip: use{" "}
                       <span className="font-semibold text-gray-600 dark:text-slate-300">Copy prompt</span>{" "}
-                      instead, or switch the context level.
+                      (always works) or drop the context level.
+                    </>
+                  ) : meter === "tight" ? (
+                    <>
+                      Past {PROMPT_CHAR_TIGHT.toLocaleString()} chars — fine in current browsers, but
+                      no assistant publishes a URL limit, so this is the point where{" "}
+                      <span className="font-semibold text-gray-600 dark:text-slate-300">Copy prompt</span>{" "}
+                      becomes the surer bet.
                     </>
                   ) : (
                     <>
-                      Includes the fact sheet plus your question. Nothing is stored or sent by this
+                      The {PROMPT_TONES.find((t) => t.id === tone).label.toLowerCase()} tone
+                      instruction, the fact sheet and your question. Nothing is stored or sent by this
                       site — the text only travels inside the link you are about to open.
                     </>
                   )}
@@ -578,6 +629,7 @@ const AskAI = () => {
                         question,
                         level,
                         role,
+                        tone,
                       }),
                       "Link to this section"
                     )
@@ -661,9 +713,10 @@ const AskAI = () => {
             Most assistants wait for Enter; ChatGPT sometimes submits straight away — which
             is why the exact text is readable above before you click.
           </HintLine>
-          <HintLine icon={FileText} title="Facts, not my opinions.">
-            The sheet is written by me, so it is flattering by construction. The verdict is
-            the model&apos;s: treat it as a starting point and check the links it cites.
+          <HintLine icon={FileText} title="Facts, mine; tone, yours.">
+            The sheet is written by me, and the Positive tone asks for strengths first — but it
+            also forbids inventing anything and tells the model to answer honestly if you ask
+            about a gap. Switch to Critical to see the version I use before an interview.
           </HintLine>
         </motion.div>
       </div>

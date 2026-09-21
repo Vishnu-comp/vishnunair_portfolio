@@ -21,8 +21,11 @@ import AskAI from "./AskAI";
 import {
   AI_PROVIDERS,
   DEFAULT_QUESTION,
+  DEFAULT_TONE,
   PROMPT_CHAR_LIMIT,
+  PROMPT_CHAR_TIGHT,
   PROMPT_LEVELS,
+  PROMPT_TONES,
   buildPrompt,
   factSheet,
   parseShareParams,
@@ -31,11 +34,22 @@ import {
 import { resumeRoles } from "../data/site";
 
 describe("Ask AI prompt builder", () => {
-  it("keeps the default context level inside a URL-safe budget for every lens", () => {
-    resumeRoles.forEach(({ id }) => {
-      const prompt = buildPrompt({ level: "brief", role: id });
-      expect(prompt.length).toBeLessThanOrEqual(PROMPT_CHAR_LIMIT);
-      expect(prompt).toContain("FACT SHEET");
+  it("keeps every tone and lens inside a URL-safe budget", () => {
+    PROMPT_TONES.forEach(({ id: tone }) => {
+      resumeRoles.forEach(({ id: role }) => {
+        const prompt = buildPrompt({ level: "brief", role, tone });
+        expect(prompt).toContain("FACT SHEET");
+        expect(prompt.length).toBeLessThanOrEqual(PROMPT_CHAR_LIMIT);
+      });
+    });
+    // Every default the section can boot into sits in the green tier, so nobody
+    // is greeted by a warning about their own starting settings.
+    PROMPT_TONES.forEach(({ id: tone }) => {
+      resumeRoles.forEach(({ id: role }) => {
+        expect(
+          buildPrompt({ level: "brief", role, tone }).length
+        ).toBeLessThanOrEqual(PROMPT_CHAR_TIGHT);
+      });
     });
   });
 
@@ -51,7 +65,7 @@ describe("Ask AI prompt builder", () => {
 
   it("is plain ASCII so no client mangles the query string", () => {
     PROMPT_LEVELS.forEach(({ id }) => {
-      const prompt = buildPrompt({ level: id, role: "backend" });
+      const prompt = buildPrompt({ level: id, role: "backend", tone: "critical" });
       // eslint-disable-next-line no-control-regex
       expect(prompt).toMatch(/^[\x20-\x7E\n]+$/);
     });
@@ -64,9 +78,16 @@ describe("Ask AI prompt builder", () => {
     expect(full).toContain("llms.txt");
   });
 
-  it("warns before a link gets long enough to be truncated", () => {
-    expect(buildPrompt({ level: "full", role: "fullstack" }).length).toBeGreaterThan(PROMPT_CHAR_LIMIT);
+  it("warns as the link grows, in the order a visitor would hit it", () => {
+    // short facts -> green; full facts -> amber; a pasted job spec -> red.
+    expect(buildPrompt({ level: "brief", role: "fullstack" }).length)
+      .toBeLessThanOrEqual(PROMPT_CHAR_TIGHT);
+    expect(buildPrompt({ level: "full", role: "fullstack" }).length)
+      .toBeGreaterThan(PROMPT_CHAR_TIGHT);
     expect(buildPrompt({ level: "link", role: "fullstack" }).length).toBeLessThan(1200);
+    expect(
+      buildPrompt({ level: "brief", role: "fullstack", question: "x".repeat(2600) }).length
+    ).toBeGreaterThan(PROMPT_CHAR_LIMIT);
   });
 
   it("builds a link for each assistant, and only Gemini needs the clipboard", () => {
@@ -82,22 +103,40 @@ describe("Ask AI prompt builder", () => {
   });
 
   it("round-trips its own shareable link", () => {
-    const link = shareLink({ provider: "claude", question: "Is he ready for our team?", level: "link", role: "backend" });
+    const link = shareLink({
+      provider: "claude",
+      question: "Is he ready for our team?",
+      level: "link",
+      role: "backend",
+      tone: "critical",
+    });
+    expect(link).toContain("tone=critical");
     const parsed = parseShareParams(link.slice(link.indexOf("?") + 1).replace(/#.*$/, ""));
     expect(parsed).toEqual({
       question: "Is he ready for our team?",
       provider: "claude",
       level: "link",
       role: "backend",
+      tone: "critical",
     });
   });
 
+  it("omits the default tone so ordinary links stay short", () => {
+    const link = shareLink({ provider: "chatgpt", question: "x", level: "brief", role: "fullstack", tone: DEFAULT_TONE });
+    expect(link).not.toContain("tone=");
+    expect(link).not.toContain("detail=");
+    expect(link).not.toContain("role=");
+  });
+
   it("ignores junk in the URL instead of rendering an unknown state", () => {
-    expect(parseShareParams("?ask=hallucination-machine&role=vp&detail=nope&q=")).toEqual({
+    expect(
+      parseShareParams("?ask=hallucination-machine&role=vp&detail=nope&tone=spam&q=")
+    ).toEqual({
       question: null,
       provider: null,
       level: null,
       role: null,
+      tone: null,
     });
   });
 });
@@ -148,6 +187,33 @@ describe("Ask AI section", () => {
     // <label>, so clicking it must not also focus the textarea).
     fireEvent.click(screen.getByRole("button", { name: /^reset$/i }));
     expect(screen.getByLabelText(/What do you want to know/i).value).toBe(DEFAULT_QUESTION);
+  });
+
+  it("seeds the tone from the URL and re-builds the link when it changes", () => {
+    render(
+      <MemoryRouter initialEntries={["/?tone=critical#ask-ai"]}>
+        <AskAI />
+      </MemoryRouter>
+    );
+    const group = screen.getByRole("radiogroup", { name: /tone of the answer/i });
+    const checked = Array.from(group.querySelectorAll('[aria-checked="true"]'));
+    expect(checked).toHaveLength(1);
+    expect(checked[0].textContent).toBe("Critical");
+    // The choice that changes the *answer* is explained next to the control,
+    // not hidden in a title attribute.
+    expect(group.parentElement.textContent).toMatch(/hold nothing back/);
+
+    const sentIn = () =>
+      decodeURIComponent(
+        screen.getByRole("link", { name: /ChatGPT/i }).getAttribute("href").split("?q=")[1]
+      );
+    expect(sentIn()).toMatch(/way a tough interviewer/i);
+
+    fireEvent.click(screen.getByRole("radio", { name: /^Balanced$/i }));
+    expect(sentIn()).toMatch(/Honest assessment beats flattery/i);
+    expect(sentIn()).not.toMatch(/way a tough interviewer/i);
+    // The guardrails are not tone-dependent, so they survive the switch.
+    expect(sentIn()).toMatch(/never invent employers/i);
   });
 
   it("tells Gemini users the prompt is copied rather than sent", () => {

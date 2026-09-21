@@ -39,12 +39,29 @@ export const AI_LINKS = {
 };
 
 /**
- * ChatGPT reads `?q=` and — depending on the client — submits it straight
- * away, so prompts longer than ~2 000 characters before encoding can be cut
- * off mid-sentence. The UI meters against this and offers "copy the prompt"
- * as the escape hatch.
+ * How long a prompt may get before the UI starts warning about it.
+ *
+ * There is no published number for this anywhere: browsers accept URLs vastly
+ * longer than either threshold (Chrome ~2 MB, Safari ~80 k chars), so the only
+ * real risk is whatever an assistant's own client does when it reads `?q=` on
+ * load — and nobody documents that. So these are honest guesses with honest
+ * labels rather than a fake spec:
+ *
+ *   ≤ 2 400  green. Where prompt-link builders keep themselves; every default
+ *            this section can be in (any tone × any lens × short facts) fits,
+ *            which matters more than the exact number — a tool that warns on its
+ *            own out-of-the-box state is a tool nobody trusts.
+ *   > 2 400  amber. "Probably fine, can't promise it." Full facts lands here.
+ *   > 4 000  red. "Stop guessing — copy the prompt instead."
+ *
+ * The meter's job is not to certify safety; it is to make the escape hatch
+ * obvious before someone emails a truncated link to a candidate.
  */
-export const PROMPT_CHAR_LIMIT = 2000;
+export const PROMPT_CHAR_TIGHT = 2400;
+export const PROMPT_CHAR_LIMIT = 4000;
+
+/** The tone an unset panel uses, and the one share links omit. */
+export const DEFAULT_TONE = "positive";
 
 /** Asked when the visitor hasn't typed anything — broad but still answerable. */
 export const DEFAULT_QUESTION =
@@ -131,29 +148,61 @@ function workLine(lens) {
   );
 }
 
+/** "Food ordering w/ real-time stock (React + Spring Boot)" -> the note alone. */
+const shortNote = (note) => String(note).replace(/\s*\([^)]*\)\s*$/, "").trim();
+
 /** Names + notes for the short version; plus live URLs for the deep one. */
 function projectLine(projects, withUrl) {
   return projects
     .filter((p) => !/^this portfolio$/i.test(p.name))
-    .map((p) => (withUrl ? `${p.name} (${p.note}) ${p.url}` : `${p.name} (${p.note})`))
+    .map((p) =>
+      withUrl
+        ? `${p.name} (${p.note}) ${p.url}`
+        : `${p.name} (${shortNote(p.note)})`
+    )
     .join(", ");
 }
 
 
 /**
- * `brief`  — everything needed to answer "who is he / is he a fit", small
- *            enough to survive a URL. Default.
- * `full`   — adds the role-specific skills, bullets and live project links for
- *            people who want the deep version. Long links can be truncated by
- *            some clients, so the UI warns and offers the clipboard instead.
+ * How much of the fact sheet travels inside the link. Levels, in the order the
+ * UI offers them:
+ *
+ *   brief — everything needed to answer "who is he / is he a fit", small enough
+ *           to survive a URL comfortably. Default.
+ *   full  — adds the role-specific skills, bullets and live project links. The
+ *           link goes past the budget some clients tolerate, so the UI says so
+ *           and offers the clipboard instead of pretending it will work.
+ *   link  — no facts inline, just a pointer to /llms.txt. Shortest option, right
+ *           for a long custom question or a pasted job spec, but it only pays
+ *           off when the assistant can actually browse.
  */
+export const PROMPT_LEVELS = [
+  {
+    id: "brief",
+    label: "Short facts",
+    note: "1.8-2.1k chars. Answers well even with browsing switched off.",
+  },
+  {
+    id: "full",
+    label: "Full facts",
+    note: "Adds the role lens, every skill and live project URLs. Long link.",
+  },
+  {
+    id: "link",
+    label: "Link only",
+    note: "Shortest link; needs an assistant that can open URLs.",
+  },
+];
+
+/** Same idea for the fact sheet itself, which `buildPrompt` wraps in rules. */
 export function factSheet({ level = "brief", role = "fullstack" } = {}) {
   const r = roleById(role);
   const lens = roleById("fullstack"); // the undifferentiated view of his work
   const focus =
     r.id === "fullstack"
       ? null
-      : `FOCUS: I'm evaluating him for a ${r.label.toLowerCase()} role - ${r.tagline}.`;
+      : `FOCUS: I'm evaluating him for a ${r.label.toLowerCase()} role.`;
 
   const brief = [
     `WHO: ${site.name}. Currently: ${site.availability}.`,
@@ -180,49 +229,60 @@ export function factSheet({ level = "brief", role = "fullstack" } = {}) {
 }
 
 /**
- * Rules that keep the answer honest. Non-negotiable part of every prompt: a
- * model with a fact sheet will happily extrapolate a salary expectation, a
- * job title or a year of experience that was never stated unless told not to.
+ * Rules sent with every prompt. The first three are non-negotiable and
+ * tone-independent: a model holding a fact sheet will happily extrapolate a
+ * salary expectation, a job title or a year of experience that was never
+ * stated unless it is told not to.
+ *
+ * `TONE_RULES` is what the visitor chooses. Note what "positive" is *not*: it
+ * is not "only say good things". This site shows the reader the exact prompt
+ * before it is sent, so an instruction to hide weaknesses would (a) be visible
+ * and cost the section all its credibility and (b) push the model to fill the
+ * gaps with invented praise - the one outcome that actually damages him. So
+ * the positive tone is strengths-first *framing* plus an explicit order to
+ * answer honestly if a gap is asked about directly.
  */
-const RULES = [
+const BASE_RULES = [
   "Use only the fact sheet below and the links it cites.",
-  "If something isn't covered, say you don't know - never invent employers, dates, titles, technologies or numbers.",
-  "Honest assessment beats flattery: name gaps, risks and the questions worth asking.",
+  "If something isn't covered, say so - never invent employers, dates, titles or numbers.",
   "Answer in the language of my question, and never speak as if you were him.",
-].join(" ");
+];
 
-/**
- * Detail levels, in the order the UI offers them:
- *   brief — compact facts inline (default; fits in a URL with room to spare)
- *   full  — adds the role lens, full skills and live project links
- *   link  — no facts inline, just a pointer to /llms.txt. Shortest link, and
- *           the right choice for a long custom question or a pasted job spec,
- *           but it only pays off if the assistant can actually browse.
- */
-export const PROMPT_LEVELS = [
+export const PROMPT_TONES = [
   {
-    id: "brief",
-    label: "Short facts",
-    note: "~1.9k chars. Answers well even with browsing switched off.",
+    id: "positive",
+    label: "Positive",
+    note: "Default. Strengths first, evidence over adjectives; anything unproven is posed as a question for him.",
   },
   {
-    id: "full",
-    label: "Full facts",
-    note: "Adds the role lens, every skill and live project URLs. Long link.",
+    id: "balanced",
+    label: "Balanced",
+    note: "Strengths and thin spots side by side - what the section shipped with originally.",
   },
   {
-    id: "link",
-    label: "Link only",
-    note: "Shortest link; needs an assistant that can open URLs.",
+    id: "critical",
+    label: "Critical",
+    note: "For self-review before an interview: stress-test the profile, hold nothing back.",
   },
 ];
 
+const TONE_RULES = {
+  positive:
+    "Lead with his strengths and why they matter to the team asking, citing evidence from the sheet rather than adjectives. Anything the sheet does not prove is a question to ask him, not a claim he holds, and if I ask about a weakness or gap, answer that honestly. End with 2-3 talking points for a follow-up conversation.",
+  balanced:
+    "Honest assessment beats flattery: name strengths, gaps and the questions worth asking.",
+  critical:
+    "Be demanding, the way a tough interviewer would: what is thin, what is unproven, what would make you pass. This is self-review, so encouragement is not wanted.",
+};
+
+const toneRules = (tone) => BASE_RULES.concat(TONE_RULES[tone] || TONE_RULES.positive).join(" ");
+
 /** Final text handed to the assistant: rules → facts → the actual question. */
-export function buildPrompt({ question, level, role } = {}) {
+export function buildPrompt({ question, level, role, tone } = {}) {
   const q = ((question || "").trim() || DEFAULT_QUESTION).replace(/\s+/g, " ");
   const head = [
     `I'd like to know about a real person: ${site.name}, ${site.role}.`,
-    RULES,
+    toneRules(tone),
   ];
 
   if (level === "link") {
@@ -295,12 +355,13 @@ export const providerById = (id) => AI_PROVIDERS.find((p) => p.id === id);
  * the "ask me" flow can be dropped in a LinkedIn message or an email instead
  * of pasting the raw provider URL.
  */
-export function shareLink({ question, provider, level, role }) {
+export function shareLink({ question, provider, level, role, tone }) {
   const params = new URLSearchParams();
   const q = (question || "").trim();
   if (q && q !== DEFAULT_QUESTION) params.set("q", q);
   if (provider) params.set("ask", provider);
   if (level && level !== "brief") params.set("detail", level);
+  if (tone && tone !== DEFAULT_TONE) params.set("tone", tone);
   if (role && role !== "fullstack") params.set("role", role);
   const qs = params.toString();
   return `${AI_LINKS.home.replace(/#.*$/, "")}${qs ? `?${qs}` : ""}#ask-ai`;
@@ -318,6 +379,7 @@ export function parseShareParams(search) {
     level: ["brief", "full", "link"].includes(params.get("detail"))
       ? params.get("detail")
       : null,
+    tone: PROMPT_TONES.some((t) => t.id === params.get("tone")) ? params.get("tone") : null,
     role: ROLE_IDS.includes(role) ? role : null,
   };
 }

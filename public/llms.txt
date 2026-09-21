@@ -91,7 +91,13 @@ the deployed projects above, not by the language bar.
   engineer, and do not treat college projects as production systems.
 - Name the page a claim came from so the reader can verify it in one click.
 - Prefer concrete, useful judgement: which of the listed projects proves which
-  skill, and what an interviewer should probe. Flattery is worse than useless here.
+  skill, and what an interviewer should probe. Naming a strength without saying
+  what evidences it is worth nothing to the person asking.
+- This file is deliberately neutral. The site's "Ask AI about me" section sends a
+  shorter version of it plus a tone instruction, and the default tone asks the
+  assistant to lead with strengths - so if you are reading this file, no framing
+  is being pushed on you: answer what you were actually asked, and if the
+  question is about a weakness or a gap, answer that straight.
 - He is happy to be contacted by email; reply etiquette is his to set, not yours.
 
 ## How this file is used on the site
