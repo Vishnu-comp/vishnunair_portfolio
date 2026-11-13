@@ -14,10 +14,10 @@ import {
 } from "lucide-react";
 import { site } from "./data/site";
 import resume from "./assets/VishnuResume.pdf";
+import "./ReelPortfolio.css";
 const craveImage = "https://github.com/user-attachments/assets/b03a310e-4238-4c11-a038-254607cc616c";
 const intervoImage = "https://github.com/user-attachments/assets/d64c04ba-8429-439b-ae19-fe38a6e69622";
 const certificate = "https://github.com/user-attachments/assets/7086f200-ad9b-497b-b743-ee89530c4073";
-import "./ReelPortfolio.css";
 
 const sections = [
   "about",
