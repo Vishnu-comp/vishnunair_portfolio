@@ -1,5 +1,6 @@
 
 
+import Tilt from "./Tilt";
 import React, { useState, useEffect } from "react";
 import { AiOutlineGithub, AiOutlineLink } from "react-icons/ai";
 import { ChevronLeft, ChevronRight } from "lucide-react";
@@ -100,9 +101,7 @@ const imagesSecond = [
     deployedLink,
     n,
   }) => (
-    <article
-      className="mx-auto mt-6 max-w-[1400px] overflow-hidden rounded-[2rem] bg-ink p-5 text-white md:p-10"
-    >
+    <Tilt as="article" max={2.5} className="mx-auto mt-6 max-w-[1400px] overflow-hidden rounded-[2rem] bg-ink p-5 text-white md:p-10">
       <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
         <div className="flex flex-col justify-between lg:col-span-5">
           <div>
@@ -194,7 +193,7 @@ const imagesSecond = [
           </div>
         </div>
       </div>
-    </article>
+    </Tilt>
   );
 
   return (
