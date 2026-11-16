@@ -5,7 +5,6 @@ import { ArrowRight, Download } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { site } from "../data/site";
 import { scrollToSection } from "../hooks/useNavigation";
-import PixelWord from "./PixelWord";
 
 /** Random neon pixel blocks that blink in the panel corner. */
 const PixelGlitch = () => {
@@ -85,27 +84,13 @@ const Hero = () => {
     : null;
 
   return (
-    <div className="relative overflow-hidden bg-paper px-4 pb-16 pt-28 dark:bg-black sm:px-6 md:px-10 md:pt-32">
-      {/* ---------- Pixel wordmark ---------- */}
-      <div className="mx-auto max-w-[1400px]">
-        <div className="flex items-center justify-between text-xs font-medium uppercase tracking-[0.18em] text-ink/60 dark:text-slate-400">
-          <span>Portfolio {new Date().getFullYear()}</span>
-          <span className="hidden sm:inline">Bengaluru, India</span>
-          <span className="inline-flex items-center gap-2">
-            <span className="h-2 w-2 rounded-full bg-neon ring-2 ring-ink/10 animate-pulse" aria-hidden="true" />
-            Open to work
-          </span>
-        </div>
-        <h1 className="sr-only">{site.name}</h1>
-        <PixelWord text="VISHNU" label={site.name} className="mt-5 w-full" />
-      </div>
-
+    <div className="relative overflow-hidden bg-paper px-4 pb-10 pt-24 dark:bg-black sm:px-3 md:px-6 md:pt-28">
       {/* ---------- Black panel with the intro ---------- */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
-        className="relative mx-auto mt-8 flex max-w-[1400px] flex-col-reverse items-center justify-between gap-10 overflow-hidden rounded-[2rem] bg-ink px-6 py-10 text-white md:flex-row md:gap-14 md:px-14 md:py-16"
+        className="relative mx-auto flex md:min-h-[calc(100vh-8rem)] max-w-[1400px] flex-col-reverse items-center justify-between gap-10 overflow-hidden rounded-[2rem] bg-ink px-6 pb-24 pt-10 text-white md:flex-row md:gap-14 md:px-14 md:pb-28 md:pt-14 md:rounded-[2.5rem]"
       >
         {/* neon pixel glitch corner */}
         <div className="pointer-events-none absolute inset-0 hidden opacity-60 md:block" aria-hidden="true">
@@ -113,25 +98,32 @@ const Hero = () => {
         </div>
 
         {/* ---------------- Left: copy ---------------- */}
-        <div className="relative z-10 flex-1 space-y-7 text-left">
-        <div className="space-y-4">
-          <p className="text-sm font-medium uppercase tracking-[0.18em] text-neon">
+        <div className="relative z-10 flex-1 space-y-8 text-left">
+        <div className="space-y-5">
+          <div className="flex flex-wrap items-center gap-3 text-xs font-medium uppercase tracking-[0.18em]">
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-white/80">
+              <span className="h-2 w-2 animate-pulse rounded-full bg-neon" aria-hidden="true" />
+              Open to work
+            </span>
+            <span className="hidden text-white/50 sm:inline">Bengaluru, India</span>
+          </div>
+          <h1 className="text-sm font-medium uppercase tracking-[0.18em] text-neon">
             Hi, I am Vishnu Nair
-          </p>
+          </h1>
 
           {/* Typewriter role line — fixed height so nothing shifts while typing */}
-          <div className="h-8 md:h-10 flex items-center" aria-live="off">
-            <p className="text-2xl md:text-4xl font-medium text-white truncate">
+          <div className="flex min-h-[3.5rem] items-start md:min-h-[8.5rem]" aria-live="off">
+            <p className="text-4xl font-semibold leading-[1.05] tracking-tight text-white sm:text-5xl md:text-6xl">
               {typedRole}
               <span
-                className="ml-1 inline-block h-6 md:h-7 w-[3px] translate-y-1 rounded-full bg-neon animate-caret"
+                className="ml-1 inline-block h-9 md:h-14 w-[4px] translate-y-1 rounded-full bg-neon animate-caret"
                 aria-hidden="true"
               />
             </p>
           </div>
         </div>
 
-        <p className="text-lg md:text-xl text-white/75 leading-relaxed max-w-xl">
+        <p className="text-base md:text-lg text-white/70 leading-relaxed max-w-xl">
           Building scalable, high-performance web applications with{" "}
           <span className="font-medium text-neon">React, Next.js & TypeScript</span>{" "}
           on the front end and{" "}
@@ -237,7 +229,7 @@ const Hero = () => {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.65 }}
-          className="flex divide-x divide-white/15 pt-4"
+          className="flex divide-x divide-white/15 border-t border-white/10 pt-6"
         >
           {site.stats.map((stat, i) => (
             <div key={stat.label} className={`flex flex-col ${i === 0 ? "pr-6 md:pr-10" : "px-6 md:px-10"}`}>
@@ -257,9 +249,9 @@ const Hero = () => {
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 1 }}
-        className="flex-1 flex justify-center items-center mb-14 md:mb-0 relative z-10"
+        className="flex-1 flex justify-center items-center relative z-10"
       >
-        <div className="relative w-64 sm:w-72 md:w-[22rem] aspect-square">
+        <div className="relative w-60 sm:w-72 md:w-[24rem] aspect-[4/5]">
           {headshotFailed ? (
             /* Local monogram — the hero never shows an empty column again */
             <div
