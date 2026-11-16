@@ -149,3 +149,53 @@
     background: #ffffff !important;
   }
 }
+
+/* ------------------------------------------------------------------
+ * Cosmos-inspired section language (unlayered so it wins over utilities)
+ * ------------------------------------------------------------------ */
+main :is(h1, h2).text-4xl,
+main :is(h1, h2).md\:text-5xl,
+main :is(h1, h2).sm\:text-5xl {
+  font-size: clamp(2.4rem, 6.2vw, 4.75rem);
+  line-height: 0.98;
+  font-weight: 500;
+  letter-spacing: -0.045em;
+}
+/* heading underline bars become a little pixel trail */
+main .h-1\.5.w-24,
+main .h-1.w-24 {
+  height: 0.55rem;
+  width: 0.55rem;
+  border-radius: 0;
+  background: #c8f64a !important;
+  box-shadow: 1.1rem 0 0 #0f1011, 2.2rem 0 0 #c8f64a;
+}
+main .mx-auto.h-1\.5.w-24 { transform: translateX(-1.1rem); }
+.dark main .h-1\.5.w-24,
+main .dark .h-1\.5.w-24 {
+  box-shadow: 1.1rem 0 0 #ffffff, 2.2rem 0 0 #c8f64a;
+}
+main .shadow-md,
+main .shadow-lg,
+main .shadow-xl,
+main .shadow-2xl {
+  box-shadow: none;
+}
+/* flat bordered cards, big radii */
+main .bg-white.rounded-2xl,
+main .bg-white.rounded-3xl,
+main .bg-white.rounded-xl {
+  border: 1px solid rgb(15 16 17 / 0.1);
+}
+main .rounded-2xl { border-radius: 1.75rem; }
+main .dark .bg-white,
+.dark main .bg-white {
+  border-color: rgb(255 255 255 / 0.1);
+}
+/* neon focus + links feel */
+a:hover { text-decoration-color: #c8f64a; }
+main [class*="bg-gradient-to-r"][class*="from-blue-"]:not(.bg-clip-text) {
+  background-image: none;
+  background-color: #0f1011;
+}
+main [class*="bg-gradient-to-r"][class*="from-blue-"]:not(.bg-clip-text):hover { background-color: #c8f64a; color: #0f1011; }
