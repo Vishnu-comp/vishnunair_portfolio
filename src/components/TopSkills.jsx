@@ -109,7 +109,7 @@ const TopSkills = () => (
               <h3 className="text-lg font-bold uppercase tracking-[0.14em] text-blue-600 dark:text-gold-300">
                 {group.title}
               </h3>
-              <span className="hidden sm:block text-sm text-gray-500 dark:text-slate-500">
+              <span className="hidden sm:block text-sm text-gray-500 dark:text-slate-400">
                 {group.blurb}
               </span>
               <span className="h-px flex-1 bg-gradient-to-r from-blue-200 to-transparent dark:from-gold-500/60 dark:from-slate-700" />
