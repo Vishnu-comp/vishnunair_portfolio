@@ -157,7 +157,7 @@ const DoodleField = ({ variant = 0, className = "" }) => (
   <div
     aria-hidden="true"
     className={cx(
-      "no-print pointer-events-none absolute inset-0 overflow-hidden text-blue-600/20 dark:text-gold-400/25",
+      "hidden no-print pointer-events-none absolute inset-0 overflow-hidden text-blue-600/20 dark:text-gold-400/25",
       className
     )}
   >
