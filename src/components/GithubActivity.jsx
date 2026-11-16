@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
+import SectionHead from "./SectionHead";
 import { motion } from "framer-motion";
 import {
   GitBranch,
@@ -360,20 +361,10 @@ const GithubActivity = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="mb-12 flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end"
+          className="mb-12 flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-end [&>div:first-child]:mb-0"
         >
-          <div>
-            <div className="flex items-center gap-3">
-              <Github className="h-9 w-9 text-gray-800 dark:text-white" />
-              <h2 className="text-4xl font-bold text-gray-800 md:text-5xl dark:text-white">
-                GitHub Activity
-              </h2>
-            </div>
-            <span className="mt-4 block h-1.5 w-24 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 dark:bg-gold-gradient" />
-            <p className="mt-6 max-w-2xl text-lg text-gray-600 dark:text-slate-400">
-              Live from the GitHub API — contribution calendar, commit streaks,
-              language mix and the repositories I keep coming back to.
-            </p>
+          <div className="flex-1">
+            <SectionHead dark n="04" tag="Open source" title="GitHub Activity" sub="Live from the GitHub API — contribution calendar, commit streaks, language mix and the repositories I keep coming back to." />
           </div>
 
           <div className="flex items-center gap-3">
