@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import SectionHead from "./SectionHead";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSearchParams } from "react-router-dom";
 import { ASK_AI_EVENTS, safeTrack } from "../utils/analytics";
@@ -354,17 +355,10 @@ const AskAI = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6 }}
-          className="mb-10 text-center"
+          className="mb-10"
         >
-          <span className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700 dark:border-gold-500/25 dark:bg-gold-500/10 dark:text-gold-200">
-            <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
-            No chatbot, no tracking
-          </span>
-          <h2 className="mt-4 text-3xl font-bold text-gray-900 md:text-4xl dark:text-white">
-            Ask an AI about me
-          </h2>
-          <span className="mx-auto mt-4 block h-1.5 w-24 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 dark:bg-gold-gradient" />
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-gray-600 md:text-lg dark:text-slate-400">
+          <SectionHead dark n="08" tag="No chatbot, no tracking" title="Ask an AI about me" />
+          <p className="mb-8 max-w-3xl text-base leading-relaxed text-white/75 md:text-lg">
             Curious whether I&apos;m worth a conversation? Send the question to
             ChatGPT, Claude, Perplexity or Gemini with a short fact sheet about
             me already typed in — every word stays editable before it is sent,
