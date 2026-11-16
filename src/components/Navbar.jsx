@@ -112,13 +112,13 @@ const Navbar = () => {
     <nav
       aria-label="Main"
       className={cx(
-        "no-print fixed inset-x-0 top-0 z-50 w-full border-b transition-all duration-300 ease-out-expo",
+        "no-print fixed inset-x-0 top-3 z-50 mx-auto w-[calc(100%-1.5rem)] max-w-[1200px] rounded-full border transition-all duration-300 ease-out-expo",
         scrolled
-          ? "border-gray-200/70 bg-white/90 py-2 shadow-lg shadow-slate-900/5 backdrop-blur-md dark:border-slate-800 dark:bg-slate-950/85 dark:shadow-black/20"
-          : "border-transparent bg-white/70 py-4 backdrop-blur-md dark:bg-slate-950/60"
+          ? "border-ink/10 bg-white/95 py-1 shadow-xl shadow-black/10 backdrop-blur-md dark:border-slate-700 dark:bg-slate-900/90"
+          : "border-ink/5 bg-white/90 py-2 shadow-md shadow-black/5 backdrop-blur-md dark:border-slate-800 dark:bg-slate-900/70"
       )}
     >
-      <div className="container mx-auto flex min-h-[3.5rem] items-center justify-between px-4">
+      <div className="flex min-h-[3rem] items-center justify-between gap-3 px-4 sm:px-5">
         {/* Logo — shrinks slightly once scrolled.
             flex-shrink-0 + a local src guarantee the mark always occupies its
             left slot at a stable size, even while other assets load. */}
@@ -136,7 +136,7 @@ const Navbar = () => {
             alt={`${site.name} logo`}
             className={cx(
               "w-auto transition-all duration-300",
-              scrolled ? "h-9" : "h-12"
+              scrolled ? "h-8" : "h-10"
             )}
           />
         </Link>
@@ -157,7 +157,7 @@ const Navbar = () => {
             to="/resume"
             onClick={closeMobileMenu}
             className={cx(
-              "hidden items-center gap-2 rounded-full bg-blue-600 font-semibold text-white transition-all duration-300 dark:bg-gold-gradient dark:text-black",
+              "hidden items-center gap-2 rounded-full bg-ink font-semibold text-white transition-all duration-300 dark:bg-neon dark:text-ink",
               "hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-lg sm:inline-flex dark:hover:bg-gold-gradient dark:hover:opacity-90",
               scrolled ? "px-4 py-1.5 text-sm" : "px-6 py-2 text-base"
             )}
@@ -204,7 +204,7 @@ const Navbar = () => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
               transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-              className="absolute inset-x-0 top-full z-50 border-t border-gray-100 bg-white/95 shadow-xl backdrop-blur-md lg:hidden dark:border-slate-800 dark:bg-slate-950/95"
+              className="absolute inset-x-0 top-full z-50 mt-2 rounded-3xl border border-ink/10 bg-white/95 shadow-xl backdrop-blur-md lg:hidden dark:border-slate-800 dark:bg-slate-950/95"
             >
               <ul className="max-h-[70vh] space-y-1 overflow-y-auto px-4 py-4">
                 {navItems.map((item) => {
