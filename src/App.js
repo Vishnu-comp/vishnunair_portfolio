@@ -26,7 +26,7 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
-      <div className="flex min-h-screen flex-col bg-white text-gray-800 dark:bg-surface dark:text-slate-200">
+      <div className="flex min-h-screen flex-col bg-paper text-ink dark:bg-surface dark:text-slate-200">
         <Navbar />
 
         <main className="flex-1">
