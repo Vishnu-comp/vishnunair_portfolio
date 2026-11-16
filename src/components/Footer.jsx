@@ -61,7 +61,7 @@ const Footer = () => {
               {site.role} building scalable, high-performance web applications
               with React, Next.js, Java Spring Boot and Node.
             </p>
-            <p className="mt-4 flex items-center gap-2 text-sm text-gray-500 dark:text-slate-500">
+            <p className="mt-4 flex items-center gap-2 text-sm text-gray-500 dark:text-slate-400">
               <MapPin className="h-4 w-4 text-blue-500 dark:text-gold-400" aria-hidden="true" />
               Bengaluru, India · Open to opportunities
             </p>
@@ -195,7 +195,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-gray-100 pt-8 text-sm text-gray-500 sm:flex-row dark:border-slate-800 dark:text-slate-500">
+        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-gray-100 pt-8 text-sm text-gray-500 sm:flex-row dark:border-slate-800 dark:text-slate-400">
           <p>
             © {year} {site.name}. All rights reserved.
           </p>
@@ -203,7 +203,7 @@ const Footer = () => {
             Built with React, Tailwind CSS & Framer Motion
             <Heart className="h-4 w-4 text-rose-500" aria-hidden="true" />
             <span className="mx-1 text-gray-300 dark:text-slate-700" aria-hidden="true">·</span>
-            <span className="text-gray-400 dark:text-slate-500">
+            <span className="text-gray-400 dark:text-slate-400">
               press{" "}
               <kbd className="rounded border border-gray-200 bg-gray-50 px-1.5 py-0.5 font-sans text-[10px] font-semibold text-gray-500 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-400">
                 Ctrl
