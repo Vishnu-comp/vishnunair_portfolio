@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import SectionHead from "./SectionHead";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiMail, FiUser, FiMessageSquare } from "react-icons/fi";
 import {
@@ -145,17 +146,9 @@ const ContactForm = () => {
           whileInView="visible"
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center space-y-4 mb-16"
+          className="mb-10"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-blue-400 dark:bg-gold-gradient">
-              Let's Connect
-            </span>
-          </h2>
-          <p className="text-lg text-gray-600 dark:text-slate-400 max-w-2xl mx-auto">
-            Have a project in mind? I'd love to hear about it. Messages go
-            straight to my inbox.
-          </p>
+          <SectionHead n="07" tag="Contact" title="Let's Connect" sub="Have a project in mind? I'd love to hear about it. Messages go straight to my inbox." />
         </motion.div>
 
         {/* Form Section */}
