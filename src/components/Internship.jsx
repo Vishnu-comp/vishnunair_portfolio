@@ -24,7 +24,7 @@ const WorkLink = ({ href, label = "View Work" }) => {
   if (!href) return null;
   const external = /^https?:\/\//i.test(href);
   const className =
-    "inline-flex items-center gap-2 rounded-full bg-ink px-7 py-3.5 font-semibold text-white transition-all duration-300 hover:bg-neon hover:text-ink group dark:bg-neon dark:text-ink";
+    "inline-flex items-center gap-2 rounded-full bg-ink px-7 py-3.5 font-semibold text-white transition-all duration-300 hover:bg-neon hover:text-ink group dark:bg-neon dark:text-ink dark:hover:bg-white";
   const inner = (
     <>
       <span>{label}</span>
@@ -149,7 +149,7 @@ const InternshipExperience = () => {
               </h4>
               <div className="flex flex-wrap gap-2">
                 {exp.technologies.map((tech) => (
-                  <span key={tech} className="rounded-full border border-ink/30 px-5 py-2 text-sm font-medium transition-colors hover:bg-neon hover:text-ink dark:border-white/30">
+                  <span key={tech} className="rounded-full border border-ink/30 px-5 py-2 text-sm font-medium transition-colors hover:border-neon hover:bg-neon hover:text-ink dark:border-white/30">
                     {tech}
                   </span>
                 ))}
