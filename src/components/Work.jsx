@@ -111,7 +111,7 @@ const Work = () => {
             <div className="mt-10 flex flex-wrap gap-4">
               <a
                 href="#work-highlights"
-                className="inline-flex items-center gap-2 rounded-full bg-blue-600 px-6 py-3 font-semibold text-white shadow-lg shadow-blue-500/20 transition hover:-translate-y-0.5 hover:bg-blue-700 dark:bg-gold-gradient dark:text-black dark:shadow-gold-500/25"
+                className="inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 font-semibold text-white transition hover:-translate-y-0.5 hover:bg-neon hover:text-ink dark:bg-neon dark:text-ink dark:hover:bg-white"
               >
                 Explore the work
                 <ArrowUpRight className="h-5 w-5" />
@@ -120,7 +120,7 @@ const Work = () => {
                 href="https://app.notion.com/p/Shoffr-Work-3078cf31ef1b80dfadfdf0daebb9fdd2"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-blue-200 dark:border-slate-700 bg-white/70 dark:bg-slate-800/60 px-6 py-3 font-semibold text-blue-700 dark:text-gold-200 transition hover:border-blue-400 hover:bg-white dark:hover:bg-slate-800"
+                className="inline-flex items-center gap-2 rounded-full border border-ink/30 bg-transparent px-6 py-3 font-semibold text-ink transition hover:border-ink hover:bg-ink hover:text-white dark:border-white/30 dark:text-white dark:hover:border-neon dark:hover:bg-neon dark:hover:text-ink"
               >
                 Open project notes
                 <ExternalLink className="h-4 w-4" />
@@ -212,10 +212,10 @@ const Work = () => {
               {currentResponsibilities.map((responsibility) => (
                 <div
                   key={responsibility}
-                  className="flex items-start gap-3 rounded-2xl bg-gradient-to-r from-blue-50/80 to-white dark:from-gold-500/10 dark:to-slate-800/40 p-4 text-gray-600 dark:text-slate-400"
+                  className="flex items-start gap-3 rounded-2xl border border-ink/10 bg-ink/[0.04] p-4 text-ink/85 dark:border-white/10 dark:bg-white/[0.06] dark:text-white/85"
                 >
-                  <span className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-blue-500 dark:bg-gold-500">
-                    <Check className="h-4 w-4 text-white" />
+                  <span className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-neon">
+                    <Check className="h-4 w-4 text-ink" />
                   </span>
                   <p className="leading-6">{responsibility}</p>
                 </div>
@@ -270,21 +270,21 @@ const Work = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.45, delay: index * 0.06 }}
-                className="group rounded-2xl border border-gray-100 dark:border-slate-700/60 bg-white/85 dark:bg-slate-900/70 p-6 shadow-[0_8px_30px_rgba(15,23,42,0.05)] dark:shadow-black/50 transition duration-300 hover:-translate-y-1 hover:border-blue-200 dark:hover:border-gold-500/40 hover:shadow-[0_16px_35px_rgba(59,130,246,0.12)] dark:hover:shadow-[0_16px_35px_rgba(187,152,91,0.15)]"
+                className="group rounded-2xl border border-ink/10 bg-white p-6 transition duration-300 hover:-translate-y-1 hover:border-ink hover:bg-ink hover:text-white dark:border-white/10 dark:bg-white/[0.04] dark:hover:border-neon dark:hover:bg-neon dark:hover:text-ink"
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-sm font-bold tracking-widest text-blue-500 dark:text-gold-300">
+                  <span className="text-sm font-bold tracking-widest text-ink/70 group-hover:text-neon dark:text-neon dark:group-hover:text-ink">
                     {item.number}
                   </span>
-                  <ArrowUpRight className="h-5 w-5 text-gray-300 dark:text-slate-600 transition group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-blue-500 dark:group-hover:text-gold-300" />
+                  <ArrowUpRight className="h-5 w-5 text-ink/40 transition group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-neon dark:text-white/50 dark:group-hover:text-ink" />
                 </div>
-                <h3 className="mt-8 min-h-[4rem] text-xl font-bold leading-snug text-gray-900 dark:text-white">
+                <h3 className="mt-8 min-h-[4rem] text-xl font-bold leading-snug text-ink group-hover:text-white dark:text-white dark:group-hover:text-ink">
                   {item.title}
                 </h3>
-                <p className="mt-4 text-sm leading-6 text-gray-600 dark:text-slate-400">
+                <p className="mt-4 text-sm leading-6 text-ink/70 group-hover:text-white/80 dark:text-white/70 dark:group-hover:text-ink/80">
                   {item.description}
                 </p>
-                <div className="mt-6 h-1 w-10 rounded-full bg-blue-200 dark:bg-slate-700 transition-all duration-300 group-hover:w-16 group-hover:bg-blue-500 dark:group-hover:bg-gold-400" />
+                <div className="mt-6 h-1 w-10 rounded-full bg-ink/20 transition-all duration-300 group-hover:w-16 group-hover:bg-neon dark:bg-white/20 dark:group-hover:bg-ink" />
               </motion.article>
             ))}
           </div>
@@ -292,10 +292,10 @@ const Work = () => {
       </section>
 
       <section className="px-6 pb-20 md:px-12 lg:px-20">
-        <div className="mx-auto max-w-7xl rounded-3xl bg-gradient-to-r from-blue-600 to-blue-700 dark:bg-gold-gradient px-6 py-10 text-white dark:text-black shadow-xl shadow-blue-500/20 dark:shadow-gold-500/25 md:px-12 md:py-12">
+        <div className="mx-auto max-w-7xl rounded-3xl bg-neon px-6 py-10 text-ink shadow-none md:px-12 md:py-12">
           <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-blue-100 dark:text-black/70">
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-ink/70">
                 Want the full context?
               </p>
               <h2 className="mt-3 text-3xl font-bold md:text-4xl">
@@ -306,7 +306,7 @@ const Work = () => {
               href="https://app.notion.com/p/Shoffr-Work-3078cf31ef1b80dfadfdf0daebb9fdd2"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex flex-shrink-0 items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-blue-700 transition hover:bg-blue-50"
+              className="inline-flex flex-shrink-0 items-center gap-2 rounded-full bg-ink px-6 py-3 font-semibold text-white transition hover:bg-white hover:text-ink"
             >
               View notes
               <ExternalLink className="h-4 w-4" />
