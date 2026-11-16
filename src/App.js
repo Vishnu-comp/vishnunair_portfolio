@@ -16,6 +16,8 @@ import CardPage from "./components/CardPage";
 import SectionHead from "./components/SectionHead";
 import Marquee from "./components/Marquee";
 import Footer from "./components/Footer";
+import CursorGlow from "./components/CursorGlow";
+import ScrollProgress from "./components/ScrollProgress";
 import NotFound from "./components/NotFound";
 import ScrollToTop from "./components/ScrollToTop";
 import FloatingActions from "./components/FloatingActions";
@@ -103,6 +105,8 @@ function App() {
       </div>
 
       {/* Persistent overlays — rendered outside <main> so they survive route changes */}
+      <ScrollProgress />
+      <CursorGlow />
       <FloatingActions />
       <MobileBottomNav />
       <SystemOverlay />
