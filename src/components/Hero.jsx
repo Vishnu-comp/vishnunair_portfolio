@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import Scene3D from "./Scene3D";
+import Tilt from "./Tilt";
 import { Link } from "react-router-dom";
 import { ArrowRight, Download } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
@@ -112,8 +114,14 @@ const Hero = () => {
           </h1>
 
           {/* Typewriter role line — fixed height so nothing shifts while typing */}
-          <div className="flex min-h-[3.5rem] items-start md:min-h-[8.5rem]" aria-live="off">
-            <p className="text-4xl font-semibold leading-[1.05] tracking-tight text-white sm:text-5xl md:text-6xl">
+          <div className="grid min-h-[5.75rem] items-start md:min-h-0" aria-live="off">
+            {site.roles.map((r) => (
+              <span key={r} aria-hidden="true" className="invisible col-start-1 row-start-1 hidden text-4xl font-semibold leading-[1.05] tracking-tight md:block md:text-5xl lg:text-6xl">
+                {r}
+                <span className="ml-1 inline-block w-[4px]" />
+              </span>
+            ))}
+            <p className="col-start-1 row-start-1 text-4xl font-semibold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
               {typedRole}
               <span
                 className="ml-1 inline-block h-9 md:h-14 w-[4px] translate-y-1 rounded-full bg-neon animate-caret"
@@ -251,7 +259,8 @@ const Hero = () => {
         transition={{ duration: 1 }}
         className="flex-1 flex justify-center items-center relative z-10"
       >
-        <div className="relative w-60 sm:w-72 md:w-[24rem] aspect-[4/5]">
+        <Tilt max={10} className="relative w-60 sm:w-72 md:w-[24rem] aspect-[4/5] rounded-[2rem]">
+          <Scene3D className="absolute left-1/2 top-1/2 z-0 h-[190%] w-[190%] -translate-x-1/2 -translate-y-1/2" />
           {headshotFailed ? (
             /* Local monogram — the hero never shows an empty column again */
             <div
@@ -272,7 +281,7 @@ const Hero = () => {
               className="relative z-10 w-full h-full object-cover rounded-[2rem] border-4 border-neon"
             />
           )}
-        </div>
+        </Tilt>
       </motion.div>
 
       {/* Scroll cue */}
