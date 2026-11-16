@@ -150,7 +150,7 @@ const Segmented = ({ label, value, options, onChange, name, showNote = false }) 
   const active = options.find((o) => o.id === value);
   return (
     <div className="min-w-0">
-      <span className="mb-2 block text-[11px] font-semibold uppercase tracking-wider text-gray-400 dark:text-slate-500">
+      <span className="mb-2 block text-[11px] font-semibold uppercase tracking-wider text-gray-400 dark:text-slate-400">
         {label}
       </span>
       <div
@@ -191,7 +191,7 @@ const Segmented = ({ label, value, options, onChange, name, showNote = false }) 
       {/* The caption exists so a choice that changes the *answer* — the tone —
           is explained where it is made, not hidden in a tooltip. */}
       {showNote && active && active.note && (
-        <p className="mt-2 max-w-md text-[11px] leading-relaxed text-gray-500 dark:text-slate-500">
+        <p className="mt-2 max-w-md text-[11px] leading-relaxed text-gray-500 dark:text-slate-400">
           {active.note}
         </p>
       )}
@@ -470,7 +470,7 @@ const AskAI = () => {
                       "font-mono tabular-nums",
                       meter === "over" && "text-rose-600 dark:text-rose-400",
                       meter === "tight" && "text-amber-600 dark:text-amber-400",
-                      meter === "ok" && "text-gray-500 dark:text-slate-500"
+                      meter === "ok" && "text-gray-500 dark:text-slate-400"
                     )}
                   >
                     {prompt.length.toLocaleString()} / {PROMPT_CHAR_LIMIT.toLocaleString()} chars ·{" "}
@@ -499,7 +499,7 @@ const AskAI = () => {
                     }}
                   />
                 </div>
-                <p className="mt-2 text-[11px] leading-relaxed text-gray-500 dark:text-slate-500">
+                <p className="mt-2 text-[11px] leading-relaxed text-gray-500 dark:text-slate-400">
                   {meter === "over" ? (
                     <>
                       Past {PROMPT_CHAR_LIMIT.toLocaleString()} characters this section stops guessing
@@ -597,7 +597,7 @@ const AskAI = () => {
                         </span>
                       </span>
                       <ArrowUpRight
-                        className="mt-1 h-4 w-4 shrink-0 text-gray-300 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-gray-500 dark:text-slate-600 dark:group-hover:text-slate-300"
+                        className="mt-1 h-4 w-4 shrink-0 text-gray-300 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-gray-500 dark:text-slate-400 dark:group-hover:text-slate-300"
                         aria-hidden="true"
                       />
                     </a>
@@ -674,7 +674,7 @@ const AskAI = () => {
                 )}
               </AnimatePresence>
 
-              <p className="mt-3 border-t border-gray-100 pt-3 text-[11px] leading-relaxed text-gray-500 dark:border-slate-800 dark:text-slate-500">
+              <p className="mt-3 border-t border-gray-100 pt-3 text-[11px] leading-relaxed text-gray-500 dark:border-slate-800 dark:text-slate-400">
                 You&apos;ll need to be signed in to the assistant. It can&apos;t open my resume
                 PDF or private repositories — it only sees the text in this prompt,
                 {" "}
