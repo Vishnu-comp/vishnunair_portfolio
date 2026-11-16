@@ -6,13 +6,14 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
   theme: {
     extend: {
+      borderRadius: { "2xl": "1.5rem", "3xl": "2rem" },
       fontFamily: {
         // Body text — Inter: a crisp, modern neutral that reads far better
         // on screen than the old Roboto fallback.
-        sans: ["Inter", "ui-sans-serif", "system-ui", "-apple-system", "sans-serif"],
+        sans: ["Switzer", "Inter", "ui-sans-serif", "system-ui", "-apple-system", "sans-serif"],
         // Headings / display type — Space Grotesk: geometric, slightly
         // technical character that gives the portfolio its own voice.
-        display: ["Space Grotesk", "Inter", "ui-sans-serif", "sans-serif"],
+        display: ["Switzer", "Inter", "ui-sans-serif", "sans-serif"],
         // Code, kbd chips and the dev terminal easter egg.
         mono: ["JetBrains Mono", "ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
       },
@@ -45,23 +46,55 @@ module.exports = {
         // Dark-mode accent: warm cream→bronze gold. Anchored on the exact
         // gradient stops used by `bg-gold-gradient` (#fff3ca / #bb985b).
         gold: {
-          50: "#fdf8e9",
-          100: "#fff3ca",
-          200: "#f5e3ab",
-          300: "#e9d190",
-          400: "#dcb96f",
-          500: "#cfa75c",
-          600: "#bb985b",
-          700: "#9a7a45",
-          800: "#7c6136",
-          900: "#64502d",
+          50: "#f7ffe2",
+          100: "#eaffb8",
+          200: "#dcff8f",
+          300: "#cdff5c",
+          400: "#bdf536",
+          500: "#a8e61a",
+          600: "#8cc40e",
+          700: "#6f9e0b",
+          800: "#587d0a",
+          900: "#455f0a",
         },
+        // Light-mode accent scale: replaces the old blue. Light steps are warm
+        // paper greys, 300-400 are the neon-green accent, 600+ is ink.
+        blue: {
+          50: "#f3f3f0",
+          100: "#eaeae6",
+          200: "#dcdcd6",
+          300: "#c8f64a",
+          400: "#9fdc12",
+          500: "#4f9d00",
+          600: "#0f1011",
+          700: "#1c1d1f",
+          800: "#2a2b2d",
+          900: "#0f1011",
+        },
+        gray: {
+          50: "#f7f7f5",
+          100: "#efefec",
+          200: "#e2e2de",
+          300: "#cfcfca",
+          400: "#9a9b9d",
+          500: "#6b6c6f",
+          600: "#4d4e51",
+          700: "#35363a",
+          800: "#1c1d1f",
+          900: "#0f1011",
+        },
+        ink: "#0f1011",
+        paper: "#f5f5f5",
+        neon: "#c8f64a",
+        ember: "#ff6a2b",
       },
       backgroundImage: {
         // The dark-mode accent gradient (used as bg + gradient text).
-        "gold-gradient": "linear-gradient(127.56deg, #fff3ca -6.75%, #bb985b 105.89%)",
+        "gold-gradient": "linear-gradient(127.56deg, #dcff8f -6.75%, #9be000 105.89%)",
       },
       keyframes: {
+        pxIn: { from: { opacity: "0", transform: "scale(0.2)" }, to: { opacity: "1", transform: "scale(1)" } },
+        pxGlitch: { "0%,100%": { opacity: "1" }, "50%": { opacity: "0.15" } },
         // Referenced by ContactForm.jsx background blobs — this keyframe was
         // previously undefined, so `animate-blob` silently did nothing.
         blob: {
@@ -95,6 +128,8 @@ module.exports = {
         },
       },
       animation: {
+        "px-in": "pxIn 0.5s steps(3, end) both",
+        "px-glitch": "pxGlitch 2.4s steps(2, end) infinite",
         blob: "blob 9s ease-in-out infinite",
         // Stagger helpers so the two blobs don't move in lockstep.
         "delay-2000": "blob 9s ease-in-out 2s infinite",
