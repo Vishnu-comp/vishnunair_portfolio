@@ -24,7 +24,7 @@
   }
 
   body {
-    @apply bg-white text-gray-800 antialiased dark:bg-black dark:text-slate-200;
+    @apply bg-paper text-ink antialiased dark:bg-black dark:text-slate-200;
     /* Animate the light<->dark background/text swap instead of snapping */
     transition: background-color 0.3s ease, color 0.3s ease;
     /*
@@ -36,7 +36,7 @@
   }
 
   ::selection {
-    @apply bg-blue-500/25 text-blue-900 dark:bg-gold-400/30 dark:text-white;
+    @apply bg-neon text-ink dark:bg-neon dark:text-ink;
   }
 
   /*
@@ -53,8 +53,10 @@
   h5,
   h6 {
     font-family: theme("fontFamily.display");
-    letter-spacing: -0.02em;
+    letter-spacing: -0.035em;
+    font-weight: 500;
   }
+  h1, h2 { font-weight: 500; }
 
   /*
    * Chrome/Edge paint autofilled fields with a white background, which looks
@@ -78,7 +80,14 @@
   }
 }
 
+@layer components {
+  /* Cosmos-style surfaces: flat paper page, big rounded panels, no soft blobs. */
+  .blur-3xl { opacity: 0.35; }
+  .shadow-lg, .shadow-xl, .shadow-2xl { --tw-shadow-color: rgb(15 16 17 / 0.08); }
+}
+
 @layer utilities {
+
   .hide-scrollbar {
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* Internet Explorer 10+ */
@@ -91,7 +100,7 @@
   .bg-dots {
     background-image: radial-gradient(
       circle,
-      rgb(59 130 246 / 0.14) 1px,
+      rgb(15 16 17 / 0.10) 1px,
       transparent 1px
     );
     background-size: 22px 22px;
@@ -101,7 +110,7 @@
   .dark .bg-dots {
     background-image: radial-gradient(
       circle,
-      rgb(220 185 111 / 0.10) 1px,
+      rgb(200 246 74 / 0.10) 1px,
       transparent 1px
     );
   }
