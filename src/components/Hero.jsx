@@ -1,11 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import Scene3D from "./Scene3D";
+import Tilt from "./Tilt";
 import { Link } from "react-router-dom";
 import { ArrowRight, Download } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
 import { site } from "../data/site";
 import { scrollToSection } from "../hooks/useNavigation";
-import DoodleField from "./Doodles";
+
+/** Random neon pixel blocks that blink in the panel corner. */
+const PixelGlitch = () => {
+  const cells = Array.from({ length: 70 }, (_, i) => {
+    const r = (n) => { const x = Math.sin(i * 12.9898 + n * 78.233) * 43758.5453; return x - Math.floor(x); };
+    return { left: 55 + r(1) * 45, top: r(2) * 100, size: 6 + Math.floor(r(3) * 3) * 6, delay: r(4) * 2400 };
+  });
+  return (
+    <>
+      {cells.map((c, i) => (
+        <span key={i} className="absolute animate-px-glitch bg-neon" style={{ left: `${c.left}%`, top: `${c.top}%`, width: c.size, height: c.size, animationDelay: `${c.delay}ms`, opacity: 0.55 }} />
+      ))}
+    </>
+  );
+};
 
 /**
  * Types → holds → deletes → next role. Respects prefers-reduced-motion by
@@ -70,53 +86,56 @@ const Hero = () => {
     : null;
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
-      className="relative bg-gradient-to-br from-blue-50 via-white to-blue-100/70 dark:from-slate-950 dark:via-black dark:to-slate-900 min-h-screen flex flex-col-reverse md:flex-row items-center justify-between px-6 md:px-16 lg:px-28 pt-28 pb-24 overflow-hidden"
-    >
-      {/* Decorative backdrop: dot grid + soft blobs + hand-drawn doodles
-          (two of them sketch themselves in on load) */}
-      <div className="pointer-events-none absolute inset-0 bg-dots" aria-hidden="true" />
-      <div className="pointer-events-none absolute -top-24 -left-24 h-96 w-96 rounded-full bg-blue-200/40 blur-3xl dark:bg-gold-500/10" aria-hidden="true" />
-      <div className="pointer-events-none absolute bottom-0 -right-24 h-96 w-96 rounded-full bg-indigo-200/40 blur-3xl dark:bg-gold-400/10" aria-hidden="true" />
-      <DoodleField variant={0} />
-
-      {/* ---------------- Left: copy ---------------- */}
+    <div className="relative overflow-hidden bg-paper px-4 pb-10 pt-24 dark:bg-black sm:px-3 md:px-6 md:pt-28">
+      {/* ---------- Black panel with the intro ---------- */}
       <motion.div
-        initial={{ x: -100, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-        className="flex-1 text-left space-y-7 relative z-10"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
+        className="relative mx-auto flex md:min-h-[calc(100vh-8rem)] max-w-[1400px] flex-col-reverse items-center justify-between gap-10 overflow-hidden rounded-[2rem] bg-ink px-6 pb-24 pt-10 text-white md:flex-row md:gap-14 md:px-14 md:pb-28 md:pt-14 md:rounded-[2.5rem]"
       >
+        {/* neon pixel glitch corner */}
+        <div className="pointer-events-none absolute inset-0 hidden opacity-60 md:block" aria-hidden="true">
+          <PixelGlitch />
+        </div>
 
-        <div className="space-y-4">
-          <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white leading-tight">
-            Hi, I am{" "}
-            <span className="text-blue-600 dark:bg-gold-gradient dark:bg-clip-text dark:text-transparent relative isolate">
-              Vishnu Nair
-              <div className="absolute bottom-0 left-0 w-full h-2 bg-blue-200 dark:bg-gold-500/30 -z-10 transform -rotate-2"></div>
+        {/* ---------------- Left: copy ---------------- */}
+        <div className="relative z-10 flex-1 space-y-8 text-left">
+        <div className="space-y-5">
+          <div className="flex flex-wrap items-center gap-3 text-xs font-medium uppercase tracking-[0.18em]">
+            <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-white/80">
+              <span className="h-2 w-2 animate-pulse rounded-full bg-neon" aria-hidden="true" />
+              Open to work
             </span>
+            <span className="hidden text-white/50 sm:inline">Bengaluru, India</span>
+          </div>
+          <h1 className="text-sm font-medium uppercase tracking-[0.18em] text-neon">
+            Hi, I am Vishnu Nair
           </h1>
 
           {/* Typewriter role line — fixed height so nothing shifts while typing */}
-          <div className="h-8 md:h-10 flex items-center" aria-live="off">
-            <p className="text-xl md:text-2xl font-semibold text-gray-700 dark:text-slate-300 truncate">
+          <div className="grid min-h-[5.75rem] items-start md:min-h-0" aria-live="off">
+            {site.roles.map((r) => (
+              <span key={r} aria-hidden="true" className="invisible col-start-1 row-start-1 hidden text-4xl font-semibold leading-[1.05] tracking-tight md:block md:text-5xl lg:text-6xl">
+                {r}
+                <span className="ml-1 inline-block w-[4px]" />
+              </span>
+            ))}
+            <p className="col-start-1 row-start-1 text-4xl font-semibold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
               {typedRole}
               <span
-                className="ml-1 inline-block h-6 md:h-7 w-[3px] translate-y-1 rounded-full bg-blue-500 dark:bg-gold-400 animate-caret"
+                className="ml-1 inline-block h-9 md:h-14 w-[4px] translate-y-1 rounded-full bg-neon animate-caret"
                 aria-hidden="true"
               />
             </p>
           </div>
         </div>
 
-        <p className="text-lg md:text-xl text-gray-600 dark:text-slate-400 leading-relaxed max-w-xl">
+        <p className="text-base md:text-lg text-white/70 leading-relaxed max-w-xl">
           Building scalable, high-performance web applications with{" "}
-          <span className="font-medium text-blue-600 dark:text-gold-300">React, Next.js & TypeScript</span>{" "}
+          <span className="font-medium text-neon">React, Next.js & TypeScript</span>{" "}
           on the front end and{" "}
-          <span className="font-medium text-blue-600 dark:text-gold-300">
+          <span className="font-medium text-neon">
             Java, Spring Boot Python & Node.js
           </span>{" "}
           behind it — currently engineering ride workflows at Shoffr.
@@ -132,14 +151,14 @@ const Hero = () => {
           <button
             type="button"
             onClick={() => scrollToSection("#portfolio")}
-            className="group inline-flex items-center gap-2 rounded-full bg-blue-600 px-7 py-3.5 font-semibold text-white shadow-lg shadow-blue-500/25 transition-all duration-300 hover:-translate-y-0.5 hover:bg-blue-700 hover:shadow-xl dark:bg-gold-gradient dark:text-black dark:shadow-gold-500/25 dark:hover:bg-gold-gradient dark:hover:shadow-gold-500/40 focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-300/60"
+            className="group inline-flex items-center gap-2 rounded-full bg-neon px-7 py-3.5 font-semibold text-ink transition-all duration-300 hover:-translate-y-0.5 hover:bg-white focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-300/60"
           >
             View My Work
             <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true" />
           </button>
           <Link
             to="/resume"
-            className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-white/70 px-7 py-3.5 font-semibold text-blue-700 backdrop-blur transition-all duration-300 hover:-translate-y-0.5 hover:border-blue-400 hover:bg-white focus:outline-none focus-visible:ring-4 focus-visible:ring-blue-300/40 dark:border-slate-700 dark:bg-slate-800/60 dark:text-gold-200 dark:hover:border-gold-500 dark:hover:bg-slate-800"
+            className="inline-flex items-center gap-2 rounded-full border border-white/30 px-7 py-3.5 font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:border-neon hover:text-neon focus:outline-none focus-visible:ring-4 focus-visible:ring-neon/40"
           >
             <Download className="h-5 w-5" aria-hidden="true" />
             Download Resume
@@ -157,7 +176,7 @@ const Hero = () => {
             href={`mailto:${site.email}`}
             aria-label="Email Vishnu Nair"
             title="Email"
-            className="p-3 bg-white dark:bg-slate-800 dark:text-slate-200 shadow-md rounded-xl hover:bg-blue-50 dark:hover:bg-slate-700 hover:scale-110 transition-all duration-300"
+            className="p-3 bg-white/10 text-white rounded-xl hover:bg-neon hover:text-ink hover:scale-110 transition-all duration-300"
           >
             <svg className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
               <path
@@ -175,7 +194,7 @@ const Hero = () => {
             rel="noopener noreferrer"
             aria-label="Vishnu Nair on GitHub"
             title="GitHub"
-            className="p-3 bg-white dark:bg-slate-800 dark:text-slate-200 shadow-md rounded-xl hover:bg-blue-50 dark:hover:bg-slate-700 hover:scale-110 transition-all duration-300"
+            className="p-3 bg-white/10 text-white rounded-xl hover:bg-neon hover:text-ink hover:scale-110 transition-all duration-300"
           >
             <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
               <path
@@ -192,7 +211,7 @@ const Hero = () => {
             rel="noopener noreferrer"
             aria-label="Vishnu Nair on LinkedIn"
             title="LinkedIn"
-            className="p-3 bg-white dark:bg-slate-800 dark:text-slate-200 shadow-md rounded-xl hover:bg-blue-50 dark:hover:bg-slate-700 hover:scale-110 transition-all duration-300"
+            className="p-3 bg-white/10 text-white rounded-xl hover:bg-neon hover:text-ink hover:scale-110 transition-all duration-300"
           >
             <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
               <path d="M19 3a2 2 0 012 2v14a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h14m-.5 15.5v-5.3a3.26 3.26 0 00-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 011.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 001.68-1.68c0-.93-.75-1.69-1.68-1.69s-1.69.76-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
@@ -206,7 +225,7 @@ const Hero = () => {
               rel="noopener noreferrer"
               aria-label="Chat with Vishnu Nair on WhatsApp"
               title="WhatsApp"
-              className="p-3 bg-white dark:bg-slate-800 dark:text-slate-200 shadow-md rounded-xl hover:bg-emerald-50 dark:hover:bg-slate-700 hover:text-emerald-600 dark:hover:text-emerald-400 hover:scale-110 transition-all duration-300"
+              className="p-3 bg-white/10 text-white rounded-xl hover:bg-neon hover:text-ink hover:scale-110 transition-all duration-300"
             >
               <FaWhatsapp className="w-6 h-6" aria-hidden="true" />
             </a>
@@ -218,44 +237,38 @@ const Hero = () => {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.65 }}
-          className="flex divide-x divide-gray-200 dark:divide-slate-700/60 pt-4"
+          className="flex divide-x divide-white/15 border-t border-white/10 pt-6"
         >
           {site.stats.map((stat, i) => (
             <div key={stat.label} className={`flex flex-col ${i === 0 ? "pr-6 md:pr-10" : "px-6 md:px-10"}`}>
-              <dt className="order-2 text-xs font-medium uppercase tracking-wider text-gray-500 dark:text-slate-400">
+              <dt className="order-2 text-xs font-medium uppercase tracking-wider text-white/60">
                 {stat.label}
               </dt>
-              <dd className="order-1 text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+              <dd className="order-1 text-2xl md:text-3xl font-bold text-white">
                 {stat.value}
               </dd>
             </div>
           ))}
         </motion.dl>
-      </motion.div>
+        </div>
 
       {/* ---------------- Right: headshot ---------------- */}
       <motion.div
         initial={{ scale: 0.9, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 1 }}
-        className="flex-1 flex justify-center items-center mb-14 md:mb-0 relative z-10"
+        className="flex-1 flex justify-center items-center relative z-10"
       >
-        <div className="relative w-72 md:w-[26rem] aspect-square">
-          {/* Rotating gradient ring */}
-          <div
-            className="absolute -inset-4 rounded-full bg-[conic-gradient(from_0deg,#3b82f6,#818cf8,#38bdf8,#3b82f6)] opacity-25 dark:opacity-20 dark:bg-[conic-gradient(from_0deg,#fff3ca,#dcb96f,#bb985b,#fff3ca)] blur-md animate-spin-slow"
-            aria-hidden="true"
-          />
-          <div className="absolute inset-0 bg-blue-500/20 dark:bg-gold-500/25 rounded-full animate-pulse" aria-hidden="true" />
-
+        <Tilt max={10} className="relative w-60 sm:w-72 md:w-[24rem] aspect-[4/5] rounded-[2rem]">
+          <Scene3D className="absolute left-1/2 top-1/2 z-0 h-[190%] w-[190%] -translate-x-1/2 -translate-y-1/2" />
           {headshotFailed ? (
             /* Local monogram — the hero never shows an empty column again */
             <div
               role="img"
               aria-label={`${site.name} monogram`}
-              className="relative z-10 flex w-full h-full items-center justify-center rounded-full border-8 border-white dark:border-slate-700 shadow-2xl shadow-blue-500/10 dark:shadow-gold-500/10 bg-gradient-to-br from-blue-500 to-blue-700 dark:bg-gold-gradient"
+              className="relative z-10 flex w-full h-full items-center justify-center rounded-[2rem] bg-neon"
             >
-              <span className="text-7xl md:text-8xl font-extrabold tracking-tight text-white select-none">
+              <span className="text-7xl md:text-8xl font-extrabold tracking-tight text-ink select-none">
                 VN
               </span>
             </div>
@@ -265,10 +278,10 @@ const Hero = () => {
               decoding="async"
               onError={() => setHeadshotFailed(true)}
               alt="Professional headshot of Vishnu Nair"
-              className="relative z-10 w-full h-full object-cover rounded-full border-8 border-white dark:border-slate-700 shadow-2xl shadow-blue-500/10 dark:shadow-gold-500/10"
+              className="relative z-10 w-full h-full object-cover rounded-[2rem] border-4 border-neon"
             />
           )}
-        </div>
+        </Tilt>
       </motion.div>
 
       {/* Scroll cue */}
@@ -279,7 +292,7 @@ const Hero = () => {
         animate={{ opacity: 1 }}
         transition={{ delay: 1.4, duration: 0.8 }}
         aria-label="Scroll to education section"
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 text-gray-400 transition-colors hover:text-blue-500 dark:text-slate-500 dark:hover:text-gold-300"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 text-white/50 transition-colors hover:text-neon"
       >
         <span className="text-[11px] font-medium uppercase tracking-[0.2em]">Scroll</span>
         <span className="flex h-9 w-6 items-start justify-center rounded-full border-2 border-current p-1">
@@ -287,6 +300,7 @@ const Hero = () => {
         </span>
       </motion.button>
     </motion.div>
+    </div>
   );
 };
 

@@ -1,9 +1,10 @@
 
 
+import Tilt from "./Tilt";
 import React, { useState, useEffect } from "react";
 import { AiOutlineGithub, AiOutlineLink } from "react-icons/ai";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import DoodleField from "./Doodles";
+import SectionHead from "./SectionHead";
 
 const Portfolio = () => {
   const [currentSlideFirst, setCurrentSlideFirst] = useState(0);
@@ -98,129 +99,117 @@ const imagesSecond = [
     caseStudyText,
     githubLink,
     deployedLink,
+    n,
   }) => (
-    <div className="relative z-10 max-w-7xl mx-auto flex flex-col lg:flex-row gap-8 mt-16 px-4 group">
-      <div className="bg-white dark:bg-slate-900/80 rounded-2xl shadow-lg p-8 flex flex-col justify-between w-full lg:w-1/3 border border-gray-100 dark:border-slate-700/60 hover:border-blue-200 dark:hover:border-gold-500/40 transition-all duration-300">
-        <div>
-          <h2 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white group-hover:text-blue-500 dark:group-hover:text-gold-300 transition-colors duration-300">
-            {title}
-            <span className="block mt-2 w-24 h-1 bg-blue-500 dark:bg-gold-400 rounded group-hover:w-32 transition-all duration-300"></span>
-          </h2>
-          <div className="flex flex-wrap gap-2 my-6">
-            {technologies.map((tech, index) => (
-              <span
-                key={index}
-                className="bg-blue-50 dark:bg-gold-500/10 text-blue-600 dark:text-gold-200 text-xs md:text-sm font-medium px-4 py-1.5 rounded-full border border-blue-100 dark:border-gold-500/20 hover:bg-blue-100 dark:hover:bg-gold-500/20 transition-colors duration-200"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
-          <h3 className="text-xl md:text-2xl font-bold text-gray-700 dark:text-slate-200 mb-6">
-            {description}
-          </h3>
-          <ul className="space-y-4 text-gray-600 dark:text-slate-400 text-base md:text-lg">
-            {caseStudyText.map((text, index) => (
-              <li key={index} className="flex items-start">
-                <span className="inline-block w-2 h-2 bg-blue-400 dark:bg-gold-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                {text}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="mt-8 space-y-4">
-
-          <div className="flex gap-4 pt-2">
-            <a
-              href={githubLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 rounded-full hover:bg-blue-50 dark:hover:bg-slate-800 transition-colors duration-200"
-            >
-              <AiOutlineGithub className="text-2xl text-gray-700 dark:text-slate-200 hover:text-blue-500 dark:hover:text-gold-300 transition-colors duration-200" />
-            </a>
-            <a
-              href={deployedLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 rounded-full hover:bg-blue-50 dark:hover:bg-slate-800 transition-colors duration-200"
-            >
-              <AiOutlineLink className="text-2xl text-gray-700 dark:text-slate-200 hover:text-blue-500 dark:hover:text-gold-300 transition-colors duration-200" />
-            </a>
-          </div>
-        </div>
-      </div>
-      <div className="w-full lg:w-2/3 relative min-h-[300px] md:min-h-[400px] lg:min-h-[500px] group">
-        <div className="absolute inset-0 flex items-center justify-center bg-gray-50 dark:bg-slate-800/60 rounded-2xl overflow-hidden shadow-lg border border-gray-100 dark:border-slate-700/60">
-          <div className="relative w-full h-full">
-            <img
-              src={images[currentSlide]}
-              alt={`${title} Slider`}
-              loading="lazy"
-              decoding="async"
-              onError={(e) => {
-                // image2url.com (old host) is offline; show a local placeholder
-                // instead of a broken-image glyph. Guard against loops.
-                if (!e.currentTarget.src.endsWith("/img-placeholder.svg")) {
-                  e.currentTarget.src = "/img-placeholder.svg";
-                }
-              }}
-              className="absolute inset-0 w-full h-full object-contain p-4 transition-opacity duration-500"
-            />
-
-            {/* Navigation Arrows */}
-            <button
-              onClick={() =>
-                handleSlideChange("prev", currentSlide, setCurrentSlide, images.length)
-              }
-              className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 dark:bg-slate-800/90 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 focus:opacity-100 transition-opacity duration-300 hover:bg-blue-50 dark:hover:bg-slate-700"
-            >
-              <ChevronLeft className="w-6 h-6 text-gray-700 dark:text-slate-200" />
-            </button>
-            <button
-              onClick={() =>
-                handleSlideChange("next", currentSlide, setCurrentSlide, images.length)
-              }
-              className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 dark:bg-slate-800/90 p-2 rounded-full shadow-lg opacity-0 group-hover:opacity-100 focus:opacity-100 transition-opacity duration-300 hover:bg-blue-50 dark:hover:bg-slate-700"
-            >
-              <ChevronRight className="w-6 h-6 text-gray-700 dark:text-slate-200" />
-            </button>
-
-            {/* Slide Indicators */}
-            <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
-              {images.map((_, index) => (
-                <button
-                  key={index}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                    currentSlide === index
-                      ? "bg-blue-500 dark:bg-gold-400 w-6"
-                      : "bg-gray-300 hover:bg-gray-400"
-                  }`}
-                  onClick={() => setCurrentSlide(index)}
-                />
+    <Tilt as="article" max={2.5} className="mx-auto mt-6 max-w-[1400px] overflow-hidden rounded-[2rem] bg-ink p-5 text-white md:p-10">
+      <div className="grid gap-8 lg:grid-cols-12 lg:gap-12">
+        <div className="flex flex-col justify-between lg:col-span-5">
+          <div>
+            <div className="flex items-center gap-3 text-xs font-medium uppercase tracking-[0.2em] text-white/60">
+              <span className="inline-block h-2.5 w-2.5 bg-neon" aria-hidden="true" />
+              Project {n}
+            </div>
+            <h3 className="mt-5 font-display text-4xl font-medium leading-[0.98] tracking-tight md:text-6xl">
+              {title}
+            </h3>
+            <p className="mt-4 text-xl font-medium text-neon md:text-2xl">{description}</p>
+            <div className="my-6 flex flex-wrap gap-2">
+              {technologies.map((tech, index) => (
+                <span key={index} className="rounded-full border border-white/25 px-4 py-1.5 text-xs font-medium md:text-sm">
+                  {tech}
+                </span>
               ))}
+            </div>
+            <ul className="space-y-3 text-base text-white/75 md:text-lg">
+              {caseStudyText.map((text, index) => (
+                <li key={index} className="flex items-start">
+                  <span className="mr-3 mt-2.5 inline-block h-2 w-2 flex-shrink-0 bg-neon" aria-hidden="true" />
+                  {text}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="mt-8 flex gap-3">
+            <a href={githubLink} target="_blank" rel="noopener noreferrer" aria-label={`${title} on GitHub`}
+              className="inline-flex items-center gap-2 rounded-full bg-white/10 px-5 py-3 font-medium transition-colors hover:bg-neon hover:text-ink">
+              <AiOutlineGithub className="text-xl" /> Code
+            </a>
+            <a href={deployedLink} target="_blank" rel="noopener noreferrer" aria-label={`${title} live link`}
+              className="inline-flex items-center gap-2 rounded-full bg-neon px-5 py-3 font-medium text-ink transition-colors hover:bg-white">
+              <AiOutlineLink className="text-xl" /> Live
+            </a>
+          </div>
+        </div>
+
+        {/* Browser-window device mockup */}
+        <div className="group lg:col-span-7">
+          <div className="overflow-hidden rounded-3xl bg-white/5 ring-1 ring-white/15">
+            <div className="flex items-center gap-2 border-b border-white/10 px-4 py-3">
+              <span className="h-3 w-3 rounded-full bg-ember" />
+              <span className="h-3 w-3 rounded-full bg-neon" />
+              <span className="h-3 w-3 rounded-full bg-white/40" />
+              <span className="ml-3 truncate rounded-full bg-white/10 px-4 py-1 text-xs text-white/60">
+                {deployedLink.replace(/^https?:\/\//, "")}
+              </span>
+            </div>
+            <div className="relative aspect-[16/10] bg-white">
+              <img
+                src={images[currentSlide]}
+                alt={`${title} Slider`}
+                loading="lazy"
+                decoding="async"
+                onError={(e) => {
+                  if (!e.currentTarget.src.endsWith("/img-placeholder.svg")) {
+                    e.currentTarget.src = "/img-placeholder.svg";
+                  }
+                }}
+                className="absolute inset-0 h-full w-full object-contain p-2 transition-opacity duration-500"
+              />
+              <button
+                onClick={() => handleSlideChange("prev", currentSlide, setCurrentSlide, images.length)}
+                aria-label="Previous screenshot"
+                className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-ink p-2 text-white opacity-0 transition-opacity duration-300 hover:bg-neon hover:text-ink focus:opacity-100 group-hover:opacity-100"
+              >
+                <ChevronLeft className="h-6 w-6" />
+              </button>
+              <button
+                onClick={() => handleSlideChange("next", currentSlide, setCurrentSlide, images.length)}
+                aria-label="Next screenshot"
+                className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-ink p-2 text-white opacity-0 transition-opacity duration-300 hover:bg-neon hover:text-ink focus:opacity-100 group-hover:opacity-100"
+              >
+                <ChevronRight className="h-6 w-6" />
+              </button>
+              <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-1.5">
+                {images.map((_, index) => (
+                  <button
+                    key={index}
+                    aria-label={`Screenshot ${index + 1}`}
+                    className={`h-2 transition-all duration-300 ${currentSlide === index ? "w-6 bg-ink" : "w-2 bg-ink/30 hover:bg-ink/60"}`}
+                    onClick={() => setCurrentSlide(index)}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </Tilt>
   );
 
   return (
-    <div className="relative overflow-hidden bg-gray-50/50 dark:bg-slate-900/40 py-12 md:py-20">
-      <DoodleField variant={3} />
-      <div className="relative z-10 max-w-7xl mx-auto px-4">
-        <h2 className="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white text-center">
-          My Projects
-          <span className="block mt-4 w-24 mx-auto h-1.5 bg-blue-500 dark:bg-gold-gradient rounded-full"></span>
-        </h2>
-        <p className="text-gray-600 dark:text-slate-400 text-center mt-6 text-lg max-w-2xl mx-auto">
-          Explore my latest work and projects that showcase my skills in web development and design.
-        </p>
+    <div className="relative overflow-hidden bg-paper px-4 py-20 sm:px-6 md:py-28 lg:px-10 dark:bg-black">
+      <div className="mx-auto max-w-[1400px]">
+        <SectionHead
+          n="03"
+          tag="Selected work"
+          title="My Projects"
+          sub="Explore my latest work and projects that showcase my skills in web development and design."
+        />
       </div>
 
       <ProjectSection
         title="Unishare"
+        n="01"
         description="Community Sharing Platform"
         technologies={["MongoDb", "ExpressJs", "React", "NodeJs","Tailwind CSS",]}
         images={imagesSecond}
@@ -237,6 +226,7 @@ const imagesSecond = [
 
       <ProjectSection
         title="CraveMate"
+        n="02"
         description="Food Ordering Web App"
         technologies={["React", "SpringBoot", "MongoDb", "Tailwind CSS"]}
         images={imagesFirst}
@@ -253,6 +243,7 @@ const imagesSecond = [
 
       <ProjectSection
         title="Intervo"
+        n="03"
         description="Simplify Hiring Amplify Talent"
         technologies={[
           "MongoDb",
@@ -276,6 +267,7 @@ const imagesSecond = [
       />
     <ProjectSection
       title="Interactive Learning with Real-Time Polls"
+      n="04"
       description="A real-time classroom polling app for interactive learning"
       technologies={[
         "React.js",
@@ -303,4 +295,3 @@ const imagesSecond = [
 };
 
 export default Portfolio;
-

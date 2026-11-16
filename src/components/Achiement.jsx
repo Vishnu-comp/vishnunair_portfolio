@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { FaTrophy } from "react-icons/fa";
+
 import DoodleField from "./Doodles";
+import SectionHead from "./SectionHead";
 
 export const Achievement = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -30,29 +31,13 @@ export const Achievement = () => {
   };
 
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section className="px-0 py-20 md:py-28 relative overflow-hidden">
       {/* Background with subtle patterns */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-blue-50/30 dark:from-slate-900/60 dark:via-transparent dark:to-slate-900/40 -z-10"></div>
       <DoodleField variant={1} />
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <FaTrophy className="text-4xl text-blue-500 dark:text-gold-400" />
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
-              My Achievements
-            </h2>
-          </div>
-          <div className="w-24 h-1.5 bg-gradient-to-r from-blue-500 to-blue-600 mx-auto dark:bg-gold-gradient rounded-full"></div>
-          <p className="mt-6 text-lg text-gray-600 dark:text-slate-400 max-w-2xl mx-auto">
-            Certifications and recognition that showcase my expertise and continuous learning journey.
-          </p>
-        </motion.div>
+        <SectionHead n="05" tag="Recognition" title="My Achievements" sub="Certifications and recognition that showcase my expertise and continuous learning journey." />
 
         {/* Slider Container */}
         <motion.div

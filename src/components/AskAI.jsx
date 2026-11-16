@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import SectionHead from "./SectionHead";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSearchParams } from "react-router-dom";
 import { ASK_AI_EVENTS, safeTrack } from "../utils/analytics";
@@ -149,7 +150,7 @@ const Segmented = ({ label, value, options, onChange, name, showNote = false }) 
   const active = options.find((o) => o.id === value);
   return (
     <div className="min-w-0">
-      <span className="mb-2 block text-[11px] font-semibold uppercase tracking-wider text-gray-400 dark:text-slate-500">
+      <span className="mb-2 block text-[11px] font-semibold uppercase tracking-wider text-gray-400 dark:text-slate-400">
         {label}
       </span>
       <div
@@ -190,7 +191,7 @@ const Segmented = ({ label, value, options, onChange, name, showNote = false }) 
       {/* The caption exists so a choice that changes the *answer* — the tone —
           is explained where it is made, not hidden in a tooltip. */}
       {showNote && active && active.note && (
-        <p className="mt-2 max-w-md text-[11px] leading-relaxed text-gray-500 dark:text-slate-500">
+        <p className="mt-2 max-w-md text-[11px] leading-relaxed text-gray-500 dark:text-slate-400">
           {active.note}
         </p>
       )}
@@ -354,17 +355,10 @@ const AskAI = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.6 }}
-          className="mb-10 text-center"
+          className="mb-10"
         >
-          <span className="inline-flex items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-700 dark:border-gold-500/25 dark:bg-gold-500/10 dark:text-gold-200">
-            <Sparkles className="h-3.5 w-3.5" aria-hidden="true" />
-            No chatbot, no tracking
-          </span>
-          <h2 className="mt-4 text-3xl font-bold text-gray-900 md:text-4xl dark:text-white">
-            Ask an AI about me
-          </h2>
-          <span className="mx-auto mt-4 block h-1.5 w-24 rounded-full bg-gradient-to-r from-blue-500 to-blue-600 dark:bg-gold-gradient" />
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-gray-600 md:text-lg dark:text-slate-400">
+          <SectionHead dark n="08" tag="No chatbot, no tracking" title="Ask an AI about me" />
+          <p className="mb-8 max-w-3xl text-base leading-relaxed text-white/75 md:text-lg">
             Curious whether I&apos;m worth a conversation? Send the question to
             ChatGPT, Claude, Perplexity or Gemini with a short fact sheet about
             me already typed in — every word stays editable before it is sent,
@@ -476,7 +470,7 @@ const AskAI = () => {
                       "font-mono tabular-nums",
                       meter === "over" && "text-rose-600 dark:text-rose-400",
                       meter === "tight" && "text-amber-600 dark:text-amber-400",
-                      meter === "ok" && "text-gray-500 dark:text-slate-500"
+                      meter === "ok" && "text-gray-500 dark:text-slate-400"
                     )}
                   >
                     {prompt.length.toLocaleString()} / {PROMPT_CHAR_LIMIT.toLocaleString()} chars ·{" "}
@@ -505,7 +499,7 @@ const AskAI = () => {
                     }}
                   />
                 </div>
-                <p className="mt-2 text-[11px] leading-relaxed text-gray-500 dark:text-slate-500">
+                <p className="mt-2 text-[11px] leading-relaxed text-gray-500 dark:text-slate-400">
                   {meter === "over" ? (
                     <>
                       Past {PROMPT_CHAR_LIMIT.toLocaleString()} characters this section stops guessing
@@ -603,7 +597,7 @@ const AskAI = () => {
                         </span>
                       </span>
                       <ArrowUpRight
-                        className="mt-1 h-4 w-4 shrink-0 text-gray-300 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-gray-500 dark:text-slate-600 dark:group-hover:text-slate-300"
+                        className="mt-1 h-4 w-4 shrink-0 text-gray-300 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-gray-500 dark:text-slate-400 dark:group-hover:text-slate-300"
                         aria-hidden="true"
                       />
                     </a>
@@ -680,7 +674,7 @@ const AskAI = () => {
                 )}
               </AnimatePresence>
 
-              <p className="mt-3 border-t border-gray-100 pt-3 text-[11px] leading-relaxed text-gray-500 dark:border-slate-800 dark:text-slate-500">
+              <p className="mt-3 border-t border-gray-100 pt-3 text-[11px] leading-relaxed text-gray-500 dark:border-slate-800 dark:text-slate-400">
                 You&apos;ll need to be signed in to the assistant. It can&apos;t open my resume
                 PDF or private repositories — it only sees the text in this prompt,
                 {" "}

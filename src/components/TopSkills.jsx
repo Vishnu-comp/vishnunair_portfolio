@@ -1,4 +1,5 @@
 import React from "react";
+import SectionHead from "./SectionHead";
 import { FaPython, FaJava, FaJs, FaReact, FaGit, FaDocker } from "react-icons/fa";
 import {
   SiCplusplus,
@@ -91,13 +92,7 @@ const groups = [
 const TopSkills = () => (
   <div className="bg-gradient-to-br from-gray-50 to-blue-50 dark:from-slate-900/60 dark:to-slate-900/30 py-16 px-4 sm:px-6 lg:px-8">
     <div className="max-w-7xl mx-auto">
-      <h2 className="text-center text-4xl font-extrabold text-gray-800 dark:text-white mb-4">
-        My Expertise
-      </h2>
-      <p className="text-center text-gray-600 dark:text-slate-400 mb-14 max-w-2xl mx-auto">
-        Technologies and tools I work with, grouped by where they live in the
-        stack — plus the AI tooling I pair with every day.
-      </p>
+      <SectionHead dark n="06" tag="Stack" title="My Expertise" sub="Technologies and tools I work with, grouped by where they live in the stack — plus the AI tooling I pair with every day." />
 
       <div className="space-y-14">
         {groups.map((group, gi) => (
@@ -114,7 +109,7 @@ const TopSkills = () => (
               <h3 className="text-lg font-bold uppercase tracking-[0.14em] text-blue-600 dark:text-gold-300">
                 {group.title}
               </h3>
-              <span className="hidden sm:block text-sm text-gray-500 dark:text-slate-500">
+              <span className="hidden sm:block text-sm text-gray-500 dark:text-slate-400">
                 {group.blurb}
               </span>
               <span className="h-px flex-1 bg-gradient-to-r from-blue-200 to-transparent dark:from-gold-500/60 dark:from-slate-700" />
