@@ -93,6 +93,7 @@ module.exports = {
         "gold-gradient": "linear-gradient(127.56deg, #dcff8f -6.75%, #9be000 105.89%)",
       },
       keyframes: {
+        marquee: { from: { transform: "translateX(0)" }, to: { transform: "translateX(-50%)" } },
         pxIn: { from: { opacity: "0", transform: "scale(0.2)" }, to: { opacity: "1", transform: "scale(1)" } },
         pxGlitch: { "0%,100%": { opacity: "1" }, "50%": { opacity: "0.15" } },
         // Referenced by ContactForm.jsx background blobs — this keyframe was
@@ -128,6 +129,7 @@ module.exports = {
         },
       },
       animation: {
+        marquee: "marquee 30s linear infinite",
         "px-in": "pxIn 0.5s steps(3, end) both",
         "px-glitch": "pxGlitch 2.4s steps(2, end) infinite",
         blob: "blob 9s ease-in-out infinite",
