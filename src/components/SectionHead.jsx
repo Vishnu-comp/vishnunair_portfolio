@@ -9,7 +9,7 @@ const SectionHead = ({ n, tag, title, sub, dark = false }) => (
   <div className="mb-10 md:mb-16">
     <div
       className={`flex items-center gap-3 border-t pt-4 text-xs font-medium uppercase tracking-[0.2em] ${
-        dark ? "border-white/20 text-white/60" : "border-ink/20 text-ink/60"
+        dark ? "border-white/20 text-white/60" : "border-ink/20 text-ink/60 dark:border-white/20 dark:text-white/60"
       }`}
     >
       <span className="inline-block h-2.5 w-2.5 bg-neon" aria-hidden="true" />
@@ -29,7 +29,7 @@ const SectionHead = ({ n, tag, title, sub, dark = false }) => (
       </motion.h2>
     </div>
     {sub && (
-      <p className={`mt-6 max-w-2xl text-lg ${dark ? "text-white/70" : "text-ink/65"}`}>{sub}</p>
+      <p className={`mt-6 max-w-2xl text-lg ${dark ? "text-white/70" : "text-ink/65 dark:text-white/70"}`}>{sub}</p>
     )}
   </div>
 );
