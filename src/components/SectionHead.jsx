@@ -1,12 +1,14 @@
 import React from "react";
 import { motion } from "framer-motion";
+import ShapeBg from "./ShapeBg";
 
 /**
  * Cosmos-style section opener: a small numbered tag row, then a huge
  * lower-case-feeling display title that slides up when scrolled into view.
  */
 const SectionHead = ({ n, tag, title, sub, dark = false }) => (
-  <div className="mb-10 md:mb-16">
+  <div className="relative mb-10 md:mb-16">
+    <ShapeBg kind={(parseInt(n, 10) || 0) % 4} dark={dark} className="right-0 top-6 h-56 w-56 lg:h-72 lg:w-72" />
     <div
       className={`flex items-center gap-3 border-t pt-4 text-xs font-medium uppercase tracking-[0.2em] ${
         dark ? "border-white/20 text-white/60" : "border-ink/20 text-ink/60 dark:border-white/20 dark:text-white/60"
@@ -17,7 +19,7 @@ const SectionHead = ({ n, tag, title, sub, dark = false }) => (
       <span>/</span>
       <span>{tag}</span>
     </div>
-    <div className="overflow-hidden">
+    <div className="relative z-10 overflow-hidden">
       <motion.h2
         initial={{ y: "100%" }}
         whileInView={{ y: 0 }}
