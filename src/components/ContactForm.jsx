@@ -179,7 +179,7 @@ const ContactForm = () => {
                     Your Name
                   </label>
                   <div className="relative">
-                    <FiUser className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 dark:text-slate-500" />
+                    <FiUser className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 dark:text-slate-400" />
                     <input
                       id="contact-name"
                       name="name"
@@ -215,7 +215,7 @@ const ContactForm = () => {
                     Email Address
                   </label>
                   <div className="relative">
-                    <FiMail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 dark:text-slate-500" />
+                    <FiMail className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 dark:text-slate-400" />
                     <input
                       id="contact-email"
                       name="email"
@@ -257,7 +257,7 @@ const ContactForm = () => {
                       "text-xs tabular-nums",
                       values.message.length > 500
                         ? "text-rose-500"
-                        : "text-gray-400 dark:text-slate-500"
+                        : "text-gray-400 dark:text-slate-400"
                     )}
                     aria-hidden="true"
                   >
@@ -265,7 +265,7 @@ const ContactForm = () => {
                   </span>
                 </div>
                 <div className="relative">
-                  <FiMessageSquare className="absolute left-4 top-4 text-gray-400 dark:text-slate-500" />
+                  <FiMessageSquare className="absolute left-4 top-4 text-gray-400 dark:text-slate-400" />
                   <textarea
                     id="contact-message"
                     name="message"
@@ -375,7 +375,7 @@ const ContactForm = () => {
                 )}
               </motion.button>
 
-              <p className="text-center text-xs text-gray-400 dark:text-slate-500">
+              <p className="text-center text-xs text-gray-400 dark:text-slate-400">
                 Delivered to {site.email} · no data is stored on this site
               </p>
             </form>
