@@ -221,6 +221,16 @@ const Footer = () => {
           </p>
         </div>
       </div>
+
+      {/* Giant faded wordmark, same idea as the hiregram.ai footer */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none -mb-4 mt-10 select-none overflow-hidden px-2 text-center md:-mb-12 md:mt-14"
+      >
+        <span style={{ wordSpacing: "0.06em" }} className="block whitespace-nowrap bg-gradient-to-b from-gray-400/70 via-gray-300/40 to-transparent bg-clip-text pb-[0.12em] text-[15.5vw] font-extrabold leading-[0.9] tracking-tighter text-transparent dark:from-slate-500/70 dark:via-slate-600/40 dark:to-transparent">
+          Vishnu Nair
+        </span>
+      </div>
     </footer>
   );
 };
